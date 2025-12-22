@@ -1,0 +1,4035 @@
+{
+  "match_prediction_stats": {
+    "playoff": {
+      "brier_scores": {
+        "win_loss": 0.11552522207324145
+      },
+      "err_mean": 16.12849005574905,
+      "err_var": 149.98565205339403,
+      "wl_accuracy": 93.33333333333333,
+      "wl_accuracy_75": 100
+    },
+    "qual": {
+      "brier_scores": {
+        "win_loss": 0.1375660578997103
+      },
+      "err_mean": 12.047935905064524,
+      "err_var": 75.82401902466088,
+      "wl_accuracy": 84,
+      "wl_accuracy_75": 92.15686274509804
+    }
+  },
+  "match_predictions": {
+    "playoff": {
+      "2024gacmp_f1m1": {
+        "blue": {
+          "note_scored": 23.7207358462301,
+          "note_scored_var": 12.54117177524987,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9468890599541555,
+          "score": 82.92112869004887,
+          "score_var": 304.8491409017797,
+          "stage_points": 3.9263924331389912,
+          "stage_points_var": 5.391960906516731
+        },
+        "prob": 0.9547194228457498,
+        "red": {
+          "note_scored": 33.21590571616148,
+          "note_scored_var": 21.186800852248837,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9995263242777102,
+          "score": 125.72362769336596,
+          "score_var": 334.7518268286978,
+          "stage_points": 7.734064428330122,
+          "stage_points_var": 19.779474120462975
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_f1m2": {
+        "blue": {
+          "note_scored": 25.881334509603914,
+          "note_scored_var": 13.831091405687923,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9829631312954332,
+          "score": 96.32286600810411,
+          "score_var": 452.974279624774,
+          "stage_points": 3.9395068648995464,
+          "stage_points_var": 4.245319312665537
+        },
+        "prob": 0.8659818914230899,
+        "red": {
+          "note_scored": 33.84180740085351,
+          "note_scored_var": 22.496204624509787,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.999581150219252,
+          "score": 130.08125514799136,
+          "score_var": 475.99310164586456,
+          "stage_points": 8.207644762049336,
+          "stage_points_var": 19.577304976553755
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_sf10m1": {
+        "blue": {
+          "note_scored": 22.592019398486975,
+          "note_scored_var": 29.814402582284245,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7998231376252554,
+          "score": 81.92936180233195,
+          "score_var": 370.1695401516172,
+          "stage_points": 4.197419657592898,
+          "stage_points_var": 11.012366843562418
+        },
+        "prob": 0.621457253732869,
+        "red": {
+          "note_scored": 23.576230110325312,
+          "note_scored_var": 9.773740810639431,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9627599359624758,
+          "score": 89.81212943504589,
+          "score_var": 279.31477857100947,
+          "stage_points": 9.49384404235922,
+          "stage_points_var": 17.891261683290264
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_sf11m1": {
+        "blue": {
+          "note_scored": 25.950252739801698,
+          "note_scored_var": 33.27911209045219,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9159208143125139,
+          "score": 93.32277789090608,
+          "score_var": 449.04168352524425,
+          "stage_points": 1.456170794047023,
+          "stage_points_var": 1.4619996267350162
+        },
+        "prob": 0.875655874571116,
+        "red": {
+          "note_scored": 33.64034323280124,
+          "note_scored_var": 22.730141067370713,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9994819554267014,
+          "score": 126.56044763362753,
+          "score_var": 381.18138036456145,
+          "stage_points": 8.085920369414112,
+          "stage_points_var": 21.22542489549938
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_sf12m1": {
+        "blue": {
+          "note_scored": 24.691708994196553,
+          "note_scored_var": 8.111029070904586,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9906039035040082,
+          "score": 89.17806968871982,
+          "score_var": 313.87887572251753,
+          "stage_points": 4.165609247855576,
+          "stage_points_var": 5.112655462209986
+        },
+        "prob": 0.5207965075997567,
+        "red": {
+          "note_scored": 23.859665578867183,
+          "note_scored_var": 8.235036729922246,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9794205781941201,
+          "score": 90.40527224217304,
+          "score_var": 239.82573273283586,
+          "stage_points": 8.823155506591887,
+          "stage_points_var": 19.457699163371643
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_sf13m1": {
+        "blue": {
+          "note_scored": 25.79350274126628,
+          "note_scored_var": 15.655556519126081,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9755631900400095,
+          "score": 94.3696466972786,
+          "score_var": 495.29854784108034,
+          "stage_points": 4.069258253052909,
+          "stage_points_var": 4.4884263530515405
+        },
+        "prob": 0.5476814987925382,
+        "red": {
+          "note_scored": 24.997030935997593,
+          "note_scored_var": 33.8619573585413,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8854004214176906,
+          "score": 90.6994121964614,
+          "score_var": 443.1967002675562,
+          "stage_points": 1.5710696520133065,
+          "stage_points_var": 1.4347628510249495
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_sf1m1": {
+        "blue": {
+          "note_scored": 18.87008691562361,
+          "note_scored_var": 33.82149290352841,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5594646057928596,
+          "score": 66.35714353266923,
+          "score_var": 412.0732951689547,
+          "stage_points": 3.842687769917031,
+          "stage_points_var": 6.967968008635157
+        },
+        "prob": 0.988985773481421,
+        "red": {
+          "note_scored": 32.865567893927405,
+          "note_scored_var": 17.33571927219912,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9998217464901009,
+          "score": 121.54874951157946,
+          "score_var": 168.8540056010244,
+          "stage_points": 9.085575039239764,
+          "stage_points_var": 23.868614678420176
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_sf2m1": {
+        "blue": {
+          "note_scored": 23.780520084915146,
+          "note_scored_var": 8.293788177094735,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9776357641440674,
+          "score": 85.33108460012065,
+          "score_var": 326.6820136135618,
+          "stage_points": 4.115381886316956,
+          "stage_points_var": 4.7187519595676894
+        },
+        "prob": 0.5862181952815156,
+        "red": {
+          "note_scored": 21.848013576693507,
+          "note_scored_var": 29.885906740796575,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7592486445128612,
+          "score": 79.25517514305612,
+          "score_var": 451.3503186120221,
+          "stage_points": 4.88969967222085,
+          "stage_points_var": 11.271584703616973
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_sf3m1": {
+        "blue": {
+          "note_scored": 22.36696826673316,
+          "note_scored_var": 13.844434131411832,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8797344502194993,
+          "score": 77.36846389917255,
+          "score_var": 154.57011601709635,
+          "stage_points": 5.801998582407128,
+          "stage_points_var": 10.603497172574565
+        },
+        "prob": 0.747409594356323,
+        "red": {
+          "note_scored": 28.254018270981206,
+          "note_scored_var": 44.92269783076819,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.936978441746068,
+          "score": 95.54382607392003,
+          "score_var": 589.3869550849768,
+          "stage_points": 1.164897048955054,
+          "stage_points_var": 1.9613088514238954
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_sf4m1": {
+        "blue": {
+          "note_scored": 22.585203584084184,
+          "note_scored_var": 10.220651742266234,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9242469282461019,
+          "score": 80.29617959150073,
+          "score_var": 155.61699090049598,
+          "stage_points": 5.2183880477133595,
+          "stage_points_var": 6.024345362105174
+        },
+        "prob": 0.59332828306027,
+        "red": {
+          "note_scored": 22.649679469674783,
+          "note_scored_var": 9.9493792147831,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9297717872351937,
+          "score": 85.3157111834663,
+          "score_var": 296.3213888454598,
+          "stage_points": 10.876681073904237,
+          "stage_points_var": 16.17321420219556
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_sf5m1": {
+        "blue": {
+          "note_scored": 21.593896089777367,
+          "note_scored_var": 25.312647951315228,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.762487327427459,
+          "score": 80.23618577279831,
+          "score_var": 389.04537143036407,
+          "stage_points": 4.476579526168381,
+          "stage_points_var": 11.125373601068985
+        },
+        "prob": 0.7363793244653773,
+        "red": {
+          "note_scored": 17.500534107541206,
+          "note_scored_var": 41.37993571811178,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.4690554050928524,
+          "score": 61.07475314684715,
+          "score_var": 529.5320172591256,
+          "stage_points": 3.2397094796892913,
+          "stage_points_var": 8.380132931604601
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_sf6m1": {
+        "blue": {
+          "note_scored": 22.462838980757265,
+          "note_scored_var": 8.930614026475052,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9323312295306998,
+          "score": 80.43358297455606,
+          "score_var": 135.365975637009,
+          "stage_points": 4.6027418843802,
+          "stage_points_var": 6.485585956048454
+        },
+        "prob": 0.6187155818081238,
+        "red": {
+          "note_scored": 21.788170620381813,
+          "note_scored_var": 13.959452985558888,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8446848803342659,
+          "score": 75.25577568771041,
+          "score_var": 158.37459028575893,
+          "stage_points": 5.682425412925256,
+          "stage_points_var": 9.056858896088297
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_sf7m1": {
+        "blue": {
+          "note_scored": 23.99436178237213,
+          "note_scored_var": 7.967015609512002,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9831527801538857,
+          "score": 85.39954289107067,
+          "score_var": 280.12746590039126,
+          "stage_points": 4.263272916132619,
+          "stage_points_var": 3.9945301849071897
+        },
+        "prob": 0.9463863946908843,
+        "red": {
+          "note_scored": 34.08535875144553,
+          "note_scored_var": 25.35266758987551,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9992999195824713,
+          "score": 128.26831079524737,
+          "score_var": 428.1580825663101,
+          "stage_points": 8.522714990024946,
+          "stage_points_var": 22.761751248769905
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_sf8m1": {
+        "blue": {
+          "note_scored": 23.223973519537864,
+          "note_scored_var": 10.117789990160702,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9497382867273202,
+          "score": 88.07811792669574,
+          "score_var": 297.2425253189562,
+          "stage_points": 9.944504067954705,
+          "stage_points_var": 19.407732278276676
+        },
+        "prob": 0.5357225212493615,
+        "red": {
+          "note_scored": 25.57201985334541,
+          "note_scored_var": 36.6142286165349,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.894600798489317,
+          "score": 90.57707441221075,
+          "score_var": 479.5232896119232,
+          "stage_points": 1.2511179382921327,
+          "stage_points_var": 1.4460428066248983
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_sf9m1": {
+        "blue": {
+          "note_scored": 23.29917136247311,
+          "note_scored_var": 12.417360313481128,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9336850099285717,
+          "score": 84.93319391475829,
+          "score_var": 252.89856910771653,
+          "stage_points": 4.649142296986782,
+          "stage_points_var": 6.388818551308103
+        },
+        "prob": 0.5055630593255698,
+        "red": {
+          "note_scored": 23.83141414180155,
+          "note_scored_var": 8.003903302777573,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9803586598628289,
+          "score": 85.24307622318388,
+          "score_var": 240.90947810329277,
+          "stage_points": 3.8175143985994606,
+          "stage_points_var": 5.185005325459791
+        },
+        "winning_alliance": "red"
+      }
+    },
+    "qual": {
+      "2024gacmp_qm1": {
+        "blue": {
+          "note_scored": 20.759087358478634,
+          "note_scored_var": 46.29966835710864,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6574400684133533,
+          "score": 68.83567160279091,
+          "score_var": 404.31334784769336,
+          "stage_points": 2.232790202385463,
+          "stage_points_var": 11.697708035289196
+        },
+        "prob": 0.7527480738811712,
+        "red": {
+          "note_scored": 14.549155895367365,
+          "note_scored_var": 33.185498069506124,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2745752452491721,
+          "score": 50.34308808609781,
+          "score_var": 328.42092970393423,
+          "stage_points": 2.782559220799781,
+          "stage_points_var": 5.735849140704123
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm10": {
+        "blue": {
+          "note_scored": 18.845921072339713,
+          "note_scored_var": 17.309033431434166,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5805599773809866,
+          "score": 67.53646198630533,
+          "score_var": 221.65346113393386,
+          "stage_points": 4.444083327884764,
+          "stage_points_var": 13.866683466882002
+        },
+        "prob": 0.9163600075318244,
+        "red": {
+          "note_scored": 13.228992735630795,
+          "note_scored_var": 19.75897651732744,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.14156453982788286,
+          "score": 43.42080609487819,
+          "score_var": 83.28548466757073,
+          "stage_points": 2.036572066790429,
+          "stage_points_var": 9.047147266969164
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm100": {
+        "blue": {
+          "note_scored": 16.410218597697277,
+          "note_scored_var": 24.157515293879385,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.37317607091447513,
+          "score": 63.60216268722276,
+          "score_var": 376.2607675166,
+          "stage_points": 4.182205547629958,
+          "stage_points_var": 7.880975292642351
+        },
+        "prob": 0.9902004685785806,
+        "red": {
+          "note_scored": 31.089244369924707,
+          "note_scored_var": 16.400613555893813,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9993855755997291,
+          "score": 121.94920805915837,
+          "score_var": 248.7101050772201,
+          "stage_points": 8.355263414692583,
+          "stage_points_var": 19.855770058669396
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm11": {
+        "blue": {
+          "note_scored": 15.897796757201128,
+          "note_scored_var": 26.656113150867416,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.34194138855833,
+          "score": 54.7175926730842,
+          "score_var": 312.505230956197,
+          "stage_points": 1.170614390080138,
+          "stage_points_var": 2.9126485265322626
+        },
+        "prob": 0.8631567734870368,
+        "red": {
+          "note_scored": 9.672206228137117,
+          "note_scored_var": 3.7148851960647473,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.000007775645954000154,
+          "score": 34.70423523918395,
+          "score_var": 21.781490725439514,
+          "stage_points": 3.8071815208434603,
+          "stage_points_var": 10.366306689903148
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm12": {
+        "blue": {
+          "note_scored": 24.47724006355152,
+          "note_scored_var": 17.62393299214675,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.938572823544723,
+          "score": 89.2304811418558,
+          "score_var": 236.7461552399081,
+          "stage_points": 2.790368835380012,
+          "stage_points_var": 2.513883759782771
+        },
+        "prob": 0.948133426550502,
+        "red": {
+          "note_scored": 15.689991869407157,
+          "note_scored_var": 13.641441439955937,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2658422334545062,
+          "score": 50.80176506565314,
+          "score_var": 321.1157584514154,
+          "stage_points": 3.7412712651535482,
+          "stage_points_var": 14.161816214557975
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm13": {
+        "blue": {
+          "note_scored": 17.01890567404691,
+          "note_scored_var": 10.97885958423501,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.38357848631106106,
+          "score": 62.82571616177083,
+          "score_var": 399.14644864594993,
+          "stage_points": 4.068606589097901,
+          "stage_points_var": 18.141101198914598
+        },
+        "prob": 0.8432019284876535,
+        "red": {
+          "note_scored": 8.25322236867644,
+          "note_scored_var": 11.787518994282971,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.0022634781800575654,
+          "score": 37.755478631202024,
+          "score_var": 219.79581764151587,
+          "stage_points": 6.0884610646397395,
+          "stage_points_var": 1.6376906173646686
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm14": {
+        "blue": {
+          "note_scored": 16.044622685319954,
+          "note_scored_var": 15.15731882288959,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3077460679713422,
+          "score": 58.18356103910439,
+          "score_var": 346.0347738678303,
+          "stage_points": 7.82882529661003,
+          "stage_points_var": 9.613913061022386
+        },
+        "prob": 0.6042945967652527,
+        "red": {
+          "note_scored": 18.257908460562888,
+          "note_scored_var": 23.09203365345341,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5214011004814889,
+          "score": 65.26061964314803,
+          "score_var": 369.98173158684347,
+          "stage_points": 5.297169864776993,
+          "stage_points_var": 6.455878954301074
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm15": {
+        "blue": {
+          "note_scored": 23.06880265612422,
+          "note_scored_var": 41.486431708563565,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7843471911130475,
+          "score": 81.70148880961128,
+          "score_var": 301.54456198872936,
+          "stage_points": 4.668082096466181,
+          "stage_points_var": 9.553003920099872
+        },
+        "prob": 0.6473289929955155,
+        "red": {
+          "note_scored": 19.63234591272013,
+          "note_scored_var": 16.705284287970496,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6551930294892534,
+          "score": 72.23941410259246,
+          "score_var": 324.65849915879255,
+          "stage_points": 8.238587270977428,
+          "stage_points_var": 21.86095521586559
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm16": {
+        "blue": {
+          "note_scored": 18.219776382427984,
+          "note_scored_var": 8.443691644177871,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5301447025098543,
+          "score": 66.1145341783807,
+          "score_var": 167.85003796871055,
+          "stage_points": 5.351243241162815,
+          "stage_points_var": 12.760526481725925
+        },
+        "prob": 0.9396695605184959,
+        "red": {
+          "note_scored": 10.227691861622478,
+          "note_scored_var": 23.820501931811382,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.055638212412371546,
+          "score": 35.56995913731754,
+          "score_var": 219.48037208285805,
+          "stage_points": 3.2873659701545135,
+          "stage_points_var": 3.3370103814283802
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm17": {
+        "blue": {
+          "note_scored": 19.308265511581514,
+          "note_scored_var": 19.936173271089828,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.615240825113932,
+          "score": 67.04060352176994,
+          "score_var": 189.28138714345982,
+          "stage_points": 3.532671128818439,
+          "stage_points_var": 3.292198922360433
+        },
+        "prob": 0.7557445902318243,
+        "red": {
+          "note_scored": 14.968949514599057,
+          "note_scored_var": 11.080035969375729,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.1812558818908947,
+          "score": 53.91271138304859,
+          "score_var": 169.90970288283984,
+          "stage_points": 2.2791522783784792,
+          "stage_points_var": 3.1806787358221444
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm18": {
+        "blue": {
+          "note_scored": 14.709708466081132,
+          "note_scored_var": 10.348143793095161,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.15319428532183066,
+          "score": 46.701489970141964,
+          "score_var": 65.9461081271685,
+          "stage_points": 2.73175987315876,
+          "stage_points_var": 3.6396166906338268
+        },
+        "prob": 0.8174996402484551,
+        "red": {
+          "note_scored": 8.046077768569791,
+          "note_scored_var": 20.410049502695188,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.013787059230019327,
+          "score": 34.15352503239247,
+          "score_var": 125.92416431242324,
+          "stage_points": 3.267594471996013,
+          "stage_points_var": 12.06368688019223
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm19": {
+        "blue": {
+          "note_scored": 21.38697739269188,
+          "note_scored_var": 45.645003077009534,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.69192729660661,
+          "score": 71.7074066178798,
+          "score_var": 483.92472626350946,
+          "stage_points": 1.995103376781249,
+          "stage_points_var": 5.443372855499472
+        },
+        "prob": 0.7291336381436395,
+        "red": {
+          "note_scored": 15.405740069594902,
+          "note_scored_var": 51.878552473343284,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3593562746115083,
+          "score": 54.9484348722319,
+          "score_var": 270.3987511975867,
+          "stage_points": 2.498339940423619,
+          "stage_points_var": 10.517765996760158
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm2": {
+        "blue": {
+          "note_scored": 14.308976529427447,
+          "note_scored_var": 12.008577226092168,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.14340943356607005,
+          "score": 49.55890514173588,
+          "score_var": 100.51366590990824,
+          "stage_points": 2.2048598741405687,
+          "stage_points_var": 17.218758290263878
+        },
+        "prob": 0.5761217870348003,
+        "red": {
+          "note_scored": 15.051651645690749,
+          "note_scored_var": 25.38603969286395,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.27921704035990014,
+          "score": 53.39906103066659,
+          "score_var": 299.5944713328548,
+          "stage_points": 3.836690990938429,
+          "stage_points_var": 16.893739596667533
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm20": {
+        "blue": {
+          "note_scored": 23.86417989717022,
+          "note_scored_var": 20.002149029252124,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9051049064042174,
+          "score": 78.43380808909922,
+          "score_var": 234.44104227878825,
+          "stage_points": 5.223598287779801,
+          "stage_points_var": 10.308912048221403
+        },
+        "prob": 0.7456455034786555,
+        "red": {
+          "note_scored": 16.54459666922804,
+          "note_scored_var": 8.189952941222943,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.30553014628027797,
+          "score": 64.38628995152072,
+          "score_var": 217.40907175701363,
+          "stage_points": 8.53915952774157,
+          "stage_points_var": 13.52373596318851
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm21": {
+        "blue": {
+          "note_scored": 19.759687902927762,
+          "note_scored_var": 19.859906407632376,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6535282055709165,
+          "score": 67.94623466566325,
+          "score_var": 261.9976163260757,
+          "stage_points": 4.461168027150091,
+          "stage_points_var": 5.258070074050089
+        },
+        "prob": 0.5019761431359123,
+        "red": {
+          "note_scored": 19.8083284069844,
+          "note_scored_var": 29.82358349109333,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6297265265776503,
+          "score": 67.83974054447327,
+          "score_var": 200.20356507769702,
+          "stage_points": 4.716015636538296,
+          "stage_points_var": 3.7303364765070732
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm22": {
+        "blue": {
+          "note_scored": 15.264282171799852,
+          "note_scored_var": 8.152662101192247,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.16900019499060126,
+          "score": 40.02741037028771,
+          "score_var": 251.81479983194544,
+          "stage_points": 3.427888244603349,
+          "stage_points_var": 11.724507458007064
+        },
+        "prob": 0.9265258357383567,
+        "red": {
+          "note_scored": 19.43384920272285,
+          "note_scored_var": 12.462679753743368,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6576876887527956,
+          "score": 72.23917231275544,
+          "score_var": 241.4228489980915,
+          "stage_points": 7.920081024837318,
+          "stage_points_var": 33.27024336600716
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm23": {
+        "blue": {
+          "note_scored": 16.616103034801515,
+          "note_scored_var": 14.715749115984242,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3591412373446572,
+          "score": 60.094389697315975,
+          "score_var": 206.22826074465883,
+          "stage_points": 5.398459999714486,
+          "stage_points_var": 7.3502741102460005
+        },
+        "prob": 0.5606133868527836,
+        "red": {
+          "note_scored": 18.068947430221787,
+          "note_scored_var": 35.0085656598234,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.504648696169731,
+          "score": 56.27141609445771,
+          "score_var": 422.00810965145706,
+          "stage_points": 3.028120811106141,
+          "stage_points_var": 9.878684935807245
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm24": {
+        "blue": {
+          "note_scored": 12.410709916381185,
+          "note_scored_var": 24.035780968634118,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.1271307493994751,
+          "score": 40.650669679839055,
+          "score_var": 90.94649510340842,
+          "stage_points": 3.7101846282952646,
+          "stage_points_var": 2.2039012170119627
+        },
+        "prob": 0.5963856526965944,
+        "red": {
+          "note_scored": 11.659165348998794,
+          "note_scored_var": 17.514288401303997,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.06486961809624292,
+          "score": 35.57902032773126,
+          "score_var": 341.0786426157666,
+          "stage_points": 1.6359207587944773,
+          "stage_points_var": 10.88355028488722
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm25": {
+        "blue": {
+          "note_scored": 19.03024580279097,
+          "note_scored_var": 30.504781823996012,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5739868036330052,
+          "score": 68.35257390257192,
+          "score_var": 358.7819996709428,
+          "stage_points": 4.6228197721387385,
+          "stage_points_var": 6.182886250306138
+        },
+        "prob": 0.5940630541213724,
+        "red": {
+          "note_scored": 20.81369381754855,
+          "note_scored_var": 12.860832129484695,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7836527550975232,
+          "score": 73.78715534531821,
+          "score_var": 162.58603282554878,
+          "stage_points": 3.1848357968923127,
+          "stage_points_var": 7.949718718801339
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm26": {
+        "blue": {
+          "note_scored": 16.25909677892667,
+          "note_scored_var": 25.732457832667418,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.36572795108751677,
+          "score": 52.90464237975321,
+          "score_var": 250.76384144188614,
+          "stage_points": 2.455489424753681,
+          "stage_points_var": 7.0681454361203855
+        },
+        "prob": 0.5627430641581808,
+        "red": {
+          "note_scored": 14.166502927107148,
+          "note_scored_var": 4.903821076793837,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.04171494949360621,
+          "score": 56.480790237335526,
+          "score_var": 261.9971968604068,
+          "stage_points": 4.208527449521875,
+          "stage_points_var": 7.53607597134906
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm27": {
+        "blue": {
+          "note_scored": 23.273008987436008,
+          "note_scored_var": 19.015465167425432,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8867106785553222,
+          "score": 87.50599172608058,
+          "score_var": 391.2964166212371,
+          "stage_points": 9.31611307663182,
+          "stage_points_var": 27.169333882667768
+        },
+        "prob": 0.569387433125329,
+        "red": {
+          "note_scored": 22.15247411356828,
+          "note_scored_var": 25.640143231846576,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7939096301915215,
+          "score": 82.16453497090609,
+          "score_var": 542.3079627432866,
+          "stage_points": 10.122269884166284,
+          "stage_points_var": 19.414378330411854
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm28": {
+        "blue": {
+          "note_scored": 23.748749059180987,
+          "note_scored_var": 18.789578838923102,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9076162054401147,
+          "score": 85.29757593449521,
+          "score_var": 363.74299009612287,
+          "stage_points": 5.747652962640187,
+          "stage_points_var": 9.345262541865438
+        },
+        "prob": 0.9831186855285385,
+        "red": {
+          "note_scored": 10.117340218958953,
+          "note_scored_var": 16.305279797314363,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.025461407717410456,
+          "score": 34.39869325893359,
+          "score_var": 211.1133943990867,
+          "stage_points": 1.2269683932623594,
+          "stage_points_var": 10.909062628230764
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm29": {
+        "blue": {
+          "note_scored": 20.820891415980466,
+          "note_scored_var": 26.800417716046248,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7070883253724705,
+          "score": 73.55267945241404,
+          "score_var": 192.85686414216016,
+          "stage_points": 4.927614063058521,
+          "stage_points_var": 2.1360327580476755
+        },
+        "prob": 0.7070090477882843,
+        "red": {
+          "note_scored": 15.814984133142094,
+          "note_scored_var": 12.332042162322743,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2669018448778542,
+          "score": 58.78143745679016,
+          "score_var": 542.6222905366615,
+          "stage_points": 5.972876803339319,
+          "stage_points_var": 13.405305546348291
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm3": {
+        "blue": {
+          "note_scored": 20.457303475539536,
+          "note_scored_var": 35.98066475717378,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6589725342036098,
+          "score": 68.16599868963002,
+          "score_var": 485.46844517160474,
+          "stage_points": 5.341426030163943,
+          "stage_points_var": 7.9157532383726945
+        },
+        "prob": 0.5261585094749862,
+        "red": {
+          "note_scored": 19.107195327783938,
+          "note_scored_var": 14.777953992347545,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6133328749427204,
+          "score": 66.36122983315849,
+          "score_var": 271.04074093014447,
+          "stage_points": 4.455951472704064,
+          "stage_points_var": 8.081250510935769
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm30": {
+        "blue": {
+          "note_scored": 13.948543780969137,
+          "note_scored_var": 41.54204657284995,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.26480887839584377,
+          "score": 48.162195866764065,
+          "score_var": 494.2833165384332,
+          "stage_points": 4.991075480095859,
+          "stage_points_var": 9.427248196833506
+        },
+        "prob": 0.5027281055325147,
+        "red": {
+          "note_scored": 13.86430714223492,
+          "note_scored_var": 10.939132073487368,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.10557259051890477,
+          "score": 47.98893770317164,
+          "score_var": 147.63304159152622,
+          "stage_points": 4.834525337053012,
+          "stage_points_var": 7.385809474199844
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm31": {
+        "blue": {
+          "note_scored": 12.982294805936128,
+          "note_scored_var": 10.643783122934902,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.06202396203531979,
+          "score": 47.16237098568848,
+          "score_var": 206.638849143814,
+          "stage_points": 2.853185813940387,
+          "stage_points_var": 5.13533733558905
+        },
+        "prob": 0.5721820910509627,
+        "red": {
+          "note_scored": 15.345912022874696,
+          "note_scored_var": 27.349715029409772,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.30590084382451765,
+          "score": 51.887023330514914,
+          "score_var": 467.7647266240745,
+          "stage_points": 2.7400847896505107,
+          "stage_points_var": 9.41484234161766
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm32": {
+        "blue": {
+          "note_scored": 19.619369898807165,
+          "note_scored_var": 22.6381461641422,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6332034800548373,
+          "score": 65.81732841624179,
+          "score_var": 230.1797982067435,
+          "stage_points": 6.28791678668777,
+          "stage_points_var": 13.880526111088518
+        },
+        "prob": 0.7894528332588082,
+        "red": {
+          "note_scored": 15.368757685573176,
+          "note_scored_var": 7.930352553800916,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.17505891263431006,
+          "score": 50.74211435416093,
+          "score_var": 120.9347427759539,
+          "stage_points": 2.7203794394265177,
+          "stage_points_var": 14.289941858007037
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm33": {
+        "blue": {
+          "note_scored": 21.027448590860796,
+          "note_scored_var": 33.6984240351049,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6989981354568067,
+          "score": 74.89668946317717,
+          "score_var": 352.88631138727277,
+          "stage_points": 3.3168186931802226,
+          "stage_points_var": 14.373955257144791
+        },
+        "prob": 0.5992463662166033,
+        "red": {
+          "note_scored": 18.671197877659438,
+          "note_scored_var": 41.48281318205514,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5414993247612697,
+          "score": 67.34903922014226,
+          "score_var": 548.4849609751241,
+          "stage_points": 2.0914592209831753,
+          "stage_points_var": 2.0338785915558435
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm34": {
+        "blue": {
+          "note_scored": 22.065748722886532,
+          "note_scored_var": 18.109712149447695,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8303120081186119,
+          "score": 78.93707976949362,
+          "score_var": 498.84679308624965,
+          "stage_points": 5.386450089615713,
+          "stage_points_var": 7.386859412675955
+        },
+        "prob": 0.9467313590434953,
+        "red": {
+          "note_scored": 10.236509290636578,
+          "note_scored_var": 21.31990212848259,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.04634510606108999,
+          "score": 34.73841198343144,
+          "score_var": 251.10914755784964,
+          "stage_points": 2.8553893460172546,
+          "stage_points_var": 11.367576381989272
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm35": {
+        "blue": {
+          "note_scored": 17.329578598287434,
+          "note_scored_var": 7.397846241111583,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.40265236961670303,
+          "score": 64.46770175432434,
+          "score_var": 163.1256441631944,
+          "stage_points": 9.919207470184574,
+          "stage_points_var": 10.685505213834649
+        },
+        "prob": 0.637187761910202,
+        "red": {
+          "note_scored": 18.812048462520053,
+          "note_scored_var": 20.12307182460905,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5718254106301571,
+          "score": 73.73129455814535,
+          "score_var": 533.6033052204104,
+          "stage_points": 3.9257931899824055,
+          "stage_points_var": 10.035610617951688
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm36": {
+        "blue": {
+          "note_scored": 20.778543852304605,
+          "note_scored_var": 17.432850391638745,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7471272769948024,
+          "score": 75.4921686993373,
+          "score_var": 314.8970810892388,
+          "stage_points": 8.703625089987884,
+          "stage_points_var": 27.74236567858329
+        },
+        "prob": 0.6273418733398757,
+        "red": {
+          "note_scored": 16.259354641915923,
+          "note_scored_var": 10.52494270416369,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.29579341587872376,
+          "score": 67.65449696820482,
+          "score_var": 267.31993415623083,
+          "stage_points": 4.624217093306846,
+          "stage_points_var": 8.635404041163625
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm37": {
+        "blue": {
+          "note_scored": 18.10946535222819,
+          "note_scored_var": 11.689464020839853,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5127707161618653,
+          "score": 62.78485393432389,
+          "score_var": 163.2982395351305,
+          "stage_points": 3.5021142054053755,
+          "stage_points_var": 13.073271686329795
+        },
+        "prob": 0.53747406920109,
+        "red": {
+          "note_scored": 19.21132078015959,
+          "note_scored_var": 30.196381971812063,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5872340345802737,
+          "score": 64.95607683735764,
+          "score_var": 369.4069106421515,
+          "stage_points": 3.978379423469351,
+          "stage_points_var": 9.921060155101326
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm38": {
+        "blue": {
+          "note_scored": 20.475982658109405,
+          "note_scored_var": 8.480770729963634,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8023978572001254,
+          "score": 74.77540371790731,
+          "score_var": 89.46207213641509,
+          "stage_points": 4.0456000404183765,
+          "stage_points_var": 7.223855236036838
+        },
+        "prob": 0.8988463812428155,
+        "red": {
+          "note_scored": 12.096444011780873,
+          "note_scored_var": 29.12216758077536,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.1369860424697953,
+          "score": 45.06909823167544,
+          "score_var": 453.3794481104953,
+          "stage_points": 5.115542576767458,
+          "stage_points_var": 18.06053306929538
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm39": {
+        "blue": {
+          "note_scored": 10.682764709508739,
+          "note_scored_var": 13.955896736694259,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.025073906222760067,
+          "score": 35.226967909214345,
+          "score_var": 198.34465489005856,
+          "stage_points": 5.095572553452554,
+          "stage_points_var": 5.791203122413924
+        },
+        "prob": 0.8844104807180111,
+        "red": {
+          "note_scored": 17.93910750058457,
+          "note_scored_var": 20.675493869676888,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.49465764258844214,
+          "score": 64.47150881982117,
+          "score_var": 398.2287708629338,
+          "stage_points": 2.919213190018006,
+          "stage_points_var": 15.152366102462008
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm4": {
+        "blue": {
+          "note_scored": 12.110491701168769,
+          "note_scored_var": 21.50714599889522,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.10205068719642929,
+          "score": 49.42880673598758,
+          "score_var": 307.990247582621,
+          "stage_points": 7.249487622668215,
+          "stage_points_var": 21.518613504583328
+        },
+        "prob": 0.569639709273145,
+        "red": {
+          "note_scored": 12.961147659456335,
+          "note_scored_var": 29.861919792085068,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.1782411167348179,
+          "score": 44.95446615978715,
+          "score_var": 342.31437456155004,
+          "stage_points": 2.322395677996268,
+          "stage_points_var": 8.647267166205289
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm40": {
+        "blue": {
+          "note_scored": 20.013359517935868,
+          "note_scored_var": 10.25631019468863,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7352188711162435,
+          "score": 74.73029488714292,
+          "score_var": 231.43674447201812,
+          "stage_points": 5.013579486937715,
+          "stage_points_var": 4.108334464844025
+        },
+        "prob": 0.9396413198965822,
+        "red": {
+          "note_scored": 11.821149035628435,
+          "note_scored_var": 24.08421159125297,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.10400690816707003,
+          "score": 41.88335648507551,
+          "score_var": 216.62236154216245,
+          "stage_points": 4.2353861574861575,
+          "stage_points_var": 19.464809548113628
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm41": {
+        "blue": {
+          "note_scored": 18.107669707934715,
+          "note_scored_var": 20.789136915650005,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5094198721742231,
+          "score": 52.69565874740077,
+          "score_var": 177.47714661971642,
+          "stage_points": 1.933579454690995,
+          "stage_points_var": 5.595637354592149
+        },
+        "prob": 0.625816328119944,
+        "red": {
+          "note_scored": 18.961022765263966,
+          "note_scored_var": 45.85078637370522,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5564305543831598,
+          "score": 58.80732582580116,
+          "score_var": 185.4921542525028,
+          "stage_points": 5.567798199307166,
+          "stage_points_var": 8.848164537486753
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm42": {
+        "blue": {
+          "note_scored": 14.367524845817114,
+          "note_scored_var": 25.689365109796814,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.23678543741910807,
+          "score": 52.13220207096954,
+          "score_var": 298.1021107122692,
+          "stage_points": 1.6702402642130316,
+          "stage_points_var": 6.209114524488783
+        },
+        "prob": 0.9676920216434007,
+        "red": {
+          "note_scored": 30.62610415547127,
+          "note_scored_var": 29.466979218064274,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9899895601348976,
+          "score": 101.34471744898013,
+          "score_var": 411.1349516837993,
+          "stage_points": 0.914455522700883,
+          "stage_points_var": 4.583334404232678
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm43": {
+        "blue": {
+          "note_scored": 12.8125572016241,
+          "note_scored_var": 16.3307739819058,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.09963051010734769,
+          "score": 45.46503178800168,
+          "score_var": 251.64023375896198,
+          "stage_points": 4.860784736490416,
+          "stage_points_var": 8.550996641636882
+        },
+        "prob": 0.9757053379433356,
+        "red": {
+          "note_scored": 26.619700546509154,
+          "note_scored_var": 21.196232404743316,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9694136904704512,
+          "score": 104.77375454543113,
+          "score_var": 652.727489322502,
+          "stage_points": 8.72666297203131,
+          "stage_points_var": 19.4815784814139
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm44": {
+        "blue": {
+          "note_scored": 15.831054380098276,
+          "note_scored_var": 20.40624098495136,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3155642106368344,
+          "score": 53.67713089079497,
+          "score_var": 61.691721381056595,
+          "stage_points": 3.372600984094822,
+          "stage_points_var": 7.377601702891081
+        },
+        "prob": 0.8622722409805772,
+        "red": {
+          "note_scored": 20.97709835588372,
+          "note_scored_var": 24.4337135547007,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7265061152077865,
+          "score": 81.28111528970248,
+          "score_var": 578.963661757273,
+          "stage_points": 7.3730957158249675,
+          "stage_points_var": 17.22923763952817
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm45": {
+        "blue": {
+          "note_scored": 15.945957487983115,
+          "note_scored_var": 17.53071921826846,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3118618784841374,
+          "score": 56.61682145352859,
+          "score_var": 103.9428522173211,
+          "stage_points": 3.114749183156126,
+          "stage_points_var": 7.044596108330866
+        },
+        "prob": 0.5977668503314724,
+        "red": {
+          "note_scored": 12.72095158210124,
+          "note_scored_var": 6.761671410274902,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.021170531601267806,
+          "score": 52.1583249567483,
+          "score_var": 220.37965121495787,
+          "stage_points": 4.976766142266285,
+          "stage_points_var": 5.8117144192131365
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm46": {
+        "blue": {
+          "note_scored": 20.682095087793165,
+          "note_scored_var": 45.44433177366144,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6546346680168331,
+          "score": 71.27450353512663,
+          "score_var": 559.2845002138278,
+          "stage_points": 4.093490098648884,
+          "stage_points_var": 9.02915943055028
+        },
+        "prob": 0.8318168207892919,
+        "red": {
+          "note_scored": 15.973893452633702,
+          "note_scored_var": 33.49256305732835,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.36313304222484555,
+          "score": 45.77635071173347,
+          "score_var": 144.17104864398152,
+          "stage_points": 2.5937064613362693,
+          "stage_points_var": 10.598230862592612
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm47": {
+        "blue": {
+          "note_scored": 16.465908167758336,
+          "note_scored_var": 18.11836904627104,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3592718339200187,
+          "score": 57.55591385973849,
+          "score_var": 324.667130997041,
+          "stage_points": 2.833748614825216,
+          "stage_points_var": 14.672941490074619
+        },
+        "prob": 0.8281673296645296,
+        "red": {
+          "note_scored": 24.70400401305431,
+          "note_scored_var": 20.101212418403016,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9325795847853834,
+          "score": 77.77915720070402,
+          "score_var": 131.42173203459419,
+          "stage_points": 2.0792338576589904,
+          "stage_points_var": 7.3743324548757085
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm48": {
+        "blue": {
+          "note_scored": 11.041033479594674,
+          "note_scored_var": 15.856494798236767,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.0402669657475172,
+          "score": 47.17029301910132,
+          "score_var": 338.2728822705184,
+          "stage_points": 1.8168461000611136,
+          "stage_points_var": 2.790005363565877
+        },
+        "prob": 0.5597760586571293,
+        "red": {
+          "note_scored": 16.220802822954745,
+          "note_scored_var": 11.8353877978166,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3025189496455919,
+          "score": 50.87536228965054,
+          "score_var": 268.58711417728676,
+          "stage_points": 6.709016131500893,
+          "stage_points_var": 19.151139665717437
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm49": {
+        "blue": {
+          "note_scored": 19.045559960330397,
+          "note_scored_var": 8.184788885218266,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6426176507805321,
+          "score": 68.77436538729252,
+          "score_var": 216.21484478479817,
+          "stage_points": 2.6948044041209704,
+          "stage_points_var": 5.659398739267167
+        },
+        "prob": 0.6425233862096265,
+        "red": {
+          "note_scored": 15.042126264526006,
+          "note_scored_var": 2.7317624401329645,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.03675839162461969,
+          "score": 61.237698401549764,
+          "score_var": 209.64705292482407,
+          "stage_points": 8.326166080577016,
+          "stage_points_var": 13.209237840376664
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm5": {
+        "blue": {
+          "note_scored": 17.78786964811612,
+          "note_scored_var": 25.390267866447168,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.48320998947692306,
+          "score": 57.467705752602825,
+          "score_var": 447.47493615776955,
+          "stage_points": 2.360111749913391,
+          "stage_points_var": 14.289372872031944
+        },
+        "prob": 0.596759769513997,
+        "red": {
+          "note_scored": 18.201958714943956,
+          "note_scored_var": 33.69706471803197,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5138767902207242,
+          "score": 50.334526253150045,
+          "score_var": 400.4241511326028,
+          "stage_points": 2.2692114969447745,
+          "stage_points_var": 12.35746680975543
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm50": {
+        "blue": {
+          "note_scored": 15.247489550506893,
+          "note_scored_var": 31.0490007051332,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.31066184024883436,
+          "score": 53.703275781392314,
+          "score_var": 459.9464489327904,
+          "stage_points": 4.741351702126799,
+          "stage_points_var": 5.295154008873335
+        },
+        "prob": 0.6282427264702493,
+        "red": {
+          "note_scored": 19.81782947041995,
+          "note_scored_var": 19.19617197364779,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6608932805182722,
+          "score": 61.455077761820846,
+          "score_var": 101.32308767902049,
+          "stage_points": 6.542932463061407,
+          "stage_points_var": 11.359072280655877
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm51": {
+        "blue": {
+          "note_scored": 19.009588002230487,
+          "note_scored_var": 24.130515126930156,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5814183187401885,
+          "score": 65.42209527567499,
+          "score_var": 385.153443179727,
+          "stage_points": 4.13384473097952,
+          "stage_points_var": 13.547935375987112
+        },
+        "prob": 0.7707264376567331,
+        "red": {
+          "note_scored": 15.680817149173798,
+          "note_scored_var": 32.044208778420746,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3410150045892707,
+          "score": 47.478881176778735,
+          "score_var": 200.8244322636237,
+          "stage_points": 2.764964955370118,
+          "stage_points_var": 6.349025056325123
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm52": {
+        "blue": {
+          "note_scored": 23.002163520237914,
+          "note_scored_var": 16.502660593390683,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8909036802036314,
+          "score": 82.58341644808053,
+          "score_var": 100.27755537676177,
+          "stage_points": 2.207473758904638,
+          "stage_points_var": 9.65597384933305
+        },
+        "prob": 0.9430930151078398,
+        "red": {
+          "note_scored": 17.426458764752134,
+          "note_scored_var": 18.565784044653757,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.44705351854378994,
+          "score": 56.81238919137148,
+          "score_var": 165.33326218534228,
+          "stage_points": 4.543673490412891,
+          "stage_points_var": 8.541656166358827
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm53": {
+        "blue": {
+          "note_scored": 23.133820136871485,
+          "note_scored_var": 23.73588234539325,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8540015109096928,
+          "score": 81.68188864836273,
+          "score_var": 248.34352992105698,
+          "stage_points": 8.333733271967853,
+          "stage_points_var": 21.901536130632895
+        },
+        "prob": 0.8927551825449824,
+        "red": {
+          "note_scored": 14.905173834187428,
+          "note_scored_var": 30.800719087476306,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2885442791775532,
+          "score": 58.35539567559298,
+          "score_var": 104.78704941634865,
+          "stage_points": 3.079161937040722,
+          "stage_points_var": 1.2706696878645627
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm54": {
+        "blue": {
+          "note_scored": 6.198017793043519,
+          "note_scored_var": 15.264166561716614,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.0012606423559140545,
+          "score": 31.55075090356145,
+          "score_var": 328.13141849184706,
+          "stage_points": 7.0531286945003515,
+          "stage_points_var": 13.959947446880236
+        },
+        "prob": 0.9623304588031083,
+        "red": {
+          "note_scored": 19.10494562974693,
+          "note_scored_var": 21.110285736374177,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5950241124021517,
+          "score": 80.18026785941586,
+          "score_var": 419.5966598428241,
+          "stage_points": 10.849032709225261,
+          "stage_points_var": 10.754908009701708
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm55": {
+        "blue": {
+          "note_scored": 13.969315233856477,
+          "note_scored_var": 17.63215474130715,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.16855269079242774,
+          "score": 56.183420614230016,
+          "score_var": 313.87560003626425,
+          "stage_points": 4.128178547600922,
+          "stage_points_var": 1.8672469943383427
+        },
+        "prob": 0.676610690050037,
+        "red": {
+          "note_scored": 14.120563992558306,
+          "note_scored_var": 22.8051800659225,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2082907705963739,
+          "score": 44.29533168483112,
+          "score_var": 359.15434823814917,
+          "stage_points": 4.067576813925633,
+          "stage_points_var": 13.964107847750665
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm56": {
+        "blue": {
+          "note_scored": 18.813462053323313,
+          "note_scored_var": 17.076266366068054,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5780285000332175,
+          "score": 62.27717137671042,
+          "score_var": 262.7764772959616,
+          "stage_points": 4.571923898418323,
+          "stage_points_var": 12.980611259972894
+        },
+        "prob": 0.6232889554016084,
+        "red": {
+          "note_scored": 19.66050327652477,
+          "note_scored_var": 10.967766692927018,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6919536794700851,
+          "score": 69.74685581912338,
+          "score_var": 302.6613976410287,
+          "stage_points": 5.047295564883456,
+          "stage_points_var": 10.812421569316493
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm57": {
+        "blue": {
+          "note_scored": 22.9626361031063,
+          "note_scored_var": 43.20881090425894,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7748647242860731,
+          "score": 79.2758885330521,
+          "score_var": 503.6212017604203,
+          "stage_points": 1.2992796806213143,
+          "stage_points_var": 3.081878831299302
+        },
+        "prob": 0.8942244849749832,
+        "red": {
+          "note_scored": 15.344700842080911,
+          "note_scored_var": 18.389675410566987,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.26789442922723117,
+          "score": 48.24387050652801,
+          "score_var": 113.3690591627999,
+          "stage_points": 4.349804038360876,
+          "stage_points_var": 9.461633603831114
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm58": {
+        "blue": {
+          "note_scored": 13.791772283852671,
+          "note_scored_var": 13.65841452388954,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.12741974858277294,
+          "score": 51.209382778619144,
+          "score_var": 258.88423540284373,
+          "stage_points": 2.4179976508177536,
+          "stage_points_var": 6.880923040332322
+        },
+        "prob": 0.7546706926171028,
+        "red": {
+          "note_scored": 21.758263528753357,
+          "note_scored_var": 31.279428933418558,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7492025117158364,
+          "score": 68.88740999581879,
+          "score_var": 398.92405337369723,
+          "stage_points": 5.277601498342051,
+          "stage_points_var": 10.716572336266472
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm59": {
+        "blue": {
+          "note_scored": 13.215239471641762,
+          "note_scored_var": 53.64496183935748,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2567896497598743,
+          "score": 48.189069900908066,
+          "score_var": 273.1882417375916,
+          "stage_points": 5.602939314155751,
+          "stage_points_var": 9.3074393783888
+        },
+        "prob": 0.8333584961704811,
+        "red": {
+          "note_scored": 18.781059269882242,
+          "note_scored_var": 24.462912783574353,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5627390454696465,
+          "score": 70.97586510171098,
+          "score_var": 281.49436339561606,
+          "stage_points": 7.825297506629907,
+          "stage_points_var": 11.665400405507004
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm6": {
+        "blue": {
+          "note_scored": 7.093051603430751,
+          "note_scored_var": 28.83125245090265,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.021112893729103965,
+          "score": 28.036271210659773,
+          "score_var": 183.6446283350041,
+          "stage_points": 5.076684541744278,
+          "stage_points_var": 7.371186915218158
+        },
+        "prob": 0.9873489203992074,
+        "red": {
+          "note_scored": 19.509242061834236,
+          "note_scored_var": 12.865898936804552,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6630363800866043,
+          "score": 75.58208806239529,
+          "score_var": 268.19739229770727,
+          "stage_points": 7.706284126266166,
+          "stage_points_var": 22.889201904696833
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm60": {
+        "blue": {
+          "note_scored": 13.295029847115337,
+          "note_scored_var": 24.968938885517673,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.17320407627478263,
+          "score": 56.168901048237586,
+          "score_var": 140.88384862052672,
+          "stage_points": 5.948414568555181,
+          "stage_points_var": 5.424184876599045
+        },
+        "prob": 0.9323363069866484,
+        "red": {
+          "note_scored": 23.722469992436828,
+          "note_scored_var": 30.59827740935293,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8495512882035514,
+          "score": 85.52916334077973,
+          "score_var": 245.62208854398506,
+          "stage_points": 3.274079597231327,
+          "stage_points_var": 8.88720718733208
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm61": {
+        "blue": {
+          "note_scored": 14.34223972505098,
+          "note_scored_var": 6.620392223481648,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.07757312101743064,
+          "score": 58.91617165402927,
+          "score_var": 161.5419807708126,
+          "stage_points": 6.051330828458966,
+          "stage_points_var": 2.6810502229849256
+        },
+        "prob": 0.7970076144750132,
+        "red": {
+          "note_scored": 20.079484292414744,
+          "note_scored_var": 12.139419508682561,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7246923276698527,
+          "score": 75.47813453020417,
+          "score_var": 235.6881478520579,
+          "stage_points": 5.140064738143928,
+          "stage_points_var": 6.190422882485138
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm62": {
+        "blue": {
+          "note_scored": 11.682196689127608,
+          "note_scored_var": 14.944935924313397,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.051102955287674945,
+          "score": 34.8715512020504,
+          "score_var": 30.711015209212686,
+          "stage_points": 1.3423517981464432,
+          "stage_points_var": 8.331121873811446
+        },
+        "prob": 0.84876898966821,
+        "red": {
+          "note_scored": 15.42450360293933,
+          "note_scored_var": 12.54378778395393,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2335554524533867,
+          "score": 51.14919318589074,
+          "score_var": 218.47524262045815,
+          "stage_points": 4.962002043222555,
+          "stage_points_var": 8.521187952328308
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm63": {
+        "blue": {
+          "note_scored": 26.347368488870945,
+          "note_scored_var": 19.760548964990353,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9697959561889296,
+          "score": 88.88278271285854,
+          "score_var": 206.61612456996934,
+          "stage_points": 9.394797667325367,
+          "stage_points_var": 23.779335608802015
+        },
+        "prob": 0.9385779775046998,
+        "red": {
+          "note_scored": 14.319603957391742,
+          "note_scored_var": 17.121026453404475,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.18687617671513823,
+          "score": 52.40178644943742,
+          "score_var": 352.41026841972587,
+          "stage_points": 2.9322714443888023,
+          "stage_points_var": 9.519755542525065
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm64": {
+        "blue": {
+          "note_scored": 21.204360286983665,
+          "note_scored_var": 35.364259772064166,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7050010388611611,
+          "score": 66.66318428905107,
+          "score_var": 411.2745951522241,
+          "stage_points": 1.3443982534370682,
+          "stage_points_var": 6.203885012064552
+        },
+        "prob": 0.5087962760655134,
+        "red": {
+          "note_scored": 20.204611245836656,
+          "note_scored_var": 16.461528340205806,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7065630147158853,
+          "score": 66.08171261206047,
+          "score_var": 284.0845534677122,
+          "stage_points": 3.884891685285088,
+          "stage_points_var": 4.058597606008106
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm65": {
+        "blue": {
+          "note_scored": 19.441944157366773,
+          "note_scored_var": 14.709350506814364,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6465299180375756,
+          "score": 68.69798521708202,
+          "score_var": 259.57886459674694,
+          "stage_points": 8.105076120238662,
+          "stage_points_var": 10.5912494031396
+        },
+        "prob": 0.610608471778629,
+        "red": {
+          "note_scored": 17.900729179363363,
+          "note_scored_var": 18.63256455404668,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.49082603499477295,
+          "score": 62.055362400104,
+          "score_var": 299.6111449786402,
+          "stage_points": 5.202829611899693,
+          "stage_points_var": 8.683112149999864
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm66": {
+        "blue": {
+          "note_scored": 18.18662892248814,
+          "note_scored_var": 20.18783056332981,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5165660634677876,
+          "score": 59.597751067212606,
+          "score_var": 378.5018932922382,
+          "stage_points": 4.743475456775137,
+          "stage_points_var": 10.427036757410324
+        },
+        "prob": 0.6946944754093323,
+        "red": {
+          "note_scored": 20.99320106881203,
+          "note_scored_var": 15.918477777208464,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.773437064788169,
+          "score": 74.37505060611463,
+          "score_var": 463.68978209482947,
+          "stage_points": 1.9102512094401518,
+          "stage_points_var": 8.659035200660917
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm67": {
+        "blue": {
+          "note_scored": 19.24895303544244,
+          "note_scored_var": 16.527917052703806,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6206586896628871,
+          "score": 75.35599719896311,
+          "score_var": 221.31576715506975,
+          "stage_points": 4.860937808315567,
+          "stage_points_var": 3.78858304137952
+        },
+        "prob": 0.862044705435421,
+        "red": {
+          "note_scored": 16.625289420270434,
+          "note_scored_var": 30.585010429876633,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.40184488274055286,
+          "score": 52.631426547469076,
+          "score_var": 213.69052928241888,
+          "stage_points": 3.0974535730232104,
+          "stage_points_var": 5.543302372221495
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm68": {
+        "blue": {
+          "note_scored": 13.950859072879593,
+          "note_scored_var": 47.185563689776586,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2777745578865144,
+          "score": 41.63139789151803,
+          "score_var": 355.46735164195417,
+          "stage_points": 4.164420691987271,
+          "stage_points_var": 12.558372314778165
+        },
+        "prob": 0.503025403583349,
+        "red": {
+          "note_scored": 12.151582909675456,
+          "note_scored_var": 26.917483895242718,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.12981792473554654,
+          "score": 41.80873922208281,
+          "score_var": 191.37872083879296,
+          "stage_points": 3.4356865624666835,
+          "stage_points_var": 9.839491861870696
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm69": {
+        "blue": {
+          "note_scored": 15.839966829443707,
+          "note_scored_var": 29.99108790318237,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3466336861247592,
+          "score": 55.407677788840644,
+          "score_var": 486.83812763805315,
+          "stage_points": 2.1724168853647585,
+          "stage_points_var": 7.765946540858139
+        },
+        "prob": 0.7559149757775192,
+        "red": {
+          "note_scored": 21.802258976037905,
+          "note_scored_var": 34.10986179702712,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7424867839359846,
+          "score": 77.11774537381703,
+          "score_var": 493.95471222119426,
+          "stage_points": 2.8699114064044204,
+          "stage_points_var": 7.409928594576887
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm7": {
+        "blue": {
+          "note_scored": 13.459131268654428,
+          "note_scored_var": 16.843166971121626,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.134268499712339,
+          "score": 49.779461557375065,
+          "score_var": 184.3053883837058,
+          "stage_points": 4.227361431112056,
+          "stage_points_var": 15.033443056100086
+        },
+        "prob": 0.8419710673302945,
+        "red": {
+          "note_scored": 20.147596233960595,
+          "note_scored_var": 18.677015801327315,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6903822749295302,
+          "score": 70.21154700269153,
+          "score_var": 231.0091329132898,
+          "stage_points": 3.3991706426668684,
+          "stage_points_var": 13.356022053670738
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm70": {
+        "blue": {
+          "note_scored": 19.75367773532086,
+          "note_scored_var": 9.871168305749633,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7116354174060592,
+          "score": 73.27684529704203,
+          "score_var": 247.54516467439925,
+          "stage_points": 7.677041844307205,
+          "stage_points_var": 20.042860941357272
+        },
+        "prob": 0.9442320638801636,
+        "red": {
+          "note_scored": 28.910890005618352,
+          "note_scored_var": 19.900761220004284,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9927739382634334,
+          "score": 106.04147703392609,
+          "score_var": 176.38215034460714,
+          "stage_points": 6.25692470488375,
+          "stage_points_var": 11.770712490573061
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm71": {
+        "blue": {
+          "note_scored": 15.281513793780833,
+          "note_scored_var": 11.491646647486983,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2112969706302803,
+          "score": 54.66930757710969,
+          "score_var": 254.50996853972097,
+          "stage_points": 6.220946924608345,
+          "stage_points_var": 9.06796371558717
+        },
+        "prob": 0.8863249535947098,
+        "red": {
+          "note_scored": 22.873653839945458,
+          "note_scored_var": 14.086075224622835,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9029513106502656,
+          "score": 85.52815744441982,
+          "score_var": 398.9087979014531,
+          "stage_points": 6.1147164048880125,
+          "stage_points_var": 10.017491391819853
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm72": {
+        "blue": {
+          "note_scored": 16.016579703258255,
+          "note_scored_var": 15.72985409861792,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.30850413648404595,
+          "score": 57.63151495054651,
+          "score_var": 199.3904464753934,
+          "stage_points": 3.0002771946710105,
+          "stage_points_var": 3.277889561175524
+        },
+        "prob": 0.5046292315300638,
+        "red": {
+          "note_scored": 16.67453521411759,
+          "note_scored_var": 12.016857236971308,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3510970830769453,
+          "score": 57.85338969946872,
+          "score_var": 166.20315960065548,
+          "stage_points": 5.364098691036748,
+          "stage_points_var": 2.37647024974809
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm73": {
+        "blue": {
+          "note_scored": 17.49505140105085,
+          "note_scored_var": 13.15255747047463,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.4446330304769174,
+          "score": 69.26371444424932,
+          "score_var": 318.05594893064267,
+          "stage_points": 8.48780734607828,
+          "stage_points_var": 14.165581429790947
+        },
+        "prob": 0.7356357259131903,
+        "red": {
+          "note_scored": 16.89407655669106,
+          "note_scored_var": 14.493171069021574,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3857175869997972,
+          "score": 52.61398137165245,
+          "score_var": 380.50615908716645,
+          "stage_points": 3.383126195913446,
+          "stage_points_var": 10.389896891662602
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm74": {
+        "blue": {
+          "note_scored": 24.47187051120118,
+          "note_scored_var": 16.09490947647341,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9466483940060174,
+          "score": 82.66928743936646,
+          "score_var": 301.8595259438058,
+          "stage_points": 1.0376739765397103,
+          "stage_points_var": 3.6488164476161042
+        },
+        "prob": 0.7992772726097872,
+        "red": {
+          "note_scored": 16.429703052604555,
+          "note_scored_var": 26.272885601896093,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3796663977392245,
+          "score": 62.08156642244071,
+          "score_var": 300.2127349718779,
+          "stage_points": 5.243141381208869,
+          "stage_points_var": 3.3719513651040125
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm75": {
+        "blue": {
+          "note_scored": 17.506384459198337,
+          "note_scored_var": 48.65619683675041,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.4717923139734499,
+          "score": 52.14762800580057,
+          "score_var": 59.02571264199376,
+          "stage_points": 5.227504789905311,
+          "stage_points_var": 13.300229062979275
+        },
+        "prob": 0.737042435237762,
+        "red": {
+          "note_scored": 10.765236821019679,
+          "note_scored_var": 13.974859292316362,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.026476117394134135,
+          "score": 41.66203644981653,
+          "score_var": 214.28683192377787,
+          "stage_points": 4.882693319899955,
+          "stage_points_var": 10.317969993513929
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm76": {
+        "blue": {
+          "note_scored": 24.746312203450685,
+          "note_scored_var": 20.44987461716402,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9321289405065917,
+          "score": 93.68337514740074,
+          "score_var": 418.4795546678594,
+          "stage_points": 9.589534748688772,
+          "stage_points_var": 20.44133319112786
+        },
+        "prob": 0.8612068155125496,
+        "red": {
+          "note_scored": 19.6479703450496,
+          "note_scored_var": 33.12658854646939,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6126858398593056,
+          "score": 65.62442440719452,
+          "score_var": 249.3679582733881,
+          "stage_points": 4.229382450049823,
+          "stage_points_var": 3.2540549777872276
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm77": {
+        "blue": {
+          "note_scored": 13.671627326231544,
+          "note_scored_var": 11.601988672362822,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.10190968087849273,
+          "score": 54.69786476914882,
+          "score_var": 137.80264992999355,
+          "stage_points": 5.247372198772861,
+          "stage_points_var": 13.484087512044532
+        },
+        "prob": 0.6652345963223064,
+        "red": {
+          "note_scored": 18.540049881399028,
+          "note_scored_var": 10.399273668662234,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5664991694388618,
+          "score": 62.045164990313424,
+          "score_var": 158.5596507781945,
+          "stage_points": 4.073967057622517,
+          "stage_points_var": 4.041644956412014
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm78": {
+        "blue": {
+          "note_scored": 16.20628355548173,
+          "note_scored_var": 18.651361196207084,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.33894834382096717,
+          "score": 63.63615032073961,
+          "score_var": 151.2166556597472,
+          "stage_points": 7.302041434228031,
+          "stage_points_var": 12.397812088822233
+        },
+        "prob": 0.5187939682658131,
+        "red": {
+          "note_scored": 17.482088540009883,
+          "note_scored_var": 21.528730842879853,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.45556191970410764,
+          "score": 64.63229611048669,
+          "score_var": 295.5775098445883,
+          "stage_points": 5.330484246473726,
+          "stage_points_var": 9.72177365396
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm79": {
+        "blue": {
+          "note_scored": 18.098852539839537,
+          "note_scored_var": 28.168309673396987,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5074300612731782,
+          "score": 71.15097152454138,
+          "score_var": 465.67712578804895,
+          "stage_points": 3.936923038309123,
+          "stage_points_var": 3.82168610275286
+        },
+        "prob": 0.5194319843061573,
+        "red": {
+          "note_scored": 18.242481508252816,
+          "note_scored_var": 23.987253283324396,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5197433587095748,
+          "score": 69.76398069989527,
+          "score_var": 344.5174427685854,
+          "stage_points": 4.857069267588654,
+          "stage_points_var": 8.176913233931273
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm8": {
+        "blue": {
+          "note_scored": 14.713433782897054,
+          "note_scored_var": 27.86812314192014,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.26678340650496346,
+          "score": 53.94073703655465,
+          "score_var": 478.966900403046,
+          "stage_points": 5.1601664843093555,
+          "stage_points_var": 7.735820605536646
+        },
+        "prob": 0.6138710682245143,
+        "red": {
+          "note_scored": 13.941113877506552,
+          "note_scored_var": 10.70919425624798,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.10743131553576435,
+          "score": 47.002251563027095,
+          "score_var": 95.76319714403397,
+          "stage_points": 2.479947003794431,
+          "stage_points_var": 13.810876927005783
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm80": {
+        "blue": {
+          "note_scored": 26.361779217942956,
+          "note_scored_var": 11.157893193018685,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9938474086228792,
+          "score": 88.19839258495786,
+          "score_var": 67.82310465498473,
+          "stage_points": 6.430939188774265,
+          "stage_points_var": 15.98696636254067
+        },
+        "prob": 0.8017105880859777,
+        "red": {
+          "note_scored": 21.70258303378153,
+          "note_scored_var": 40.720245039818465,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7191199831500271,
+          "score": 69.56679953899915,
+          "score_var": 415.19937522162695,
+          "stage_points": 1.0615668154458302,
+          "stage_points_var": 5.185013565336851
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm81": {
+        "blue": {
+          "note_scored": 12.818516067082136,
+          "note_scored_var": 19.804482673752858,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.12214715165894452,
+          "score": 48.281660819914606,
+          "score_var": 83.53300442527615,
+          "stage_points": 3.9533294506532664,
+          "stage_points_var": 4.352384810214414
+        },
+        "prob": 0.7541750268349247,
+        "red": {
+          "note_scored": 15.672356246362902,
+          "note_scored_var": 4.3882689873600915,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.13325343532072886,
+          "score": 61.47367157086244,
+          "score_var": 284.4607436884264,
+          "stage_points": 5.484103407834391,
+          "stage_points_var": 7.205217253421868
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm82": {
+        "blue": {
+          "note_scored": 13.145977280860546,
+          "note_scored_var": 18.844657985629244,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.1317472859127864,
+          "score": 51.5452134626186,
+          "score_var": 184.35969515830857,
+          "stage_points": 8.450190363928535,
+          "stage_points_var": 20.883404779469874
+        },
+        "prob": 0.7473937532566773,
+        "red": {
+          "note_scored": 20.219038975454687,
+          "note_scored_var": 46.20883115182582,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6279539964832406,
+          "score": 69.91735102832367,
+          "score_var": 575.9065913468746,
+          "stage_points": 4.34952619155136,
+          "stage_points_var": 10.005433029380882
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm83": {
+        "blue": {
+          "note_scored": 14.71664568190273,
+          "note_scored_var": 9.886697380025002,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.14819173898807925,
+          "score": 46.264024271235726,
+          "score_var": 275.11115474525917,
+          "stage_points": 2.6571162639147397,
+          "stage_points_var": 7.962952832359269
+        },
+        "prob": 0.7084317728296446,
+        "red": {
+          "note_scored": 16.8740831378596,
+          "note_scored_var": 24.630955156090607,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.41026472539676084,
+          "score": 57.39420616928616,
+          "score_var": 136.1918595624988,
+          "stage_points": 1.521781144434592,
+          "stage_points_var": 6.974893303910598
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm84": {
+        "blue": {
+          "note_scored": 19.68847731609303,
+          "note_scored_var": 29.031148998079445,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6230017754643504,
+          "score": 68.2414805821181,
+          "score_var": 345.6000825529442,
+          "stage_points": 4.441040360188428,
+          "stage_points_var": 6.580718047692699
+        },
+        "prob": 0.911383558019284,
+        "red": {
+          "note_scored": 27.824264467041047,
+          "note_scored_var": 11.30480094642477,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9982606055063503,
+          "score": 102.73813038091649,
+          "score_var": 308.01381388059434,
+          "stage_points": 8.205924525979908,
+          "stage_points_var": 15.773298903879121
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm85": {
+        "blue": {
+          "note_scored": 15.8849519904505,
+          "note_scored_var": 8.410942847905837,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2329133607905125,
+          "score": 53.670907562354216,
+          "score_var": 225.64791004290316,
+          "stage_points": 5.784840657967505,
+          "stage_points_var": 15.689585261155736
+        },
+        "prob": 0.8751021890543949,
+        "red": {
+          "note_scored": 19.518053404183092,
+          "note_scored_var": 3.9482855692682444,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.777560829459059,
+          "score": 75.6106768373047,
+          "score_var": 137.78958747297597,
+          "stage_points": 6.429459996128401,
+          "stage_points_var": 8.687489536151663
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm86": {
+        "blue": {
+          "note_scored": 13.446595813805317,
+          "note_scored_var": 43.52061409640636,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.24502734652112146,
+          "score": 46.49395470173879,
+          "score_var": 360.89040280050506,
+          "stage_points": 3.048389315386875,
+          "stage_points_var": 6.456361589416492
+        },
+        "prob": 0.8192850278489716,
+        "red": {
+          "note_scored": 19.220685228492066,
+          "note_scored_var": 4.876074648896731,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7098000258195418,
+          "score": 66.64843740972282,
+          "score_var": 126.79612392047018,
+          "stage_points": 5.025608008449866,
+          "stage_points_var": 4.735821207596435
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm87": {
+        "blue": {
+          "note_scored": 13.567627497631083,
+          "note_scored_var": 15.31989308864108,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.12872848249133229,
+          "score": 40.768456464088004,
+          "score_var": 139.99080612559212,
+          "stage_points": 4.224104208851051,
+          "stage_points_var": 9.872437733488344
+        },
+        "prob": 0.5524447575810679,
+        "red": {
+          "note_scored": 11.99653394852514,
+          "note_scored_var": 12.241773774045713,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.043094545591947475,
+          "score": 43.559923735568745,
+          "score_var": 308.308093964057,
+          "stage_points": 4.551455435729268,
+          "stage_points_var": 9.672291309431479
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm88": {
+        "blue": {
+          "note_scored": 24.459535265865412,
+          "note_scored_var": 58.08005939039036,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.801667872996537,
+          "score": 81.48047698432617,
+          "score_var": 695.4855075058886,
+          "stage_points": 3.169221442418498,
+          "stage_points_var": 6.762661367778171
+        },
+        "prob": 0.5992286888715708,
+        "red": {
+          "note_scored": 20.822599290295226,
+          "note_scored_var": 23.79194211655696,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7185955584370544,
+          "score": 73.91706873583094,
+          "score_var": 209.98287131044694,
+          "stage_points": 6.443059757854152,
+          "stage_points_var": 8.529811569193763
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm89": {
+        "blue": {
+          "note_scored": 23.311582430073393,
+          "note_scored_var": 18.29093424948967,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8928734810926223,
+          "score": 86.32377079199284,
+          "score_var": 170.72526531254437,
+          "stage_points": 4.207078714969739,
+          "stage_points_var": 12.351319563771675
+        },
+        "prob": 0.9985441324113591,
+        "red": {
+          "note_scored": 9.542018411319988,
+          "note_scored_var": 15.440304386945414,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.015679846467403946,
+          "score": 34.47278480206678,
+          "score_var": 132.6525865915759,
+          "stage_points": 3.383798598070164,
+          "stage_points_var": 5.110205785021812
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm9": {
+        "blue": {
+          "note_scored": 11.035855268038112,
+          "note_scored_var": 17.52072579221315,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.048079793172854934,
+          "score": 42.193278718809424,
+          "score_var": 167.28787946911288,
+          "stage_points": 5.314684409864457,
+          "stage_points_var": 10.627385322706944
+        },
+        "prob": 0.9595945635963999,
+        "red": {
+          "note_scored": 21.93634965325643,
+          "note_scored_var": 12.37737254447871,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.8684020927227665,
+          "score": 69.4494488651965,
+          "score_var": 76.40394435848276,
+          "stage_points": 2.53475501028308,
+          "stage_points_var": 8.634318677776518
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm90": {
+        "blue": {
+          "note_scored": 15.897372231580913,
+          "note_scored_var": 12.787367013838056,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.27826864349342495,
+          "score": 59.98128445985466,
+          "score_var": 247.91687129261953,
+          "stage_points": 8.174948115356296,
+          "stage_points_var": 16.110489668997864
+        },
+        "prob": 0.7333367176338289,
+        "red": {
+          "note_scored": 21.992056524765204,
+          "note_scored_var": 27.828704770564414,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7753990016521409,
+          "score": 74.92679683558396,
+          "score_var": 327.7016049384058,
+          "stage_points": 2.548265918146156,
+          "stage_points_var": 3.826108364601881
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm91": {
+        "blue": {
+          "note_scored": 21.110815044119015,
+          "note_scored_var": 24.9864616583786,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7331380564080904,
+          "score": 68.25075113769832,
+          "score_var": 191.72168022425615,
+          "stage_points": 4.112128461493898,
+          "stage_points_var": 8.362665857957683
+        },
+        "prob": 0.5146166570499106,
+        "red": {
+          "note_scored": 18.39791599856064,
+          "note_scored_var": 41.339651717015826,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5246740758213277,
+          "score": 67.36239303241678,
+          "score_var": 395.91075084080876,
+          "stage_points": 0.7999643246851388,
+          "stage_points_var": 2.619646831823035
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm92": {
+        "blue": {
+          "note_scored": 12.263777355016511,
+          "note_scored_var": 17.432582269150803,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.08474126907656976,
+          "score": 47.711808503269495,
+          "score_var": 206.8944532411872,
+          "stage_points": 3.990450572551283,
+          "stage_points_var": 14.309182390340872
+        },
+        "prob": 0.8548969432616289,
+        "red": {
+          "note_scored": 18.37397181379951,
+          "note_scored_var": 21.544518897226364,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5321078239939597,
+          "score": 67.46837638764461,
+          "score_var": 142.0232329529046,
+          "stage_points": 4.019241805085535,
+          "stage_points_var": 2.258400692553102
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm93": {
+        "blue": {
+          "note_scored": 22.51807599489132,
+          "note_scored_var": 9.187379210860419,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.9319651920873366,
+          "score": 75.45961876694946,
+          "score_var": 111.12295466365896,
+          "stage_points": 6.413254604532922,
+          "stage_points_var": 8.676416986514631
+        },
+        "prob": 0.8508129676055438,
+        "red": {
+          "note_scored": 11.972628341398824,
+          "note_scored_var": 21.874695379958045,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.09874855096692658,
+          "score": 51.526319028691596,
+          "score_var": 418.540362992445,
+          "stage_points": 6.302963076735087,
+          "stage_points_var": 17.835858792271473
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm94": {
+        "blue": {
+          "note_scored": 19.555070845119594,
+          "note_scored_var": 18.522657198147687,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.6410719091686944,
+          "score": 68.09963663828145,
+          "score_var": 193.73450492750243,
+          "stage_points": 4.363272947366382,
+          "stage_points_var": 2.443057135982538
+        },
+        "prob": 0.5304173854862191,
+        "red": {
+          "note_scored": 19.16936535763613,
+          "note_scored_var": 23.996423077703326,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.594336123545854,
+          "score": 70.01513740702583,
+          "score_var": 436.2040049902539,
+          "stage_points": 3.5417395375096166,
+          "stage_points_var": 4.171674045026746
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm95": {
+        "blue": {
+          "note_scored": 15.307584542234329,
+          "note_scored_var": 13.678649747407082,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.23331239509733082,
+          "score": 53.58281009454734,
+          "score_var": 239.81459319313564,
+          "stage_points": 3.8163165332815763,
+          "stage_points_var": 4.456961443610291
+        },
+        "prob": 0.5809649361750818,
+        "red": {
+          "note_scored": 19.053253974347587,
+          "note_scored_var": 24.222593950188738,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5847282022675837,
+          "score": 57.92940106811281,
+          "score_var": 212.55620687151435,
+          "stage_points": 4.228007901712694,
+          "stage_points_var": 11.439571560185527
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm96": {
+        "blue": {
+          "note_scored": 18.499621085037088,
+          "note_scored_var": 27.491630283981348,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5379571633933571,
+          "score": 63.149793365188025,
+          "score_var": 396.61499191347474,
+          "stage_points": 3.211105770592527,
+          "stage_points_var": 10.61275208147823
+        },
+        "prob": 0.5084078189154447,
+        "red": {
+          "note_scored": 18.58352941853795,
+          "note_scored_var": 26.568019366235966,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.5450677982829664,
+          "score": 62.686962992417556,
+          "score_var": 85.59125025762026,
+          "stage_points": 2.8344349345774345,
+          "stage_points_var": 4.42908207701759
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm97": {
+        "blue": {
+          "note_scored": 13.2876468367065,
+          "note_scored_var": 10.00070791747725,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.06809579501596841,
+          "score": 42.92152785552358,
+          "score_var": 117.01932912577274,
+          "stage_points": 1.1753001932137224,
+          "stage_points_var": 7.041512700041392
+        },
+        "prob": 0.9675955472279303,
+        "red": {
+          "note_scored": 20.807172351989614,
+          "note_scored_var": 13.582082342607883,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.776881479347298,
+          "score": 85.35782986090969,
+          "score_var": 411.111635402817,
+          "stage_points": 9.274918037434826,
+          "stage_points_var": 10.350960006621275
+        },
+        "winning_alliance": "red"
+      },
+      "2024gacmp_qm98": {
+        "blue": {
+          "note_scored": 17.20433569484331,
+          "note_scored_var": 8.067489303281025,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.3896886235188075,
+          "score": 62.80144067649378,
+          "score_var": 119.64904718072968,
+          "stage_points": 3.8756297213163897,
+          "stage_points_var": 5.9248495219337975
+        },
+        "prob": 0.8210318105496499,
+        "red": {
+          "note_scored": 13.072824300897269,
+          "note_scored_var": 19.460026151939815,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.13201191733427398,
+          "score": 46.823504398149275,
+          "score_var": 182.4314556221879,
+          "stage_points": 4.638039425541534,
+          "stage_points_var": 15.46451294080756
+        },
+        "winning_alliance": "blue"
+      },
+      "2024gacmp_qm99": {
+        "blue": {
+          "note_scored": 15.188234352581773,
+          "note_scored_var": 16.137236551379637,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.2419805132333004,
+          "score": 60.85629227031268,
+          "score_var": 260.0643478897612,
+          "stage_points": 6.53579122681605,
+          "stage_points_var": 6.454782598355944
+        },
+        "prob": 0.5956570120304224,
+        "red": {
+          "note_scored": 21.2514402261092,
+          "note_scored_var": 38.23524115084233,
+          "prob_ensemble_bonus": 0,
+          "prob_melody_bonus": 0.7004962037095466,
+          "score": 66.54749717044476,
+          "score_var": 292.44741916880463,
+          "stage_points": 5.010210862201798,
+          "stage_points_var": 3.7657030346123865
+        },
+        "winning_alliance": "red"
+      }
+    }
+  },
+  "ranking_prediction_stats": {
+    "last_played_match": "2024gacmp_qm100"
+  },
+  "ranking_predictions": [
+    [
+      "frc1771",
+      [
+        1,
+        1,
+        1,
+        1,
+        43,
+        43,
+        43
+      ]
+    ],
+    [
+      "frc2974",
+      [
+        2,
+        2,
+        2,
+        2,
+        37,
+        37,
+        37
+      ]
+    ],
+    [
+      "frc1414",
+      [
+        3,
+        3,
+        3,
+        3,
+        30,
+        30,
+        30
+      ]
+    ],
+    [
+      "frc6366",
+      [
+        4,
+        4,
+        4,
+        4,
+        30,
+        30,
+        30
+      ]
+    ],
+    [
+      "frc6340",
+      [
+        5,
+        5,
+        5,
+        5,
+        28,
+        28,
+        28
+      ]
+    ],
+    [
+      "frc1287",
+      [
+        6,
+        6,
+        6,
+        6,
+        28,
+        28,
+        28
+      ]
+    ],
+    [
+      "frc6919",
+      [
+        7,
+        7,
+        7,
+        7,
+        28,
+        28,
+        28
+      ]
+    ],
+    [
+      "frc7451",
+      [
+        8,
+        8,
+        8,
+        8,
+        27,
+        27,
+        27
+      ]
+    ],
+    [
+      "frc4533",
+      [
+        9,
+        9,
+        9,
+        9,
+        27,
+        27,
+        27
+      ]
+    ],
+    [
+      "frc8849",
+      [
+        10,
+        10,
+        10,
+        10,
+        27,
+        27,
+        27
+      ]
+    ],
+    [
+      "frc1683",
+      [
+        11,
+        11,
+        11,
+        11,
+        26,
+        26,
+        26
+      ]
+    ],
+    [
+      "frc1261",
+      [
+        12,
+        12,
+        12,
+        12,
+        26,
+        26,
+        26
+      ]
+    ],
+    [
+      "frc4509",
+      [
+        13,
+        13,
+        13,
+        13,
+        26,
+        26,
+        26
+      ]
+    ],
+    [
+      "frc8575",
+      [
+        14,
+        14,
+        14,
+        14,
+        26,
+        26,
+        26
+      ]
+    ],
+    [
+      "frc4451",
+      [
+        15,
+        15,
+        15,
+        15,
+        25,
+        25,
+        25
+      ]
+    ],
+    [
+      "frc8080",
+      [
+        16,
+        16,
+        16,
+        16,
+        25,
+        25,
+        25
+      ]
+    ],
+    [
+      "frc1102",
+      [
+        17,
+        17,
+        17,
+        17,
+        24,
+        24,
+        24
+      ]
+    ],
+    [
+      "frc5293",
+      [
+        18,
+        18,
+        18,
+        18,
+        24,
+        24,
+        24
+      ]
+    ],
+    [
+      "frc2415",
+      [
+        19,
+        19,
+        19,
+        19,
+        23,
+        23,
+        23
+      ]
+    ],
+    [
+      "frc9500",
+      [
+        20,
+        20,
+        20,
+        20,
+        23,
+        23,
+        23
+      ]
+    ],
+    [
+      "frc6829",
+      [
+        21,
+        21,
+        21,
+        21,
+        23,
+        23,
+        23
+      ]
+    ],
+    [
+      "frc343",
+      [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ]
+    ],
+    [
+      "frc1648",
+      [
+        23,
+        23,
+        23,
+        23,
+        22,
+        22,
+        22
+      ]
+    ],
+    [
+      "frc9480",
+      [
+        24,
+        24,
+        24,
+        24,
+        22,
+        22,
+        22
+      ]
+    ],
+    [
+      "frc4026",
+      [
+        25,
+        25,
+        25,
+        25,
+        21,
+        21,
+        21
+      ]
+    ],
+    [
+      "frc3635",
+      [
+        26,
+        26,
+        26,
+        26,
+        20,
+        20,
+        20
+      ]
+    ],
+    [
+      "frc281",
+      [
+        27,
+        27,
+        27,
+        27,
+        20,
+        20,
+        20
+      ]
+    ],
+    [
+      "frc6925",
+      [
+        28,
+        28,
+        28,
+        28,
+        20,
+        20,
+        20
+      ]
+    ],
+    [
+      "frc5900",
+      [
+        29,
+        29,
+        29,
+        29,
+        20,
+        20,
+        20
+      ]
+    ],
+    [
+      "frc3329",
+      [
+        30,
+        30,
+        30,
+        30,
+        20,
+        20,
+        20
+      ]
+    ],
+    [
+      "frc4112",
+      [
+        31,
+        31,
+        31,
+        31,
+        19,
+        19,
+        19
+      ]
+    ],
+    [
+      "frc5109",
+      [
+        32,
+        32,
+        32,
+        32,
+        19,
+        19,
+        19
+      ]
+    ],
+    [
+      "frc5130",
+      [
+        33,
+        33,
+        33,
+        33,
+        19,
+        19,
+        19
+      ]
+    ],
+    [
+      "frc9477",
+      [
+        34,
+        34,
+        34,
+        34,
+        19,
+        19,
+        19
+      ]
+    ],
+    [
+      "frc4188",
+      [
+        35,
+        35,
+        35,
+        35,
+        19,
+        19,
+        19
+      ]
+    ],
+    [
+      "frc3489",
+      [
+        36,
+        36,
+        36,
+        36,
+        18,
+        18,
+        18
+      ]
+    ],
+    [
+      "frc2815",
+      [
+        37,
+        37,
+        37,
+        37,
+        18,
+        18,
+        18
+      ]
+    ],
+    [
+      "frc9571",
+      [
+        38,
+        38,
+        38,
+        38,
+        17,
+        17,
+        17
+      ]
+    ],
+    [
+      "frc1746",
+      [
+        39,
+        39,
+        39,
+        39,
+        16,
+        16,
+        16
+      ]
+    ],
+    [
+      "frc8865",
+      [
+        40,
+        40,
+        40,
+        40,
+        16,
+        16,
+        16
+      ]
+    ],
+    [
+      "frc9260",
+      [
+        41,
+        41,
+        41,
+        41,
+        15,
+        15,
+        15
+      ]
+    ],
+    [
+      "frc7538",
+      [
+        42,
+        42,
+        42,
+        42,
+        14,
+        14,
+        14
+      ]
+    ],
+    [
+      "frc8736",
+      [
+        43,
+        43,
+        43,
+        43,
+        13,
+        13,
+        13
+      ]
+    ],
+    [
+      "frc3490",
+      [
+        44,
+        44,
+        44,
+        44,
+        13,
+        13,
+        13
+      ]
+    ],
+    [
+      "frc7104",
+      [
+        45,
+        45,
+        45,
+        45,
+        12,
+        12,
+        12
+      ]
+    ],
+    [
+      "frc3815",
+      [
+        46,
+        46,
+        46,
+        46,
+        10,
+        10,
+        10
+      ]
+    ],
+    [
+      "frc342",
+      [
+        47,
+        47,
+        47,
+        47,
+        10,
+        10,
+        10
+      ]
+    ],
+    [
+      "frc9522",
+      [
+        48,
+        48,
+        48,
+        48,
+        9,
+        9,
+        9
+      ]
+    ],
+    [
+      "frc8577",
+      [
+        49,
+        49,
+        49,
+        49,
+        9,
+        9,
+        9
+      ]
+    ],
+    [
+      "frc4701",
+      [
+        50,
+        50,
+        50,
+        50,
+        8,
+        8,
+        8
+      ]
+    ]
+  ],
+  "stat_mean_vars": {
+    "playoff": {
+      "note_scored": {
+        "mean": {
+          "frc1102": 8.661346275627654,
+          "frc1261": 9.77082330400498,
+          "frc1287": 7.33694472257931,
+          "frc1414": 8.961475907576778,
+          "frc1648": 6.6610346981428705,
+          "frc1683": 8.898384497950705,
+          "frc1746": 4.996848489357515,
+          "frc1771": 13.205241502410118,
+          "frc2415": 6.893847955179833,
+          "frc281": 6.179246211158567,
+          "frc2815": 3.940231430595074,
+          "frc2974": 12.67922477979157,
+          "frc3329": 4.591606771653332,
+          "frc342": 4.247147827599218,
+          "frc343": 8.188039983299078,
+          "frc3489": 7.1881352761553075,
+          "frc3490": 3.9441837111539817,
+          "frc3635": 7.538046306239402,
+          "frc3815": 3.1758949389496927,
+          "frc4026": 5.945326858516854,
+          "frc4112": 7.181385704573451,
+          "frc4188": 6.5946415045697995,
+          "frc4451": 7.481397515129169,
+          "frc4509": 8.566568418907288,
+          "frc4533": 7.908345630052862,
+          "frc4701": 1.8308963517219723,
+          "frc5109": 5.230316734422827,
+          "frc5130": 7.042467313871793,
+          "frc5293": 5.507539854079401,
+          "frc5900": 4.895304799289767,
+          "frc6340": 9.032210086971613,
+          "frc6366": 7.919271692102824,
+          "frc6829": 3.9953119314448937,
+          "frc6919": 9.501552496524038,
+          "frc6925": 5.681453596026914,
+          "frc7104": 1.3799993441648934,
+          "frc7451": 7.93293439934398,
+          "frc7538": 4.276365657191526,
+          "frc8080": 5.5291273235152785,
+          "frc8575": 7.957341118651825,
+          "frc8577": 2.3069759657902678,
+          "frc8736": 5.324826252939322,
+          "frc8849": 4.716186248595833,
+          "frc8865": 2.2034034862475,
+          "frc9260": 5.159354194688685,
+          "frc9477": 3.691148039290889,
+          "frc9480": 5.08853611162586,
+          "frc9500": 5.394349330304269,
+          "frc9522": 2.2718287439869864,
+          "frc9571": 2.44402054796899
+        },
+        "var": {
+          "frc1102": 9.06912347517266,
+          "frc1261": 20.917819637246648,
+          "frc1287": 14.26672893578137,
+          "frc1414": 12.702764021479055,
+          "frc1648": 14.240569048704998,
+          "frc1683": 4.533801330486126,
+          "frc1746": 16.38495725875173,
+          "frc1771": 7.32219744934235,
+          "frc2415": 3.182108610577579,
+          "frc281": 1.8874406244962345,
+          "frc2815": 9.099237220552503,
+          "frc2974": 6.08307549369028,
+          "frc3329": 0.8564607303631253,
+          "frc342": 6.953929233532943,
+          "frc343": 4.695485088634612,
+          "frc3489": 12.959912350681966,
+          "frc3490": 9.073834450294623,
+          "frc3635": 15.715552823124895,
+          "frc3815": 16.955880264652592,
+          "frc4026": 15.427999553689517,
+          "frc4112": 14.754720447744631,
+          "frc4188": 6.7245938863036425,
+          "frc4451": 1.611957677324201,
+          "frc4509": 5.643336740898333,
+          "frc4533": 2.1066085840591295,
+          "frc4701": 6.889317308914625,
+          "frc5109": 6.503137584594224,
+          "frc5130": 2.0550632766828776,
+          "frc5293": 0.43031059340331845,
+          "frc5900": 0.48196838871749237,
+          "frc6340": 2.3629699318990953,
+          "frc6366": 3.977511795536708,
+          "frc6829": 1.1637483138389568,
+          "frc6919": 7.685332397877596,
+          "frc6925": 3.4108746611546477,
+          "frc7104": 25.21010338632794,
+          "frc7451": 12.48029584012842,
+          "frc7538": 6.438194553370861,
+          "frc8080": 3.5195495718421475,
+          "frc8575": 9.090931681477157,
+          "frc8577": 6.2788460904540635,
+          "frc8736": 1.8088677598463252,
+          "frc8849": 6.003790701522464,
+          "frc8865": 0.1572953217640495,
+          "frc9260": 6.375599519792963,
+          "frc9477": 3.2410022647767556,
+          "frc9480": 4.226411493485595,
+          "frc9500": 18.650132186469826,
+          "frc9522": 0.7282763618239989,
+          "frc9571": 0.2041291667777514
+        }
+      },
+      "score": {
+        "mean": {
+          "frc1102": 26.169540729185012,
+          "frc1261": 37.769521340098194,
+          "frc1287": 23.71130726445302,
+          "frc1414": 32.88114958081349,
+          "frc1648": 19.96287645131055,
+          "frc1683": 34.56486312421169,
+          "frc1746": 19.081072131558216,
+          "frc1771": 57.213960137047025,
+          "frc2415": 22.27391213885724,
+          "frc281": 22.841305138542964,
+          "frc2815": 15.532819330780898,
+          "frc2974": 49.52212182509194,
+          "frc3329": 16.502545843118934,
+          "frc342": 15.884635559159939,
+          "frc343": 37.31242276964616,
+          "frc3489": 22.220392664385326,
+          "frc3490": 11.002655220903058,
+          "frc3635": 26.732554774524196,
+          "frc3815": 10.552956560284391,
+          "frc4026": 24.23576662277996,
+          "frc4112": 25.21095424251816,
+          "frc4188": 22.98478713731524,
+          "frc4451": 28.692251292275742,
+          "frc4509": 32.840517804992835,
+          "frc4533": 28.53076499264611,
+          "frc4701": 5.358432244387848,
+          "frc5109": 16.603691920130085,
+          "frc5130": 20.32703094593994,
+          "frc5293": 19.83866723422464,
+          "frc5900": 21.282375109136034,
+          "frc6340": 32.14854698963599,
+          "frc6366": 29.11024256832249,
+          "frc6829": 15.566663059482718,
+          "frc6919": 33.06575159161669,
+          "frc6925": 21.617200420875776,
+          "frc7104": 8.357700870678823,
+          "frc7451": 28.807157022244546,
+          "frc7538": 14.496794323794747,
+          "frc8080": 16.67174850527009,
+          "frc8575": 23.34517318585239,
+          "frc8577": 7.076512517229169,
+          "frc8736": 16.03743865201985,
+          "frc8849": 15.556566249217472,
+          "frc8865": 7.971706539897317,
+          "frc9260": 17.504650116562058,
+          "frc9477": 14.275324904761217,
+          "frc9480": 21.200469157809856,
+          "frc9500": 12.9668628494736,
+          "frc9522": 10.279660885185486,
+          "frc9571": 7.946068307554274
+        },
+        "var": {
+          "frc1102": 80.44770952457283,
+          "frc1261": 257.5801339850036,
+          "frc1287": 99.99926829049585,
+          "frc1414": 145.74647029349796,
+          "frc1648": 96.22941835879598,
+          "frc1683": 183.65748447117915,
+          "frc1746": 203.76780159294316,
+          "frc1771": 271.31511383621756,
+          "frc2415": 35.867595297144106,
+          "frc281": 49.20582748866913,
+          "frc2815": 120.02631831921778,
+          "frc2974": 106.69840387925338,
+          "frc3329": 17.499625373541726,
+          "frc342": 77.25815301345281,
+          "frc343": 141.8408873057463,
+          "frc3489": 42.52031953942229,
+          "frc3490": 92.6765256616276,
+          "frc3635": 76.57881110412501,
+          "frc3815": 46.58704734684272,
+          "frc4026": 239.4077127333911,
+          "frc4112": 162.69098039788844,
+          "frc4188": 36.75965028657744,
+          "frc4451": 110.49739633860247,
+          "frc4509": 165.51655727578105,
+          "frc4533": 6.339297146348594,
+          "frc4701": 48.96608516509205,
+          "frc5109": 23.157720477720154,
+          "frc5130": 97.78696713667485,
+          "frc5293": 31.408324475948692,
+          "frc5900": 89.82335176273845,
+          "frc6340": 82.2898628747241,
+          "frc6366": 54.86005994308857,
+          "frc6829": 33.07696843450559,
+          "frc6919": 158.81939881499235,
+          "frc6925": 46.61791940413619,
+          "frc7104": 228.73931328395287,
+          "frc7451": 185.3140788961734,
+          "frc7538": 47.75197020161954,
+          "frc8080": 5.3956516700718,
+          "frc8575": 97.97958393039363,
+          "frc8577": 20.520036404332632,
+          "frc8736": 7.874277908984318,
+          "frc8849": 90.38730143484123,
+          "frc8865": 10.224330922933351,
+          "frc9260": 61.74274822807004,
+          "frc9477": 65.31892134450399,
+          "frc9480": 16.78726250789149,
+          "frc9500": 108.71595048553246,
+          "frc9522": 43.57273388289832,
+          "frc9571": 86.33541826872802
+        }
+      },
+      "stage_points": {
+        "mean": {
+          "frc1102": 2.4463510763869154,
+          "frc1261": 0.8859815813978977,
+          "frc1287": 1.6479316786429572,
+          "frc1414": -0.11853064769113747,
+          "frc1648": 1.6367205273541536,
+          "frc1683": 0.9566269905017393,
+          "frc1746": 0.2268820328009225,
+          "frc1771": 5.948339069663376,
+          "frc2415": 0.6544292390475233,
+          "frc281": 0.8344438099596425,
+          "frc2815": 2.0256715195965187,
+          "frc2974": 0.19644846932783955,
+          "frc3329": 1.6495677570101468,
+          "frc342": 1.2858301688766196,
+          "frc343": 5.635398575903558,
+          "frc3489": 0.6227138871717703,
+          "frc3490": 1.3542538790450263,
+          "frc3635": 2.917477775794519,
+          "frc3815": 0.6075861711380054,
+          "frc4026": 1.3962075310980244,
+          "frc4112": 0.2541270892530492,
+          "frc4188": 1.1209689614455485,
+          "frc4451": 2.4234664839977733,
+          "frc4509": 2.481115258415508,
+          "frc4533": 2.6420035511393767,
+          "frc4701": 0.7330312360644814,
+          "frc5109": 0.7006929135506978,
+          "frc5130": 1.5166622663046339,
+          "frc5293": 0.7305194665723639,
+          "frc5900": 1.8045781125672449,
+          "frc6340": 0.9300053402414664,
+          "frc6366": 0.9089228283191793,
+          "frc6829": 1.8182864850486056,
+          "frc6919": 0.5594133904000338,
+          "frc6925": 0.27362047667355266,
+          "frc7104": 2.596411894365408,
+          "frc7451": 0.823572245080368,
+          "frc7538": 1.3554841412644987,
+          "frc8080": 1.5390591790449528,
+          "frc8575": 2.06285722305812,
+          "frc8577": 0.4288434037614349,
+          "frc8736": 0.5736070114367522,
+          "frc8849": 2.5448563624939107,
+          "frc8865": 0.6940469243287671,
+          "frc9260": 1.2965516934092658,
+          "frc9477": 2.0915152991052124,
+          "frc9480": 1.4907471793884584,
+          "frc9500": 2.406356559029464,
+          "frc9522": 2.2439738719337243,
+          "frc9571": 1.2675867036216892
+        },
+        "var": {
+          "frc1102": 3.8794059075242897,
+          "frc1261": 0.31650306554818186,
+          "frc1287": 7.5482615880816795,
+          "frc1414": 0.7484885053487359,
+          "frc1648": 4.69901157300149,
+          "frc1683": 0.350521742519804,
+          "frc1746": 4.109877337961547,
+          "frc1771": 11.724840069873961,
+          "frc2415": 1.5306434977708452,
+          "frc281": 2.707859589835185,
+          "frc2815": 4.579786276463233,
+          "frc2974": 6.398049946978121,
+          "frc3329": 4.557858681877571,
+          "frc342": 5.69732324272818,
+          "frc343": 8.235110747733719,
+          "frc3489": 0.8673618517989862,
+          "frc3490": 3.766295200382213,
+          "frc3635": 7.125585668317553,
+          "frc3815": 0.9216833494430506,
+          "frc4026": 2.352203110736419,
+          "frc4112": 1.6567554149426476,
+          "frc4188": 1.4864914758816272,
+          "frc4451": 0.6720180109243004,
+          "frc4509": 3.452264601532419,
+          "frc4533": 2.7266485563036778,
+          "frc4701": 4.403187862856334,
+          "frc5109": 0.9793626212719855,
+          "frc5130": 6.934812672819701,
+          "frc5293": 0.37479879427997603,
+          "frc5900": 3.9902991623226116,
+          "frc6340": 1.4040118478500374,
+          "frc6366": 7.415636380615223,
+          "frc6829": 4.088738769865397,
+          "frc6919": 3.2227795592214323,
+          "frc6925": 2.24436385798601,
+          "frc7104": 3.778311146067134,
+          "frc7451": 1.0457877651318324,
+          "frc7538": 3.284633482432103,
+          "frc8080": 0.17375968179202073,
+          "frc8575": 1.4544149597016731,
+          "frc8577": 2.2892666967921484,
+          "frc8736": 1.2636950894870247,
+          "frc8849": 2.0528828238070984,
+          "frc8865": 1.675655087345452,
+          "frc9260": 1.447512815260303,
+          "frc9477": 2.7159028682327975,
+          "frc9480": 0.4604209975873324,
+          "frc9500": 2.1623793638661706,
+          "frc9522": 2.058914257614104,
+          "frc9571": 0.5208938577672095
+        }
+      }
+    },
+    "qual": {
+      "note_scored": {
+        "mean": {
+          "frc1102": 8.777681089176653,
+          "frc1261": 10.670919321905764,
+          "frc1287": 7.415661523242727,
+          "frc1414": 9.918608519190153,
+          "frc1648": 6.6182547639959,
+          "frc1683": 8.25272182314431,
+          "frc1746": 5.584087225551445,
+          "frc1771": 12.972848250917213,
+          "frc2415": 6.680578443475492,
+          "frc281": 6.375226341434087,
+          "frc2815": 4.087007972808435,
+          "frc2974": 12.418383367261455,
+          "frc3329": 4.6486547788892105,
+          "frc342": 4.1027676110254525,
+          "frc343": 7.941281521041704,
+          "frc3489": 7.544844085118724,
+          "frc3490": 3.8968084873639044,
+          "frc3635": 7.5199501017557235,
+          "frc3815": 3.1771929886711336,
+          "frc4026": 6.22712655993561,
+          "frc4112": 7.746722853907876,
+          "frc4188": 6.108952694807469,
+          "frc4451": 6.738885422990544,
+          "frc4509": 7.970610202654884,
+          "frc4533": 8.00404071402199,
+          "frc4701": 1.904543621375545,
+          "frc5109": 5.335768456065855,
+          "frc5130": 6.939433324644702,
+          "frc5293": 5.9893381268542445,
+          "frc5900": 4.58187260250257,
+          "frc6340": 8.534269614818008,
+          "frc6366": 7.72747046222525,
+          "frc6829": 4.062694779252494,
+          "frc6919": 8.77708264315455,
+          "frc6925": 5.698012751746038,
+          "frc7104": 1.4270325770881553,
+          "frc7451": 8.17945642215884,
+          "frc7538": 4.08162314128683,
+          "frc8080": 5.669478654434636,
+          "frc8575": 7.627155880150732,
+          "frc8577": 2.3120014365571,
+          "frc8736": 5.420612967003242,
+          "frc8849": 5.385673138077667,
+          "frc8865": 2.1267331685054938,
+          "frc9260": 5.0967237250150195,
+          "frc9477": 3.5920028100175294,
+          "frc9480": 5.244643493156835,
+          "frc9500": 5.262591413879493,
+          "frc9522": 2.2903590880887674,
+          "frc9571": 2.528334771038274
+        },
+        "var": {
+          "frc1102": 9.393517627814198,
+          "frc1261": 20.32406535902517,
+          "frc1287": 10.788014856339418,
+          "frc1414": 12.787179673820967,
+          "frc1648": 14.826428688550148,
+          "frc1683": 1.4158683758172848,
+          "frc1746": 14.626969294357718,
+          "frc1771": 5.980253355083358,
+          "frc2415": 2.172171747290381,
+          "frc281": 1.2084888279188308,
+          "frc2815": 10.027890636808358,
+          "frc2974": 5.734044608527611,
+          "frc3329": 0.8295777898547454,
+          "frc342": 6.753511774889281,
+          "frc343": 4.645547997497284,
+          "frc3489": 11.731763962274204,
+          "frc3490": 8.712126345034244,
+          "frc3635": 16.82857043256123,
+          "frc3815": 17.573016779760106,
+          "frc4026": 11.469060984248284,
+          "frc4112": 15.062981457222673,
+          "frc4188": 5.920878340630466,
+          "frc4451": 2.196759115866335,
+          "frc4509": 3.916570259623612,
+          "frc4533": 1.0332624125146628,
+          "frc4701": 6.801825697238605,
+          "frc5109": 7.386061014458766,
+          "frc5130": 2.313214220103054,
+          "frc5293": 1.2722698487813344,
+          "frc5900": 1.1753784096160724,
+          "frc6340": 0.469301948838433,
+          "frc6366": 3.4428549013085585,
+          "frc6829": 0.738042618452659,
+          "frc6919": 3.7887880444751576,
+          "frc6925": 4.686315592282842,
+          "frc7104": 25.56944160546806,
+          "frc7451": 8.3409784765063,
+          "frc7538": 7.919155427040639,
+          "frc8080": 4.365034014969632,
+          "frc8575": 7.425996728945995,
+          "frc8577": 6.686064488549874,
+          "frc8736": 1.3643869559570128,
+          "frc8849": 4.946938731002916,
+          "frc8865": 0.43262589342835417,
+          "frc9260": 5.531233766900495,
+          "frc9477": 2.5285463106378305,
+          "frc9480": 4.992868479838036,
+          "frc9500": 19.46113208766975,
+          "frc9522": 0.959642676079024,
+          "frc9571": 0.8108102998026941
+        }
+      },
+      "score": {
+        "mean": {
+          "frc1102": 26.679427259369774,
+          "frc1261": 38.34263192147436,
+          "frc1287": 24.39002497889566,
+          "frc1414": 33.91408484316962,
+          "frc1648": 19.89865821935971,
+          "frc1683": 31.49529922165778,
+          "frc1746": 20.716329838859316,
+          "frc1771": 54.020766467676225,
+          "frc2415": 21.770483580625804,
+          "frc281": 23.83547874148214,
+          "frc2815": 16.66396256947394,
+          "frc2974": 46.475176968326515,
+          "frc3329": 17.02424110420007,
+          "frc342": 15.274617530815181,
+          "frc343": 36.448196103666646,
+          "frc3489": 22.73269511994805,
+          "frc3490": 10.96825922789299,
+          "frc3635": 26.93513054875197,
+          "frc3815": 10.908497115590189,
+          "frc4026": 25.181464233547047,
+          "frc4112": 27.760655928482,
+          "frc4188": 20.663230992318702,
+          "frc4451": 24.906813995130562,
+          "frc4509": 30.162744539551305,
+          "frc4533": 29.206239193308328,
+          "frc4701": 5.9237055328669355,
+          "frc5109": 17.25416958335204,
+          "frc5130": 20.478980551848814,
+          "frc5293": 20.373361488406825,
+          "frc5900": 21.090669485250302,
+          "frc6340": 29.840499667711004,
+          "frc6366": 28.6470689198628,
+          "frc6829": 16.146209118747613,
+          "frc6919": 29.000742583810585,
+          "frc6925": 21.453264623155626,
+          "frc7104": 8.839517676525842,
+          "frc7451": 29.584531137423074,
+          "frc7538": 14.750837273490456,
+          "frc8080": 17.90918229757436,
+          "frc8575": 20.419724971628924,
+          "frc8577": 7.2710265378457155,
+          "frc8736": 16.75615947896888,
+          "frc8849": 17.9587723569112,
+          "frc8865": 7.967718881810915,
+          "frc9260": 17.592269460662624,
+          "frc9477": 14.333970591807752,
+          "frc9480": 21.917166095339518,
+          "frc9500": 12.890766681568923,
+          "frc9522": 10.602196845374136,
+          "frc9571": 8.676079965686636
+        },
+        "var": {
+          "frc1102": 87.18841730848557,
+          "frc1261": 316.82389436635407,
+          "frc1287": 85.20937037561484,
+          "frc1414": 204.1424828319598,
+          "frc1648": 105.78588021449812,
+          "frc1683": 148.56746247398098,
+          "frc1746": 171.95877370231653,
+          "frc1771": 168.04744323685605,
+          "frc2415": 20.543263816485144,
+          "frc281": 76.22717432362003,
+          "frc2815": 140.1434754969806,
+          "frc2974": 14.137438057112629,
+          "frc3329": 21.892646820764142,
+          "frc342": 62.391305207164265,
+          "frc343": 134.7175030191379,
+          "frc3489": 58.08882543325407,
+          "frc3490": 86.9333681631348,
+          "frc3635": 88.90725647212757,
+          "frc3815": 49.13991092192568,
+          "frc4026": 217.48039596123522,
+          "frc4112": 180.2652833844363,
+          "frc4188": 2.1458284820182074,
+          "frc4451": 88.60545469610337,
+          "frc4509": 114.77104982302939,
+          "frc4533": 21.722204214636285,
+          "frc4701": 54.7579204479964,
+          "frc5109": 39.550603545688574,
+          "frc5130": 111.97328493308393,
+          "frc5293": 17.626023991591204,
+          "frc5900": 114.54239532795776,
+          "frc6340": 38.0046449984503,
+          "frc6366": 55.3857809420212,
+          "frc6829": 33.512921214494796,
+          "frc6919": 102.22834281705158,
+          "frc6925": 66.52522378325142,
+          "frc7104": 234.08467834046454,
+          "frc7451": 164.7834602008071,
+          "frc7538": 81.45308880420598,
+          "frc8080": 26.44803522818913,
+          "frc8575": 15.912142460328733,
+          "frc8577": 6.807945341803678,
+          "frc8736": 14.190138909709212,
+          "frc8849": 78.70369361407992,
+          "frc8865": 3.2259958637638637,
+          "frc9260": 59.1129201456139,
+          "frc9477": 63.2716352156974,
+          "frc9480": 2.750268660703499,
+          "frc9500": 113.41071281565999,
+          "frc9522": 35.75890826324064,
+          "frc9571": 104.12608713217497
+        }
+      },
+      "stage_points": {
+        "mean": {
+          "frc1102": 2.43055693087203,
+          "frc1261": 0.7419732953055865,
+          "frc1287": 1.940138624966292,
+          "frc1414": -0.2506831554534054,
+          "frc1648": 1.393151594170524,
+          "frc1683": 0.8082378850196832,
+          "frc1746": 0.5853874935707567,
+          "frc1771": 6.784750070776498,
+          "frc2415": 0.5201600612731232,
+          "frc281": 0.6557796677336861,
+          "frc2815": 1.8773326891002033,
+          "frc2974": 0.8047286329893978,
+          "frc3329": 1.5833594803188027,
+          "frc342": 1.256115512441406,
+          "frc343": 6.5843631039200705,
+          "frc3489": 0.6014808996065227,
+          "frc3490": 1.1112302299241072,
+          "frc3635": 2.7954500531668875,
+          "frc3815": 0.526073525650066,
+          "frc4026": 1.6605447263242765,
+          "frc4112": 0.8032059167347838,
+          "frc4188": 1.2741367487042083,
+          "frc4451": 2.3940900928486455,
+          "frc4509": 2.784505941833103,
+          "frc4533": 2.8111301507725353,
+          "frc4701": 0.5799922948411284,
+          "frc5109": 0.4286323529460905,
+          "frc5130": 2.3788220013593864,
+          "frc5293": 0.42463809277985776,
+          "frc5900": 1.9770783675893135,
+          "frc6340": 1.1480160999525035,
+          "frc6366": 1.8363196077396846,
+          "frc6829": 1.749469711280184,
+          "frc6919": 0.7625412612184369,
+          "frc6925": 0.7657847109266874,
+          "frc7104": 2.4636953223433595,
+          "frc7451": 1.1687671316043378,
+          "frc7538": 1.4019212633058609,
+          "frc8080": 1.369604561078913,
+          "frc8575": 2.2665923022673753,
+          "frc8577": 0.2548187681176076,
+          "frc8736": 0.5125728343529266,
+          "frc8849": 2.57403878589341,
+          "frc8865": 0.45428716165997635,
+          "frc9260": 1.2757108519049274,
+          "frc9477": 1.7929181879036755,
+          "frc9480": 1.334485153961905,
+          "frc9500": 2.2738246421102977,
+          "frc9522": 2.240044257107648,
+          "frc9571": 1.042668468645917
+        },
+        "var": {
+          "frc1102": 4.749944797948783,
+          "frc1261": 0.33860888595159905,
+          "frc1287": 7.742507605216643,
+          "frc1414": 0.8290428127949687,
+          "frc1648": 4.984434776193129,
+          "frc1683": 0.6583075202113392,
+          "frc1746": 3.892520440072019,
+          "frc1771": 11.661429832177898,
+          "frc2415": 1.5312506416770892,
+          "frc281": 2.561829619043503,
+          "frc2815": 4.5913823421143,
+          "frc2974": 6.591708473912473,
+          "frc3329": 4.632715385216784,
+          "frc342": 5.7991338037039375,
+          "frc343": 6.005006961857019,
+          "frc3489": 0.9270722788283132,
+          "frc3490": 4.1709096497243685,
+          "frc3635": 7.27383126086551,
+          "frc3815": 0.9157621901394826,
+          "frc4026": 2.704257370593286,
+          "frc4112": 0.9800616436849365,
+          "frc4188": 1.6622896338156439,
+          "frc4451": 0.8463359652693111,
+          "frc4509": 3.191790134822217,
+          "frc4533": 3.0890932271721048,
+          "frc4701": 4.648843704865651,
+          "frc5109": 0.7910987237412123,
+          "frc5130": 4.83595077115943,
+          "frc5293": 0.25059317914085766,
+          "frc5900": 3.771735645084421,
+          "frc6340": 1.1457927412328655,
+          "frc6366": 5.313209560924808,
+          "frc6829": 4.151325123306509,
+          "frc6919": 3.4573197661358925,
+          "frc6925": 1.6026317525790261,
+          "frc7104": 3.952117665945992,
+          "frc7451": 0.8906326296473379,
+          "frc7538": 3.1291780038729935,
+          "frc8080": 0.19934205027834773,
+          "frc8575": 3.1204768293548195,
+          "frc8577": 2.2843648899262528,
+          "frc8736": 1.2702949891251238,
+          "frc8849": 2.157802580356839,
+          "frc8865": 1.9360749087996232,
+          "frc9260": 1.3989051855284897,
+          "frc9477": 3.141996292173073,
+          "frc9480": 0.39757105815889543,
+          "frc9500": 2.05431046928448,
+          "frc9522": 2.19417622268917,
+          "frc9571": 0.4058783360399902
+        }
+      }
+    }
+  }
+}

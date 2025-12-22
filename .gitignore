@@ -1,0 +1,10 @@
+venv
+.pycharm
+.idea
+*.pyc
+.ipynb_checkpoints
+*creds.json
+.streamlit/secrets.toml
+duckdb.exe
+.data
+_old

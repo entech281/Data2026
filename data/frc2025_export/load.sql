@@ -1,0 +1,12 @@
+COPY tba.event_rankings FROM './data/frc2025_export/tba_event_rankings.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('team_number', 'event_key', '_dlt_load_id', '_dlt_id'));
+COPY tba.matches FROM './data/frc2025_export/tba_matches.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('key', '_dlt_load_id', '_dlt_id'));
+COPY tba._dlt_version FROM './data/frc2025_export/tba__dlt_version.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('version', 'engine_version', 'inserted_at', 'schema_name', 'version_hash', 'schema'));
+COPY tba.oprs FROM './data/frc2025_export/tba_oprs.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('team_number', 'event_key', '_dlt_load_id', '_dlt_id'));
+COPY tba._dlt_pipeline_state FROM './data/frc2025_export/tba__dlt_pipeline_state.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('version', 'engine_version', 'pipeline_name', 'state', 'created_at', '_dlt_load_id', '_dlt_id'));
+COPY tba.teams FROM './data/frc2025_export/tba_teams.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('key', '_dlt_load_id', '_dlt_id'));
+COPY tba._dlt_loads FROM './data/frc2025_export/tba__dlt_loads.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('load_id', 'status', 'inserted_at'));
+COPY tba_staging.event_rankings FROM './data/frc2025_export/tba_staging_event_rankings.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('team_number', 'event_key', '_dlt_load_id', '_dlt_id'));
+COPY tba_staging.matches FROM './data/frc2025_export/tba_staging_matches.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('key', '_dlt_load_id', '_dlt_id'));
+COPY tba_staging._dlt_version FROM './data/frc2025_export/tba_staging__dlt_version.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('version', 'engine_version', 'inserted_at', 'schema_name', 'version_hash', 'schema'));
+COPY tba_staging.oprs FROM './data/frc2025_export/tba_staging_oprs.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('team_number', 'event_key', '_dlt_load_id', '_dlt_id'));
+COPY tba_staging.teams FROM './data/frc2025_export/tba_staging_teams.csv' (FORMAT 'csv', header 1, delimiter ',', quote '"', force_not_null ('key', '_dlt_load_id', '_dlt_id'));
