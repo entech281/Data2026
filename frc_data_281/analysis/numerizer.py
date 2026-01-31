@@ -1,11 +1,11 @@
+"""Dataset numerizer module.
+
+Accepts a dataframe with non-numeric values and attempts to convert them to numbers.
+"""
 import pandas as pd
 import json
 from dataclasses import dataclass
 from typing import Union
-
-"""
-Accepts a dataframe with non-numeric values and attempts to convert them to numbers
-"""
 
 
 @dataclass

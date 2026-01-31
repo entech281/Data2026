@@ -1,5 +1,8 @@
-# this contains the code to create schema objects,
-# if we have manually created tables
+"""Database schema creation and management.
+
+This module contains the code to create schema objects,
+if we have manually created tables.
+"""
 from frc_data_281.db.connection import con
 
 
