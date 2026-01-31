@@ -14,6 +14,7 @@ import io
 from frc_data_281.app.components.style import st_horizontal
 import duckdb
 import pandas as pd
+import pandas as pd
 from frc_data_281.app.components import get_static_path
 
 selected_event = event_selector()
@@ -181,9 +182,9 @@ if team is not None:
         st.write("**Preferred Scoring:** ", prefered_scoring)
 
         # Auto route
-        if pit_df['auto_route'].iloc[0] is not None:
+        if pd.notna(pit_df['auto_route'].iloc[0]):
             st.subheader("🤖 Auto Route")
-            st.image(Image.open(io.BytesIO(pit_df['auto_route'].iloc[0])), use_container_width=True)
+            st.image(Image.open(io.BytesIO(pit_df['auto_route'].iloc[0])), width='stretch')
 
         # Notes section
         if pit_df['notes'].iloc[0]:

@@ -56,6 +56,6 @@ c = (
         color=alt.Color('attribute', sort='descending')
     )
 )
-st.altair_chart(c, use_container_width=True)
+st.altair_chart(c, width='stretch')
 
 st.dataframe(df_ranked, height=600, hide_index=True)

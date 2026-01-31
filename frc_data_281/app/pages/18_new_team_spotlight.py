@@ -64,4 +64,4 @@ chart = alt.Chart(match_stats_z_melted).mark_circle(size=60).encode(
 )
 
 # Display the chart in Streamlit
-st.altair_chart(chart, use_container_width=True)
+st.altair_chart(chart, width='stretch')
