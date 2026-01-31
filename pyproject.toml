@@ -1,0 +1,32 @@
+[project]
+name = "data2026"
+version = "0.1.0"
+description = "Scouting data analysis for 281 FRC team"
+requires-python = ">=3.14"
+dependencies = [
+    "requests",
+    "polars",
+    "tabulate",
+    "streamlit",
+    "numpy==1.26.4",
+    "streamlit-aggrid",
+    "flatten_json",
+    "jupyter",
+    "notebook",
+    "plotly",
+    "streamlit-plotly-events",
+    "pytest",
+    "toml",
+    "streamlit_extras",
+    "ordered_set",
+    "dlt[motherduck]",
+    "great_tables",
+    "scipy",
+    "pygwalker",
+    "schedule",
+    "duckdb==1.1.3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
