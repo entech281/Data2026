@@ -26,9 +26,11 @@ def column_map_for_color(columns: list, color: str) -> (dict[str, str], list[str
     automapped_fields = set()
     if color == "red":
         column_map["blue_score"] = "their_score"
+        column_map["blue_rp"] = "their_rp"
 
     if color == "blue":
         column_map["red_score"] = "their_score"
+        column_map["red_rp"] = "their_rp"
 
     color_prefix = color + "_"
     # get columns associated with this team, like team_<value>

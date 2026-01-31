@@ -7,7 +7,7 @@ from typing import Union
 
 
 def filter_for_team(df: pd.DataFrame, team_id: int) -> pd.DataFrame:
-    return df[df['team_id'] == team_id]
+    return df[df['team_id'] == team_id].copy()
 
 
 def sum_matching_columns(df: pd.DataFrame, regex: str, new_column_name: str = "sum_matched",
@@ -30,6 +30,7 @@ def sum_matching_columns(df: pd.DataFrame, regex: str, new_column_name: str = "s
     if not matched_columns:
         raise ValueError("No columns matched the given regex.")
 
+    df = df.copy()
     df[new_column_name] = df[matched_columns].sum(axis=1)
 
     if remove_matched:
@@ -53,7 +54,7 @@ def drop_columns_with_word_in_column_name(df: pd.DataFrame, keyword: str) -> pd.
     for c in df.columns:
         if c.find(keyword) >= 0:
             cols_to_drop.append(c)
-    return df.drop(columns=cols_to_drop)
+    return df.drop(columns=cols_to_drop).copy()
 
 
 def find_columns_with_suffix(df: pd.DataFrame, suffix: str):
@@ -69,8 +70,7 @@ def remove_from_list(original: list[str], to_remove: list[str]) -> list[str]:
 
 
 def unstack_data_from_color(matches: pd.DataFrame) -> pd.DataFrame:
-    """
-    Unstacks match data to be one row per team, rather than one row per match.
+    """Un-stacks match data to be one row per team, rather than one row per match.
 
     A typical match will have 6 team columns like red1, red2, red3, blue1,blue2,blue3,
     and fields named like red_? and blue_? for the values in the match.
@@ -80,9 +80,9 @@ def unstack_data_from_color(matches: pd.DataFrame) -> pd.DataFrame:
 
     instead of red1, red2, red3 we have
     team1, team2, team3, and instead of red_<whatever> we have simply <whatever>, and
-    other_<whatever> for the other allaiances score.
+    other_<whatever> for the other alliances score.
 
-    This format is MUCH more convienient for OPR analysis.
+    This format is MUCH more convenient for OPR analysis.
 
     :param matches: a dataframe with 6 team columns like red1, red2, red3, blue1,blue2,blue3,
     and fields named like red_? and blue_? for the values in the match.
@@ -90,14 +90,13 @@ def unstack_data_from_color(matches: pd.DataFrame) -> pd.DataFrame:
     """
     from frc_data_281.analysis.opr import column_map_for_color
 
-    red_column_map = column_map_for_color(matches, 'red')
-    blue_column_map = column_map_for_color(matches, 'blue')
+    red_column_map, __ = column_map_for_color(matches.columns, 'red')
+    blue_column_map, __ = column_map_for_color(matches.columns, 'blue')
 
     mapped_cols = set()
     mapped_cols.update(red_column_map.keys())
     mapped_cols.update(blue_column_map.keys())
 
-    old_team_columns = ['red1', 'red2', 'red3', 'blue1', 'blue2', 'blue3']
     red_data = matches.rename(columns=red_column_map).drop(columns=['blue1', 'blue2', 'blue3'])
     blue_data = matches.rename(columns=blue_column_map).drop(columns=['red1', 'red2', 'red3'])
     all_data = pd.concat([red_data, blue_data])

@@ -40,5 +40,3 @@ def test_unstacking_team_data():
     assert 2 * len(matches) == len(r)
     print(list(r.columns))
     assert {'t1', 't2', 't3', 'score', 'their_score', 'rp', 'their_rp'}.issubset(set(r.columns))
-
-    # assert {'blue1','blue2','blue3','red1','red2','red3'}.isdisjoint(set(r.columns))
