@@ -24,21 +24,6 @@ class MappedDataFrame:
     transformed: pd.DataFrame
 
 
-def convert_bool(b):
-    """Convert boolean to integer (1 for True, 0 for False).
-
-    Args:
-        b: Boolean value to convert.
-
-    Returns:
-        1 if True, 0 if False.
-    """
-    if b:
-        return 1
-    else:
-        return 0
-
-
 def xref_column_with_map(col, value_map: dict[str, object]) -> pd.Series:
     """Map column values using a provided mapping dictionary.
 
