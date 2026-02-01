@@ -1,4 +1,9 @@
 import pandas as pd
+
+from frc_data_281.analysis.season_specific.season_2025 import (
+    aggregate_reef_scoring,
+    add_scoring_computations,
+)
 from frc_data_281.db import cached_queries as cached_data
 import numpy as np
 from scipy.stats import zscore
@@ -6,7 +11,6 @@ import cachetools.func
 from frc_data_281.analysis.dataset_tools import (
     drop_columns_with_word_in_column_name,
     find_columns_with_suffix,
-    sum_matching_columns,
     remove_from_list
 )
 from tabulate import tabulate
@@ -44,7 +48,7 @@ def _calculate_opr_ccwm_dpr(matches: pd.DataFrame) -> pd.DataFrame:
     # get the unique list of teams
     team_list = pd.unique(matches[['red1', 'red2', 'red3', 'blue1', 'blue2', 'blue3']].values.ravel('K'))
 
-    # lets only consider numeric columns for now. later we can add converters for booleans and strings
+    # let's only consider numeric columns for now. later we can add converters for booleans and strings
     numeric_columns = matches.select_dtypes(include='number').columns
     red_col_map, automapped_fields = column_map_for_color(numeric_columns, 'red')
     blue_col_map, automapped_fields = column_map_for_color(numeric_columns, 'blue')
@@ -109,123 +113,6 @@ def analyze_ccm(df: pd.DataFrame) -> pd.DataFrame:
     return with_z
 
 
-def add_scoring_computations(match_data_2025: pd.DataFrame) -> pd.DataFrame:
-    # it would reduce the code here to do this inside of calculate_opr_ccwm_dpr, but i dont
-    # want that function to have season specific stuff, so we adjust here even though its a bit more work
-
-    match_data_2025['blue_total_coral_points'] = match_data_2025['blue_teleop_coral_points'] + match_data_2025[
-        'blue_auto_coral_points']
-    match_data_2025['red_total_coral_points'] = match_data_2025['red_teleop_coral_points'] + match_data_2025[
-        'red_auto_coral_points']
-    match_data_2025['blue_total_coral_count'] = match_data_2025['blue_teleop_coral_count'] + match_data_2025[
-        'blue_auto_coral_count']
-    match_data_2025['red_total_coral_count'] = match_data_2025['red_teleop_coral_count'] + match_data_2025[
-        'red_auto_coral_count']
-
-    # rp calculations
-
-    # 3 rp for win
-    # 1 rp for tie
-    def win_rp(row):
-        if row['comp_level'] != 'qm':
-            return pd.Series({
-                'blue_win_rp': 0,
-                'red_win_rp': 0
-            })
-        if row['blue_score'] > row['red_score']:
-            return pd.Series({
-                'blue_win_rp': 3,
-                'red_win_rp': 0
-            })
-        elif row['blue_score'] < row['red_score']:
-            return pd.Series({
-                'blue_win_rp': 0,
-                'red_win_rp': 3
-            })
-        else:  # equal
-            return pd.Series({
-                'blue_win_rp': 1,
-                'red_win_rp': 1
-            })
-
-    match_data_2025[['blue_win_rp', 'red_win_rp']] = match_data_2025.apply(win_rp, axis=1)
-
-    # 1 rp for auto: all three must move and at least one coral in auto
-    def auto_rp(row):
-        if row['comp_level'] != 'qm':
-            return pd.Series({
-                'blue_auto_rp': 0,
-                'red_auto_rp': 0
-            })
-
-        return pd.Series({
-            'blue_auto_rp': (1 if row['blue_auto_bonus_achieved'] == 1 else 0),
-            'red_auto_rp': (1 if row['red_auto_bonus_achieved'] == 1 else 0),
-        })
-
-    match_data_2025[['blue_auto_rp', 'red_auto_rp']] = match_data_2025.apply(auto_rp, axis=1)
-
-    def coral_rp(row):
-        if row['comp_level'] != 'qm':
-            return pd.Series({
-                'blue_coral_rp': 0,
-                'red_coral_rp': 0
-            })
-
-        return pd.Series({
-            'blue_coral_rp': (1 if row['blue_coral_bonus_achieved'] == 1 else 0),
-            'red_coral_rp': (1 if row['red_coral_bonus_achieved'] == 1 else 0),
-        })
-
-    match_data_2025[['blue_coral_rp', 'red_coral_rp']] = match_data_2025.apply(coral_rp, axis=1)
-
-    def barge_rp(row):
-        if row['comp_level'] != 'qm':
-            return pd.Series({
-                'blue_barge_rp': 0,
-                'red_barge_rp': 0
-            })
-
-        return pd.Series({
-            'blue_barge_rp': (1 if row['blue_barge_bonus_achieved'] == 1 else 0),
-            'red_barge_rp': (1 if row['red_barge_bonus_achieved'] == 1 else 0),
-        })
-
-    match_data_2025[['blue_barge_rp', 'red_barge_rp']] = match_data_2025.apply(barge_rp, axis=1)
-
-    return match_data_2025
-
-
-def aggregate_reef_scoring(match_data_2025: pd.DataFrame) -> pd.DataFrame:
-    # TODO: clearly a more clever way that could also work in later seasons would be nice
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^blue_auto_reef_bot_row_node', 'blue_auto_reef_bot_row',
-                                           True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^blue_auto_reef_mid_row_node', 'blue_auto_reef_mid_row',
-                                           True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^blue_auto_reef_top_row_node', 'blue_auto_reef_top_row',
-                                           True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^red_auto_reef_bot_row_node', 'red_auto_reef_bot_row',
-                                           True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^red_auto_reef_mid_row_node', 'red_auto_reef_mid_row',
-                                           True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^red_auto_reef_top_row_node', 'red_auto_reef_top_row',
-                                           True)
-
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^blue_teleop_reef_bot_row_node',
-                                           'blue_teleop_reef_bot_row', True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^blue_teleop_reef_mid_row_node',
-                                           'blue_teleop_reef_mid_row', True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^blue_teleop_reef_top_row_node',
-                                           'blue_teleop_reef_top_row', True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^red_teleop_reef_bot_row_node', 'red_teleop_reef_bot_row',
-                                           True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^red_teleop_reef_mid_row_node', 'red_teleop_reef_mid_row',
-                                           True)
-    match_data_2025 = sum_matching_columns(match_data_2025, r'^red_teleop_reef_top_row_node', 'red_teleop_reef_top_row',
-                                           True)
-
-    return match_data_2025
-
 
 def select_z_score_columns(df: pd.DataFrame, other_columns=[]):
     weighted_columns = find_columns_with_suffix(df, "_z") + other_columns
@@ -237,6 +124,23 @@ def select_non_zscore_columns(df: pd.DataFrame):
     return df.drop(columns=zscore_columns)
 
 
+def apply_season_specific_treatment(event_data: pd.DataFrame, season: int) -> pd.DataFrame:
+    """Apply season-specific data treatment to event data.
+
+    Args:
+        event_data: DataFrame containing match data for an event
+        season: The season year (e.g., 2025)
+
+    Returns:
+        DataFrame with season-specific transformations applied
+    """
+    if season == 2025:
+        event_data = aggregate_reef_scoring(event_data)
+        event_data = add_scoring_computations(event_data)
+
+    return event_data
+
+
 @cachetools.func.ttl_cache(maxsize=128, ttl=CCM_CACHE_SECONDS)
 def get_ccm_data() -> pd.DataFrame:
     print("This is the new version of get_ccm_data")
@@ -246,17 +150,16 @@ def get_ccm_data() -> pd.DataFrame:
     all_match_data = all_match_data[all_match_data["winning_alliance"] != '']
     print(f"After Filter {len(all_match_data)}")
     event_keys = all_match_data['event_key'].unique().tolist()
-
-    r = []
+    ccm_calcs_per_event = []
     for event_key in event_keys:
-        filtered_for_event = all_match_data[all_match_data['event_key'] == event_key]
-        filtered_for_event = aggregate_reef_scoring(filtered_for_event)
-        with_other_computations = add_scoring_computations(filtered_for_event)
-        ccm_calcs = analyze_ccm(with_other_computations)
+        event_data = all_match_data[all_match_data['event_key'] == event_key]
+        season = int(event_key[:4])
+        event_data = apply_season_specific_treatment(event_data, season)
+        ccm_calcs = analyze_ccm(event_data)
         ccm_calcs['event_key'] = event_key
-        r.append(ccm_calcs)
+        ccm_calcs_per_event.append(ccm_calcs)
 
-    return pd.concat(r)
+    return pd.concat(ccm_calcs_per_event)
 
 
 def get_ccm_data_for_event(event_key):
