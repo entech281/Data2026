@@ -6,10 +6,17 @@ from frc_data_281.analysis.dataset_tools import sum_matching_columns
 def aggregate_reef_scoring(match_data_2025: pd.DataFrame) -> pd.DataFrame:
     """Aggregate reef scoring metrics.
 
-    The match data has a column for each scoring position on the reef. There are nodes (around the reef perimeter) and
-    rows (top, middle, bottom). This function sums the node columns, leaving a single column for all nodes at a given
-    row. For example, columns "blue_auto_reef_bot_row_node_a", "blue_auto_reef_bot_row_node_b", etc. are summed into a
-    single column for the bottom row.
+    The match data has a column for each scoring position on the reef. There are nodes
+    (around the reef perimeter) and rows (top, middle, bottom). This function sums the
+    node columns, leaving a single column for all nodes at a given row. For example,
+    columns "blue_auto_reef_bot_row_node_a", "blue_auto_reef_bot_row_node_b", etc. are
+    summed into a single column for the bottom row.
+
+    Args:
+        match_data_2025: DataFrame containing 2025 season match data with reef scoring columns.
+
+    Returns:
+        DataFrame with aggregated reef scoring columns.
     """
 
     # assemble all metric names, for example "auto_reef_mid_row"
@@ -32,7 +39,14 @@ def aggregate_reef_scoring(match_data_2025: pd.DataFrame) -> pd.DataFrame:
 
 
 def _add_coral_totals(match_data: pd.DataFrame) -> pd.DataFrame:
-    """Add total coral points and counts by summing auto and teleop values."""
+    """Add total coral points and counts by summing auto and teleop values.
+
+    Args:
+        match_data: DataFrame containing match data with separate auto and teleop coral metrics.
+
+    Returns:
+        DataFrame with added total coral points and count columns.
+    """
     for team_color in ['blue', 'red']:
         for metric_type in ['points', 'count']:
             match_data[f'{team_color}_total_coral_{metric_type}'] = (
@@ -84,6 +98,12 @@ def add_scoring_computations(match_data_2025: pd.DataFrame) -> pd.DataFrame:
     """Add scoring computations for 2025 season.
 
     Adds total coral metrics and RP (Ranking Points) calculations for various bonuses.
+
+    Args:
+        match_data_2025: DataFrame containing 2025 season match data.
+
+    Returns:
+        DataFrame with added scoring computations and RP columns.
     """
     # Add coral totals
     match_data_2025 = _add_coral_totals(match_data_2025)

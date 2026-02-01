@@ -8,6 +8,14 @@ CACHE_SECONDS = 600
 
 
 def get_matches_for_event(event_key: str) -> pd.DataFrame:
+    """Get all matches for a specific event, sorted by time.
+
+    Args:
+        event_key: Event key identifier (e.g., '2025week0').
+
+    Returns:
+        DataFrame containing match data for the specified event.
+    """
     all_matches = get_matches()
     return all_matches[all_matches['event_key'] == event_key].sort_values(by=['time'], ascending=[True])
 
@@ -16,16 +24,34 @@ def get_matches_for_event(event_key: str) -> pd.DataFrame:
 # this will only run the query if it needs cache refresh
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
 def get_matches() -> pl.DataFrame:
+    """Get all matches from the database.
+
+    Returns:
+        DataFrame containing all match data.
+    """
     return con.sql("select * from tba.matches").df()
 
 
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
 def get_rankings() -> pl.DataFrame:
+    """Get all event rankings from the database.
+
+    Returns:
+        DataFrame containing event rankings data.
+    """
     return con.sql("select * from tba.event_rankings").df()
 
 
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
 def get_team_list(event_key: str) -> list:
+    """Get sorted list of all teams participating in an event.
+
+    Args:
+        event_key: Event key identifier (e.g., '2025week0').
+
+    Returns:
+        Sorted list of team numbers.
+    """
     df = con.sql(f"""
             select red1, red2, red3, blue1, blue2, blue3
             from tba.matches
@@ -36,6 +62,11 @@ def get_team_list(event_key: str) -> list:
 
 
 def get_most_recent_event() -> str:
+    """Get the most recent event key based on match times.
+
+    Returns:
+        Event key of the most recent event, or None if no events exist.
+    """
     all_events = get_event_list()
     if len(all_events) > 0:
         return all_events[0]
@@ -44,12 +75,22 @@ def get_most_recent_event() -> str:
 
 
 def get_event_list() -> pd.DataFrame:
+    """Get list of all event keys, ordered by most recent first.
+
+    Returns:
+        List of event key strings.
+    """
     event_df = get_events()
     return event_df['event_key'].values.tolist()
 
 
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
 def get_events() -> pd.DataFrame:
+    """Get all events with their most recent match times.
+
+    Returns:
+        DataFrame with event keys and their most recent match times.
+    """
     return con.sql("""
             select event_key, max(actual_time) from tba.matches
             group by event_key
@@ -59,6 +100,11 @@ def get_events() -> pd.DataFrame:
 
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
 def _get_tba_oprs_and_ranks() -> pd.DataFrame:
+    """Get OPR, CCWM, DPR and rankings from The Blue Alliance data.
+
+    Returns:
+        DataFrame with team rankings and calculated metrics.
+    """
     tba_ranks = con.sql("""
             select er.team_number, er.event_key,er.wins, er.losses, er.ties,er.rank,er.dq, op.oprs as opr, op.ccwms as ccwm, op.dprs as dpr
             from frc_2025.tba.event_rankings er
@@ -69,12 +115,28 @@ def _get_tba_oprs_and_ranks() -> pd.DataFrame:
 
 
 def get_tba_oprs_and_ranks_for_event(event_key: str) -> pd.DataFrame:
+    """Get TBA OPR and rankings for a specific event.
+
+    Args:
+        event_key: Event key identifier (e.g., '2025week0').
+
+    Returns:
+        DataFrame with OPR and ranking data for the event.
+    """
     r = _get_tba_oprs_and_ranks()
     r = r[r['event_key'] == event_key]
     return r
 
 
 def get_oprs_and_ranks_for_event(event_key: str) -> pd.DataFrame:
+    """Get combined OPR, rankings, and ranking point summary for an event.
+
+    Args:
+        event_key: Event key identifier (e.g., '2025week0').
+
+    Returns:
+        DataFrame with OPR, rankings, and RP summary merged.
+    """
     all_ranks = _get_tba_oprs_and_ranks()
     all_ranks_this_event = all_ranks[all_ranks['event_key'] == event_key]
     rank_summary_this_event = get_ranking_point_summary_for_event(event_key)
@@ -82,6 +144,15 @@ def get_oprs_and_ranks_for_event(event_key: str) -> pd.DataFrame:
 
 
 def get_oprs_and_ranks_for_team(event_key: str, team_number: int) -> dict:
+    """Get OPR and ranking data for a specific team at an event.
+
+    Args:
+        event_key: Event key identifier (e.g., '2025week0').
+        team_number: Team number.
+
+    Returns:
+        Dictionary with team's OPR and ranking data, or empty dict if not found.
+    """
     all_ranks = get_oprs_and_ranks_for_event(event_key)
     filtered_for_team = all_ranks[all_ranks['team_number'] == team_number]
     r = filtered_for_team.to_dict(orient='records')
@@ -89,6 +160,14 @@ def get_oprs_and_ranks_for_team(event_key: str, team_number: int) -> dict:
 
 
 def get_robot_specific_data_from_matches(event_key: str) -> pd.DataFrame:
+    """Get robot-specific data from matches (data tracked per robot, not per alliance).
+
+    Args:
+        event_key: Event key identifier (e.g., '2025week0').
+
+    Returns:
+        DataFrame with robot-specific match data.
+    """
     # gets values out of the matches where we essentially DO have a value
     # per robot, per match
     d = []

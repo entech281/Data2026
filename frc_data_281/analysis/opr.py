@@ -19,6 +19,17 @@ CCM_CACHE_SECONDS = 60
 
 
 def column_map_for_color(columns: list, color: str) -> tuple[dict[str, str], list[str]]:
+    """Create a column mapping for a specific alliance color.
+
+    Args:
+        columns: List of column names from the DataFrame.
+        color: Alliance color ('red' or 'blue').
+
+    Returns:
+        Tuple containing:
+            - Dictionary mapping original column names to transformed names.
+            - List of automapped field names.
+    """
     column_map = {
         color + "1": "t1",
         color + "2": "t2",
@@ -45,6 +56,17 @@ def column_map_for_color(columns: list, color: str) -> tuple[dict[str, str], lis
 
 
 def _calculate_opr_ccwm_dpr(matches: pd.DataFrame) -> pd.DataFrame:
+    """Calculate OPR, CCWM, and DPR values for teams.
+
+    Uses matrix operations to compute Offensive Power Rating (OPR),
+    Calculated Contribution to Win Margin (CCWM), and Defensive Power Rating (DPR).
+
+    Args:
+        matches: DataFrame containing match data with team columns and scoring data.
+
+    Returns:
+        DataFrame with calculated OPR, CCWM, and DPR values for each team.
+    """
     # get the unique list of teams
     team_list = pd.unique(matches[['red1', 'red2', 'red3', 'blue1', 'blue2', 'blue3']].values.ravel('K'))
 
@@ -87,6 +109,15 @@ def _calculate_opr_ccwm_dpr(matches: pd.DataFrame) -> pd.DataFrame:
 
 
 def add_zscores(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
+    """Add z-score columns for specified columns in the DataFrame.
+
+    Args:
+        df: Input DataFrame.
+        cols: List of column names to compute z-scores for.
+
+    Returns:
+        DataFrame with added z-score columns (named with '_z' suffix).
+    """
     new_df = df.copy()
     for c in cols:
         try:
@@ -104,6 +135,14 @@ def add_zscores(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
 
 
 def analyze_ccm(df: pd.DataFrame) -> pd.DataFrame:
+    """Analyze match data using CCM (Calculated Contribution Metrics).
+
+    Args:
+        df: DataFrame containing match data.
+
+    Returns:
+        DataFrame with CCM analysis results including z-scores.
+    """
     matches = df
     r = _calculate_opr_ccwm_dpr(matches)
     r = drop_columns_with_word_in_column_name(r, 'threshold')  # robot1,2, 3 are robot specific, we can get those later
@@ -115,11 +154,28 @@ def analyze_ccm(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def select_z_score_columns(df: pd.DataFrame, other_columns=[]):
+    """Select only z-score columns from the DataFrame.
+
+    Args:
+        df: Input DataFrame.
+        other_columns: Additional columns to include beyond z-score columns.
+
+    Returns:
+        DataFrame containing only z-score columns and specified additional columns.
+    """
     weighted_columns = find_columns_with_suffix(df, "_z") + other_columns
     return df[weighted_columns]
 
 
 def select_non_zscore_columns(df: pd.DataFrame):
+    """Select all columns except z-score columns from the DataFrame.
+
+    Args:
+        df: Input DataFrame.
+
+    Returns:
+        DataFrame without z-score columns.
+    """
     zscore_columns = find_columns_with_suffix(df, "_z")
     return df.drop(columns=zscore_columns)
 
@@ -143,6 +199,11 @@ def apply_season_specific_treatment(event_data: pd.DataFrame, season: int) -> pd
 
 @cachetools.func.ttl_cache(maxsize=128, ttl=CCM_CACHE_SECONDS)
 def get_ccm_data() -> pd.DataFrame:
+    """Get CCM data for all events with season-specific treatment applied.
+
+    Returns:
+        DataFrame containing CCM calculations for all events.
+    """
     print("This is the new version of get_ccm_data")
     all_match_data = cached_data.get_matches()
     print(f"Before Filter {len(all_match_data)}")
@@ -163,12 +224,28 @@ def get_ccm_data() -> pd.DataFrame:
 
 
 def get_ccm_data_for_event(event_key):
+    """Get CCM data for a specific event.
+
+    Args:
+        event_key: Event key identifier (e.g., '2025week0').
+
+    Returns:
+        DataFrame containing CCM calculations for the specified event.
+    """
     all_data = get_ccm_data()
     all_data = all_data[all_data['event_key'] == event_key]
     return all_data
 
 
 def get_ccm_data_for_event_separated(event_key):
+    """Get CCM data for a specific event, separated into z-score and non-z-score columns.
+
+    Args:
+        event_key: Event key identifier (e.g., '2025week0').
+
+    Returns:
+        Tuple of two DataFrames: (z-score columns with team_id, non-z-score columns).
+    """
     all_data = get_ccm_data()
     all_data = all_data[all_data['event_key'] == event_key]
     return select_z_score_columns(all_data, ['team_id']), select_non_zscore_columns(all_data)

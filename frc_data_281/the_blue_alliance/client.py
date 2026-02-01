@@ -12,6 +12,11 @@ logger = logging.getLogger(__name__)
 
 
 def set_logger(new_logger):
+    """Set the logger for this module.
+
+    Args:
+        new_logger: Logger instance to use.
+    """
     global logger
     logger = new_logger
 
@@ -24,6 +29,14 @@ DISTRICT_EVENTS = ['2025schar', '2025sccha', '2025sccmp']
 
 
 def change_dict_yesnos_to_booleans(d: dict) -> dict:
+    """Convert Yes/No string values to 1/0 integers in a dictionary.
+
+    Args:
+        d: Dictionary with potential Yes/No values.
+
+    Returns:
+        Dictionary with Yes/No values converted to 1/0.
+    """
     def change_yesno_boolean_to_zero_one(value):
         if value in ["Yes", "Y", "Yup", "yes", "y", True, "true", "True"]:
             return 1
@@ -39,10 +52,27 @@ def change_dict_yesnos_to_booleans(d: dict) -> dict:
 
 
 def team_number_from_key(frc_team_key):
+    """Extract team number from FRC team key.
+
+    Args:
+        frc_team_key: Team key string (e.g., 'frc281').
+
+    Returns:
+        Team number as integer.
+    """
     return int(frc_team_key.replace('frc', ''))
 
 
 def get_fields(from_dict: dict, fields: list[str]) -> dict:
+    """Extract specified fields from a dictionary.
+
+    Args:
+        from_dict: Source dictionary.
+        fields: List of field names to extract.
+
+    Returns:
+        Dictionary containing only the specified fields.
+    """
     r = {}
     for f in fields:
         if f in from_dict.keys():
@@ -51,6 +81,15 @@ def get_fields(from_dict: dict, fields: list[str]) -> dict:
 
 
 def _get(url, result_type='json'):
+    """Make GET request to The Blue Alliance API.
+
+    Args:
+        url: API endpoint URL (relative to TBA_API_ROOT).
+        result_type: Response format ('json' or 'text').
+
+    Returns:
+        Response data in requested format.
+    """
     response = requests.get(TBA_API_ROOT + url, headers={
         'X-TBA-Auth-Key': TBA_ACCESS_TOKEN
     })
@@ -61,10 +100,23 @@ def _get(url, result_type='json'):
 
 
 def get_teams_for_district():
+    """Get all teams in the configured district.
+
+    Returns:
+        List of team data from TBA API.
+    """
     return _get(f'/district/{DISTRICT_KEY}/teams')
 
 
 def get_teams_for_event(event_name):
+    """Get all teams participating in an event.
+
+    Args:
+        event_name: Event key (e.g., '2025week0').
+
+    Returns:
+        List of team data from TBA API.
+    """
     return _get(f'/event/{event_name}/teams')
 
 
