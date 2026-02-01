@@ -1,11 +1,8 @@
 import pandas as pd
-import sys
-from frc_data_281.db.connection import con
 from frc_data_281.db import cached_queries as cached_data
 import numpy as np
 from scipy.stats import zscore
 import cachetools.func
-import time
 from frc_data_281.analysis.dataset_tools import (
     drop_columns_with_word_in_column_name,
     find_columns_with_suffix,
@@ -17,7 +14,7 @@ from tabulate import tabulate
 CCM_CACHE_SECONDS = 60
 
 
-def column_map_for_color(columns: list, color: str) -> (dict[str, str], list[str]):
+def column_map_for_color(columns: list, color: str) -> tuple[dict[str, str], list[str]]:
     column_map = {
         color + "1": "t1",
         color + "2": "t2",
