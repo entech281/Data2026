@@ -92,6 +92,53 @@ The pipeline uses merge disposition — re-running is always safe and won't dupl
 
 ---
 
+## Deploying to Render
+
+This app can be deployed to [Render.io](https://render.com/) using the included `render.yaml` configuration.
+
+### Prerequisites
+
+1. A Render account (free tier available)
+2. This GitHub repository connected to Render
+3. A TBA API key (see [Setup on a New Machine](#setup-on-a-new-machine))
+
+### Deployment Steps
+
+1. **Push your code** to your GitHub repository on the branch you want to deploy.
+
+2. **Create a new Web Service on Render:**
+   - Go to [Render Dashboard](https://dashboard.render.com)
+   - Click **"New +"** → **"Web Service"**
+   - Connect your GitHub repository
+   - Select the branch (e.g., `2026-season-migration`)
+   - Render will auto-detect the `render.yaml` file
+
+3. **Add environment variables:**
+   - In the Render dashboard, go to **Environment** for your service
+   - Add `TBA_KEY` with your Blue Alliance API key value
+   - The `render.yaml` also sets Streamlit-specific environment variables automatically
+
+4. **Create a persistent disk:**
+   - Render will auto-create the disk defined in `render.yaml` (`scouting-db`, 5GB)
+   - This persists the local DuckDB file (`data/frc2026.duckdb`) across deployments
+
+5. **Deploy:**
+   - Click **"Create Web Service"**
+   - Render will:
+     1. Install `uv` and dependencies (`uv sync`)
+     2. Initialize the scouting schema (`python -m frc_data_281.db`)
+     3. Sync TBA data (`python -m frc_data_281.the_blue_alliance.pipeline`)
+     4. Start the Streamlit app
+   - Your app will be live at `https://<your-service-name>.onrender.com`
+
+### Important Notes
+
+- **Database persistence:** DuckDB file is stored on the persistent disk and survives redeploys
+- **Data refresh:** The pipeline runs during every build. To force a data refresh without redeploying, SSH into the Render instance and run the pipeline manually
+- **Cold starts:** Free tier Render instances spin down after 15 minutes of inactivity; there may be a delay on first access after a period of inactivity
+
+---
+
 ## Project Structure
 
 ```
