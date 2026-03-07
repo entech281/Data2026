@@ -43,7 +43,20 @@ Get a free TBA API key at [thebluealliance.com/account](https://www.theblueallia
 
 > **Note:** A `[motherduck]` token is no longer required. The app now uses a local DuckDB file at `data/frc2026.duckdb`.
 
-### 4. Initialize & sync the database
+### 3. Initialize the scouting schema
+
+Initialize the database schema (scouting tables) before syncing data:
+
+```commandline
+uv run python -m frc_data_281.db
+```
+
+This creates:
+- `scouting.pit` — pit scouting form submissions
+- `scouting.tags` — team tags/notes
+- `scouting.test` — test table
+
+### 4. Sync The Blue Alliance data
 
 The database file doesn't exist yet on a fresh checkout — the pipeline creates it automatically:
 
@@ -54,7 +67,7 @@ uv run python -m frc_data_281.the_blue_alliance.pipeline
 This will:
 - Create `data/frc2026.duckdb`
 - Populate `tba.teams`, `tba.matches`, `tba.event_rankings`, and `tba.oprs` for all configured events
-- Initialize the `scouting` schema (`scouting.pit`, `scouting.tags`) for manual pit scouting data entry
+- Also initializes the `scouting` schema if not already created
 
 ### 5. Run the app
 
