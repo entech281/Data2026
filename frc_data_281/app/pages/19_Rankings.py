@@ -7,8 +7,16 @@ selected_event = event_selector()
 
 st.title("Rankings")
 rankings = get_oprs_and_ranks_for_event(selected_event)
-rankings = rankings[['team_number', 'rank', 'avg_rp', 'opr', 'wins', 'losses', 'ties', 'total_rp', 'avg_win_rp',
-                     'avg_auto_rp', 'avg_coral_rp', 'avg_barge_rp', 'dpr', 'ccwm']]
+
+season = int(selected_event[:4]) if selected_event else 2026
+if season >= 2026:
+    bonus_cols = ['avg_energized_rp', 'avg_supercharged_rp', 'avg_traversal_rp']
+else:
+    bonus_cols = ['avg_auto_rp', 'avg_coral_rp', 'avg_barge_rp']
+
+display_cols = ['team_number', 'rank', 'avg_rp', 'opr', 'wins', 'losses', 'ties', 'total_rp', 'avg_win_rp'] + bonus_cols + ['dpr', 'ccwm']
+display_cols = [c for c in display_cols if c in rankings.columns]
+rankings = rankings[display_cols]
 
 st.subheader("Rank vs OPR")
 fig = px.scatter(rankings,

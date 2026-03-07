@@ -100,12 +100,12 @@ def sync():
     """Execute the full TBA data sync pipeline."""
     print("DLT Vars:", dlt.config)
     pipeline = dlt.pipeline(
-        pipeline_name='2025sc',
-        destination=dlt.destinations.duckdb(motherduck.con),
+        pipeline_name='2026sc',
+        destination=dlt.destinations.duckdb(motherduck.DB_PATH),
         dataset_name='tba'
     )
 
-    event_list = ['2025week0', '2025mnkk', '2025mndu2', '2025sccha', '2025gagai', '2025sccmp', '2025schar']
+    event_list = ['2026sccha']
 
     logger.info("Sync Teams...")
     load_info = pipeline.run(sync_teams_source(event_list))

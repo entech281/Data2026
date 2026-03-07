@@ -1,48 +1,84 @@
 # FRC Data 281
 
-This application uses streamlit and motherduck to manage FRC scouting data.
+This application uses Streamlit and a local DuckDB database to manage FRC scouting data.
 
-## Running the App
+## Setup on a New Machine
 
-### 1. Set up Python + virtual environment
-Use your python IDE to create Python virtual environment
+### 1. Prerequisites
 
-### 2. Install the package in editable mode 
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) (Python package manager).
 
-From the repo root:
+Clone the repo and check out the active branch:
 
 ```commandline
-pip install -e .
+git clone <repo-url>
+cd Data2026
+git checkout 2026-season-migration
 ```
 
-### 3. Set up Streamlit secrets file
+### 2. Install dependencies
 
-The credentials needed to connect to motherduck and TBA must not be stored in files 
-that are checked into git.
-   
-When the application runs in production, the secrets are set up
-in streamlit console. When running locally, you
-need to create directory ".streamlit" in the repo root and put a 
-file called secrets.toml in it. The file looks like this:
-
-```text
-[motherduck]
-token='big long token an admin will give you'
-
-```
-### 4. Run the streamlit app
-
-The application can be run in multiple ways:
-
-**Recommended: Using the Python module entry point**
 ```commandline
-frc-scouting
+uv sync
 ```
 
-**Alternative: Direct streamlit command**
+This creates `.venv/` and installs all packages from `uv.lock`.
+
+### 3. Set up Streamlit secrets
+
+The TBA API key must not be stored in files that are checked into git.
+
+Create `.streamlit/secrets.toml` in the repo root:
+
+```toml
+[tba]
+auth_key = "your-tba-api-key-here"
+
+[cache]
+cache_path = "."
+enabled = "False"
+```
+
+Get a free TBA API key at [thebluealliance.com/account](https://www.thebluealliance.com/account).
+
+> **Note:** A `[motherduck]` token is no longer required. The app now uses a local DuckDB file at `data/frc2026.duckdb`.
+
+### 4. Initialize & sync the database
+
+The database file doesn't exist yet on a fresh checkout — the pipeline creates it automatically:
+
+```commandline
+uv run python -m frc_data_281.the_blue_alliance.pipeline
+```
+
+This will:
+- Create `data/frc2026.duckdb`
+- Populate `tba.teams`, `tba.matches`, `tba.event_rankings`, and `tba.oprs` for all configured events
+
+The scouting schema (`scouting.tags`, `scouting.pit`, etc.) is created automatically the first time the Streamlit app starts.
+
+### 5. Run the app
+
+```commandline
+uv run frc-scouting
+```
+
+Or alternatively:
+
 ```commandline
 streamlit run frc_data_281/app/Home.py
 ```
+
+### Re-syncing data
+
+To pull the latest match data from TBA:
+
+- Click **"Refresh Data from TBA"** on the Data Refresh page in the app, or
+- Run directly: `uv run python -m frc_data_281.the_blue_alliance.pipeline`
+
+The pipeline uses merge disposition — re-running is always safe and won't duplicate records.
+
+---
 
 ## Project Structure
 
@@ -59,11 +95,14 @@ Data2026/
 │   │   ├── client.py          # API client for fetching FRC data
 │   │   └── pipeline.py        # Data pipeline for syncing TBA data to database
 │   ├── db/                    # Database layer
-│   │   ├── connection.py      # MotherDuck/DuckDB connection management
+│   │   ├── connection.py      # DuckDB connection management (local file)
 │   │   ├── schema.py          # Database schema definitions
 │   │   └── cached_queries.py  # Cached query functions for performance
 │   ├── analysis/              # Data analysis modules
 │   │   ├── opr.py             # OPR (Offensive Power Rating) calculations
+│   │   ├── season_specific/   # Season-specific analysis logic
+│   │   │   ├── season_2025.py # 2025 game: Reefscape (coral/reef/barge)
+│   │   │   └── season_2026.py # 2026 game: Hub scoring, Tower, Energized/Supercharged/Traversal RPs
 │   │   ├── numerizer.py       # Dataset numeric transformation utilities
 │   │   └── dataset_tools.py   # Data manipulation and analysis helpers
 │   ├── jobs/                  # Background job scheduling
@@ -73,8 +112,7 @@ Data2026/
 ├── tests/                     # Test suite
 ├── example_pages/             # Example Streamlit pages for reference
 ├── utilities/                 # Development utilities and scripts
-├── data/                      # Local data storage
-├── static/                    # Static assets (images, etc.)
+├── data/                      # Local data storage (frc2026.duckdb — not committed to git)
 └── pyproject.toml             # Project dependencies and configuration
 ```
 
@@ -99,7 +137,7 @@ Data2026/
 
 **CCM (Component Contribution Metrics)**
 - Extended analysis that applies OPR-style calculations to individual game components
-- Breaks down performance into granular metrics (coral scoring, reef scoring, auto points, etc.)
+- Breaks down performance into granular metrics (hub scoring, tower points, auto points, etc.)
 - Provides detailed insights into team strengths and weaknesses across all game elements
 
 **Z-Score (Standard Score)**

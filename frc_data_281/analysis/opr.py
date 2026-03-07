@@ -2,7 +2,11 @@ import pandas as pd
 
 from frc_data_281.analysis.season_specific.season_2025 import (
     aggregate_reef_scoring,
-    add_scoring_computations,
+    add_scoring_computations as add_scoring_computations_2025,
+)
+from frc_data_281.analysis.season_specific.season_2026 import (
+    aggregate_hub_scoring,
+    add_scoring_computations as add_scoring_computations_2026,
 )
 from frc_data_281.db import cached_queries as cached_data
 import numpy as np
@@ -192,7 +196,10 @@ def apply_season_specific_treatment(event_data: pd.DataFrame, season: int) -> pd
     """
     if season == 2025:
         event_data = aggregate_reef_scoring(event_data)
-        event_data = add_scoring_computations(event_data)
+        event_data = add_scoring_computations_2025(event_data)
+    elif season == 2026:
+        event_data = aggregate_hub_scoring(event_data)
+        event_data = add_scoring_computations_2026(event_data)
 
     return event_data
 

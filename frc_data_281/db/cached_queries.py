@@ -107,8 +107,8 @@ def _get_tba_oprs_and_ranks() -> pd.DataFrame:
     """
     tba_ranks = con.sql("""
             select er.team_number, er.event_key,er.wins, er.losses, er.ties,er.rank,er.dq, op.oprs as opr, op.ccwms as ccwm, op.dprs as dpr
-            from frc_2025.tba.event_rankings er
-            join frc_2025.tba.oprs op on er.team_number = op.team_number and er.event_key = op.event_key
+            from tba.event_rankings er
+            join tba.oprs op on er.team_number = op.team_number and er.event_key = op.event_key
             order by er.rank asc;
     """).df()
     return tba_ranks
@@ -163,25 +163,33 @@ def get_robot_specific_data_from_matches(event_key: str) -> pd.DataFrame:
     """Get robot-specific data from matches (data tracked per robot, not per alliance).
 
     Args:
-        event_key: Event key identifier (e.g., '2025week0').
+        event_key: Event key identifier (e.g., '2026sccha').
 
     Returns:
         DataFrame with robot-specific match data.
     """
-    # gets values out of the matches where we essentially DO have a value
-    # per robot, per match
+    season = int(event_key[:4])
     d = []
     team_list = get_team_list(event_key)
     matches = get_matches_for_event(event_key)
+
+    if season >= 2026:
+        auto_col = "auto_tower"
+        endgame_col = "end_game_tower"
+    else:
+        auto_col = "auto_line"
+        endgame_col = "end_game"
 
     def _get_robot_specific_value(row, team_number: int, prefix: str, index: int) -> list:
         team_col = f"{prefix}{index}"
         suffix = f"robot{index}"
         if team_number in [row[team_col]]:
+            auto_field = f"{prefix}_{auto_col}_{suffix}"
+            endgame_field = f"{prefix}_{endgame_col}_{suffix}"
             return [{
-                'team_number': row[team_number],
-                'auto_line': row[f"red_auto_line_{suffix}"],
-                'end_game': row[f"red_end_game_{suffix}"]
+                'team_number': team_number,
+                'auto_action': row.get(auto_field),
+                'end_game': row.get(endgame_field),
             }]
         else:
             return []
@@ -200,62 +208,70 @@ def get_robot_specific_data_from_matches(event_key: str) -> pd.DataFrame:
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
 def get_ranking_point_summary_for_event(event_key: str) -> pd.DataFrame:
     """
-    This computes a summary of how many RPs each team has, and how they got them
+    Compute a summary of how many RPs each team has earned, and how they got them.
+
+    Season-aware: adapts RP bonus columns for 2025 vs 2026+ games.
+    - 2025: auto_bonus_achieved, coral_bonus_achieved, barge_bonus_achieved
+    - 2026: energized_achieved, supercharged_achieved, traversal_achieved
+
     :param event_key:
     :return:
     """
+    season = int(event_key[:4])
     team_data = {}
+
+    if season >= 2026:
+        bonus_keys = ['energized', 'supercharged', 'traversal']
+        bonus_cols = {
+            'energized': 'TEAM_energized_achieved',
+            'supercharged': 'TEAM_supercharged_achieved',
+            'traversal': 'TEAM_traversal_achieved',
+        }
+    else:
+        bonus_keys = ['auto', 'coral', 'barge']
+        bonus_cols = {
+            'auto': 'TEAM_auto_bonus_achieved',
+            'coral': 'TEAM_coral_bonus_achieved',
+            'barge': 'TEAM_barge_bonus_achieved',
+        }
 
     def get_team_summary(team_number: int):
         if team_number not in team_data:
-            team_data[team_number] = {
+            entry = {
                 'team_number': team_number,
                 'total_rp': 0,
-                'auto_rp': 0,
                 'win_rp': 0,
-                'coral_rp': 0,
-                'barge_rp': 0,
-                'total_rp_sum': 0,
-                'match_count': 0
+                'match_count': 0,
             }
+            for key in bonus_keys:
+                entry[f'{key}_rp'] = 0
+            team_data[team_number] = entry
         return team_data[team_number]
 
-    # there is probably a faster way to do this that's vectorized but
-    # i dont want to figure it out right now
     matches = get_matches_for_event(event_key)
-    matches = matches[matches['comp_level'] == 'qm']  # only consider qualifiers for rankings
+    matches = matches[matches['comp_level'] == 'qm']
 
     def _add_team_rps_with_prefix(prefix: str, row):
-        if prefix == "red":
-            anti_prefix = "blue"
-        else:
-            anti_prefix = "red"
+        anti_prefix = 'blue' if prefix == 'red' else 'red'
 
         for col in [f"{prefix}1", f"{prefix}2", f"{prefix}3"]:
             team_number = row[col]
-
             td = get_team_summary(team_number)
 
-            # blue alliance calculated rp
             td['total_rp'] += row[f"{prefix}_rp"]
             td['match_count'] += 1
-            # 3 for win, 1 for a tie
+
             our_score = row[f"{prefix}_score"]
             their_score = row[f"{anti_prefix}_score"]
-
             if our_score > their_score:
                 td['win_rp'] += 3
             elif our_score == their_score:
                 td['win_rp'] += 1
 
-            if row[f'{prefix}_auto_bonus_achieved'] == 1:
-                td['auto_rp'] += 1
-
-            if row[f'{prefix}_coral_bonus_achieved'] == 1:
-                td['coral_rp'] += 1
-
-            if row[f'{prefix}_barge_bonus_achieved'] == 1:
-                td['barge_rp'] += 1
+            for key, col_template in bonus_cols.items():
+                bonus_col = col_template.replace('TEAM', prefix)
+                if bonus_col in row and row[bonus_col] == 1:
+                    td[f'{key}_rp'] += 1
 
     for _, row in matches.iterrows():
         _add_team_rps_with_prefix('red', row)
@@ -264,9 +280,8 @@ def get_ranking_point_summary_for_event(event_key: str) -> pd.DataFrame:
     r = pd.DataFrame(team_data.values())
     r['avg_rp'] = r['total_rp'] / r['match_count']
     r['avg_win_rp'] = r['win_rp'] / r['match_count']
-    r['avg_auto_rp'] = r['auto_rp'] / r['match_count']
-    r['avg_coral_rp'] = r['coral_rp'] / r['match_count']
-    r['avg_barge_rp'] = r['barge_rp'] / r['match_count']
+    for key in bonus_keys:
+        r[f'avg_{key}_rp'] = r[f'{key}_rp'] / r['match_count']
     return r
 
 

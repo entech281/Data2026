@@ -40,7 +40,8 @@ def get_default_data(team: int = None) -> pd.DataFrame:
         'scoring_capabilities': "",
         'preferred_scoring': "",
         'notes': "",
-        'auto_route': None
+        'auto_route': None,
+        'robot_photo': None,
     }])
 
     if team is not None:
@@ -83,8 +84,9 @@ with st.form("pit_scouting"):
 
     start_pos = st.selectbox(
         "Preferred Starting Position",
-        ["Climb Side", "Center", "Processor Side", "No Preference"],
-        index=["Climb Side", "Center", "Processor Side", "No Preference"].index(default_data['start_position'].iloc[0])
+        ["Left", "Center", "Right", "No Preference"],
+        index=["Left", "Center", "Right", "No Preference"].index(default_data['start_position'].iloc[0])
+        if default_data['start_position'].iloc[0] in ["Left", "Center", "Right", "No Preference"] else 3
     )
 
     binary_data = st.camera_input(label="Auto Route (draw a picture please)")
@@ -100,8 +102,22 @@ with st.form("pit_scouting"):
     if default_data['auto_route'].iloc[0] is not None:
         st.image(Image.open(io.BytesIO(default_data['auto_route'].iloc[0])), caption="Previous Auto Route")
 
-    scoring_possibilities = ["Coral L1", "Coral L2", "Coral L3", "Coral L4",
-                             "Processor", "Barge", "Deep Climb", "Shallow Climb"]
+    robot_photo_data = st.camera_input(label="Robot Photo", key="robot_photo_input")
+    robot_photo = None
+
+    if robot_photo_data is not None:
+        robot_photo_bytes = robot_photo_data.read()
+        image_pil = Image.open(io.BytesIO(robot_photo_bytes))
+        img_byte_arr = io.BytesIO()
+        image_pil.save(img_byte_arr, format='PNG')
+        robot_photo = img_byte_arr.getvalue()
+
+    if default_data['robot_photo'].iloc[0] is not None:
+        st.image(Image.open(io.BytesIO(default_data['robot_photo'].iloc[0])), caption="Previous Robot Photo")
+
+    scoring_possibilities = ["Hub Auto", "Hub Teleop", "Hub Endgame",
+                             "Tower Auto", "Tower Endgame (Traversal)",
+                             "Tower Endgame (Supercharged)", "Tower Endgame (Energized)"]
 
     scoring_capabilities = st.pills(
         "Scoring Capabilities",
@@ -136,6 +152,7 @@ with st.form("pit_scouting"):
             'width': width,
             'start_position': start_pos,
             'auto_route': auto_route,
+            'robot_photo': robot_photo,
             'scoring_capabilities': ','.join(scoring_capabilities),
             'preferred_scoring': ','.join(preferred_scoring) if isinstance(preferred_scoring, list) else preferred_scoring,
             'notes': notes,
@@ -153,6 +170,7 @@ with st.form("pit_scouting"):
                         width = ?,
                         start_position = ?,
                         auto_route = ?,
+                        robot_photo = ?,
                         scoring_capabilities = ?,
                         preferred_scoring = ?,
                         notes = ?,
@@ -161,7 +179,8 @@ with st.form("pit_scouting"):
                     WHERE team_number = ?
                 """, [
                     data['height'], data['weight'], data['length'], data['width'],
-                    data['start_position'], data['auto_route'], data['scoring_capabilities'],
+                    data['start_position'], data['auto_route'], data['robot_photo'],
+                    data['scoring_capabilities'],
                     data['preferred_scoring'], data['notes'], data['author'],
                     data['team_number']
                 ])
@@ -171,13 +190,13 @@ with st.form("pit_scouting"):
                 con.execute("""
                     INSERT INTO scouting.pit
                     (team_number, height, weight, length, width,
-                    start_position, auto_route, scoring_capabilities,
+                    start_position, auto_route, robot_photo, scoring_capabilities,
                     preferred_scoring, notes, author)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, [
                     data['team_number'], data['height'], data['weight'],
                     data['length'], data['width'], data['start_position'],
-                    data['auto_route'], data['scoring_capabilities'],
+                    data['auto_route'], data['robot_photo'], data['scoring_capabilities'],
                     data['preferred_scoring'], data['notes'], data['author']
                 ])
                 st.success("Data saved successfully!")

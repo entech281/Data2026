@@ -11,6 +11,12 @@ selected_event = event_selector()
 df = opr3.get_ccm_data_for_event(selected_event)
 df = opr3.select_z_score_columns(df, ['team_id'])
 
+# Drop noisy/granular columns not useful for the heatmap
+cols_to_drop = [c for c in df.columns if
+                'g206_penalty' in c or
+                any(f'shift{i}' in c for i in range(1, 5))]
+df = df.drop(columns=cols_to_drop)
+
 df.reset_index(drop=True, inplace=True)
 df = df.set_index('team_id')
 df = df.T
