@@ -83,8 +83,9 @@ with st.form("pit_scouting"):
 
     start_pos = st.selectbox(
         "Preferred Starting Position",
-        ["Climb Side", "Center", "Processor Side", "No Preference"],
-        index=["Climb Side", "Center", "Processor Side", "No Preference"].index(default_data['start_position'].iloc[0])
+        ["Left", "Center", "Right", "No Preference"],
+        index=["Left", "Center", "Right", "No Preference"].index(default_data['start_position'].iloc[0])
+        if default_data['start_position'].iloc[0] in ["Left", "Center", "Right", "No Preference"] else 3
     )
 
     binary_data = st.camera_input(label="Auto Route (draw a picture please)")
@@ -100,8 +101,9 @@ with st.form("pit_scouting"):
     if default_data['auto_route'].iloc[0] is not None:
         st.image(Image.open(io.BytesIO(default_data['auto_route'].iloc[0])), caption="Previous Auto Route")
 
-    scoring_possibilities = ["Coral L1", "Coral L2", "Coral L3", "Coral L4",
-                             "Processor", "Barge", "Deep Climb", "Shallow Climb"]
+    scoring_possibilities = ["Hub Auto", "Hub Teleop", "Hub Endgame",
+                             "Tower Auto", "Tower Endgame (Traversal)",
+                             "Tower Endgame (Supercharged)", "Tower Endgame (Energized)"]
 
     scoring_capabilities = st.pills(
         "Scoring Capabilities",

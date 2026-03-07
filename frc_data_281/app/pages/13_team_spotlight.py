@@ -76,45 +76,56 @@ differently based on watching a day of matches.
 see new proprosed version
 """
 
-avg_coral_df = con.sql("""SELECT
-    m.team_number,
-    AVG(m.auto_coral_level_1) AS avg_auto_coral_level_1,
-    AVG(m.auto_coral_level_2) AS avg_auto_coral_level_2,
-    AVG(m.auto_coral_level_3) AS avg_auto_coral_level_3,
-    AVG(m.auto_coral_level_4) AS avg_auto_coral_level_4,
-    AVG(m.coral_level_1) AS avg_teleop_coral_level_1,
-    AVG(m.coral_level_2) AS avg_teleop_coral_level_2,
-    AVG(m.coral_level_3) AS avg_teleop_coral_level_3,
-    AVG(m.coral_level_4) AS avg_teleop_coral_level_4
-FROM scouting.matches m
-GROUP BY m.team_number
-ORDER BY m.team_number;""").df()
+avg_hub_df = con.sql("""SELECT
+    team_number,
+    AVG(hub_score_auto_count) AS avg_hub_auto_count,
+    AVG(hub_score_teleop_count) AS avg_hub_teleop_count,
+    AVG(hub_score_total_count) AS avg_hub_total_count,
+    AVG(auto_tower_points) AS avg_auto_tower_points,
+    AVG(end_game_tower_points) AS avg_end_game_tower_points
+FROM (
+    SELECT
+        blue1 AS team_number,
+        blue_hub_score_auto_count AS hub_score_auto_count,
+        blue_hub_score_teleop_count AS hub_score_teleop_count,
+        blue_hub_score_total_count AS hub_score_total_count,
+        blue_auto_tower_points AS auto_tower_points,
+        blue_end_game_tower_points AS end_game_tower_points
+    FROM tba.matches WHERE event_key = '""" + selected_event + """'
+    UNION ALL
+    SELECT blue2, blue_hub_score_auto_count, blue_hub_score_teleop_count, blue_hub_score_total_count, blue_auto_tower_points, blue_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+    UNION ALL
+    SELECT blue3, blue_hub_score_auto_count, blue_hub_score_teleop_count, blue_hub_score_total_count, blue_auto_tower_points, blue_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+    UNION ALL
+    SELECT red1, red_hub_score_auto_count, red_hub_score_teleop_count, red_hub_score_total_count, red_auto_tower_points, red_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+    UNION ALL
+    SELECT red2, red_hub_score_auto_count, red_hub_score_teleop_count, red_hub_score_total_count, red_auto_tower_points, red_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+    UNION ALL
+    SELECT red3, red_hub_score_auto_count, red_hub_score_teleop_count, red_hub_score_total_count, red_auto_tower_points, red_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+)
+GROUP BY team_number
+ORDER BY team_number;""").df()
 
-avg_coral_df = add_zscores(avg_coral_df, avg_coral_df.columns[1:])
+avg_hub_df = add_zscores(avg_hub_df, avg_hub_df.columns[1:])
+avg_hub_df = avg_hub_df[avg_hub_df['team_number'] == team]
 
-avg_coral_df = avg_coral_df[avg_coral_df['team_number'] == team]
-
-if not avg_coral_df.empty:
-    # Extract auto and teleop z-scores for levels 1–4 as lists.
-    auto_vals = avg_coral_df[["avg_auto_coral_level_1_z",
-                              "avg_auto_coral_level_2_z",
-                              "avg_auto_coral_level_3_z",
-                              "avg_auto_coral_level_4_z"]].iloc[0].tolist()
-
-    teleop_vals = avg_coral_df[["avg_teleop_coral_level_1_z",
-                                "avg_teleop_coral_level_2_z",
-                                "avg_auto_coral_level_3_z",
-                                "avg_teleop_coral_level_4_z"]].iloc[0].tolist()
-
-    # Create a new DataFrame with index as levels "L1" to "L4" and columns "Auto" and "Teleop"
-    coral_table = pd.DataFrame({
-        "Auto": auto_vals,
-        "Teleop": teleop_vals
-    }, index=["L1", "L2", "L3", "L4"])
-
-    st.dataframe(coral_table)
+if not avg_hub_df.empty:
+    hub_table = pd.DataFrame({
+        "Avg Count": [
+            avg_hub_df['avg_hub_auto_count_z'].iloc[0],
+            avg_hub_df['avg_hub_teleop_count_z'].iloc[0],
+            avg_hub_df['avg_hub_total_count_z'].iloc[0],
+        ],
+        "Avg Tower Pts (z)": [
+            avg_hub_df['avg_auto_tower_points_z'].iloc[0],
+            avg_hub_df['avg_end_game_tower_points_z'].iloc[0],
+            None,
+        ],
+    }, index=["Auto Hub", "Teleop Hub", "Total Hub"])
+    st.subheader("🎯 Hub & Tower Scoring (z-score)")
+    st.dataframe(hub_table)
 else:
-    st.info("No coral data available for this team.")
+    st.info("No hub scoring data available for this team.")
 
 
 if team is not None:

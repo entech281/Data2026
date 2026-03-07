@@ -24,8 +24,8 @@ def set_logger(new_logger):
 DATE_FORMAT = "%Y-%m-%d"
 TBA_ACCESS_TOKEN = st.secrets['tba']['auth_key']
 TBA_API_ROOT = 'https://www.thebluealliance.com/api/v3/'
-DISTRICT_KEY = '2025fsc'
-DISTRICT_EVENTS = ['2025schar', '2025sccha', '2025sccmp']
+DISTRICT_KEY = '2026fsc'
+DISTRICT_EVENTS = ['2026sccha']
 
 
 def change_dict_yesnos_to_booleans(d: dict) -> dict:
@@ -191,7 +191,7 @@ def get_event_oprs(event_key):
 def get_rankings_for_district():
     rankings = _get(f'/district/{DISTRICT_KEY}/rankings')
     if rankings is not None:
-        return rankings.json()
+        return rankings
     else:
         return []
 

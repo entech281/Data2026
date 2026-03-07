@@ -7,8 +7,10 @@ from frc_data_281.db.connection import con
 
 
 def create_schema():
+    con.sql("CREATE SCHEMA IF NOT EXISTS scouting")
+
     con.sql("""
-        create or replace table scouting.test (
+        create table if not exists scouting.test (
             id INTEGER PRIMARY KEY,
             foo varchar,
             bar varchar,
@@ -17,7 +19,7 @@ def create_schema():
     """)
 
     con.sql("""
-        create or replace table scouting.tags (
+        create table if not exists scouting.tags (
             team_number INTEGER PRIMARY KEY,
             tag varchar,
              mod_dte timestamp default current_timestamp
@@ -25,7 +27,7 @@ def create_schema():
     """)
 
     con.sql("""
-        CREATE OR REPLACE TABLE scouting.pit (
+        CREATE TABLE IF NOT EXISTS scouting.pit (
             team_number INTEGER,
             height INTEGER,
             weight INTEGER,
