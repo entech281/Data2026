@@ -54,8 +54,7 @@ uv run python -m frc_data_281.the_blue_alliance.pipeline
 This will:
 - Create `data/frc2026.duckdb`
 - Populate `tba.teams`, `tba.matches`, `tba.event_rankings`, and `tba.oprs` for all configured events
-
-The scouting schema (`scouting.tags`, `scouting.pit`, etc.) is created automatically the first time the Streamlit app starts.
+- Initialize the `scouting` schema (`scouting.pit`, `scouting.tags`) for manual pit scouting data entry
 
 ### 5. Run the app
 

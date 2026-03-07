@@ -1,11 +1,9 @@
 import dlt
 from frc_data_281.the_blue_alliance import client as tba
 from frc_data_281.utils import helpers as util
-import logging
-import os
-import streamlit as st
-from datetime import datetime
 from frc_data_281.db import connection as motherduck
+from frc_data_281.db.schema import create_schema
+import logging
 
 logger = logging.getLogger(__name__)
 loop_delay_secs = 5
@@ -98,6 +96,8 @@ def district_rankings_source():
 
 def sync():
     """Execute the full TBA data sync pipeline."""
+    create_schema()
+
     print("DLT Vars:", dlt.config)
     pipeline = dlt.pipeline(
         pipeline_name='2026sc',
