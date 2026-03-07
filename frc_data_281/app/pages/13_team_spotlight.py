@@ -197,6 +197,11 @@ if team is not None:
             st.subheader("🤖 Auto Route")
             st.image(Image.open(io.BytesIO(pit_df['auto_route'].iloc[0])), width='stretch')
 
+        # Robot photo
+        if 'robot_photo' in pit_df.columns and pd.notna(pit_df['robot_photo'].iloc[0]):
+            st.subheader("📷 Robot Photo")
+            st.image(Image.open(io.BytesIO(pit_df['robot_photo'].iloc[0])), width='stretch')
+
         # Notes section
         if pit_df['notes'].iloc[0]:
             st.subheader("📌 Notes")

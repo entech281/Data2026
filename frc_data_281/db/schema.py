@@ -35,6 +35,7 @@ def create_schema():
             width INTEGER,
             start_position VARCHAR,
             auto_route BLOB,
+            robot_photo BLOB,
             scoring_capabilities VARCHAR,
             preferred_scoring VARCHAR,
             notes TEXT,
@@ -42,3 +43,11 @@ def create_schema():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     """)
+
+    # Migration: add robot_photo column if it doesn't exist yet
+    existing_cols = [row[0] for row in con.execute("""
+        SELECT column_name FROM information_schema.columns
+        WHERE table_schema = 'scouting' AND table_name = 'pit'
+    """).fetchall()]
+    if 'robot_photo' not in existing_cols:
+        con.sql("ALTER TABLE scouting.pit ADD COLUMN robot_photo BLOB")
