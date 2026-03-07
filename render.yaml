@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: frc-scouting-2026
+    env: python
+    pythonVersion: 3.12
+    
+    # Build command: install uv and dependencies
+    buildCommand: |
+      curl -LsSf https://astral.sh/uv/install.sh | sh
+      export PATH="$HOME/.cargo/bin:$PATH"
+      uv sync --frozen
+      uv run python -m frc_data_281.db
+      uv run python -m frc_data_281.the_blue_alliance.pipeline
+    
+    # Start command: run Streamlit app
+    startCommand: |
+      export PATH="$HOME/.cargo/bin:$PATH"
+      uv run streamlit run frc_data_281/app/Home.py --logger.level=info
+    
+    # Environment variables
+    envVars:
+      - key: STREAMLIT_SERVER_PORT
+        value: 10000
+      - key: STREAMLIT_SERVER_ADDRESS
+        value: 0.0.0.0
+      - key: STREAMLIT_SERVER_HEADLESS
+        value: true
+      - key: STREAMLIT_CLIENT_TOOLBAR_MODE
+        value: viewer
+      - key: TBA_KEY
+        fromDatabase:
+          name: tba-api-key
+          property: value
+    
+    # Disk for persistent database
+    disks:
+      - name: scouting-db
+        mountPath: /opt/render/project/data
+        sizeGB: 5
+    
+    # Health check
+    healthCheckPath: /
+    
+    # Auto-deploy on push to main
+    autoDeploy: false
