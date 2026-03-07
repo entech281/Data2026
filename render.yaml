@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: frc-scouting-2026
+    name: frc-281-scouting-2026
     env: python
     pythonVersion: 3.12
     
