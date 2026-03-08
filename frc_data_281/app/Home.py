@@ -1,13 +1,11 @@
 import streamlit as st
 from frc_data_281.jobs import scheduler as jobs
 from frc_data_281.app.components import get_static_path
-from frc_data_281.db.schema import create_schema
 
-create_schema()
 
 st.set_page_config(layout="wide")
 
-st.title("281 Scouting3")
+st.title("281 Scouting")
 
 st.subheader("Open the page list if this looks totally blank")
 

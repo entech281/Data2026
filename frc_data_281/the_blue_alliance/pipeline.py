@@ -1,7 +1,7 @@
 import dlt
 from frc_data_281.the_blue_alliance import client as tba
 from frc_data_281.utils import helpers as util
-from frc_data_281.db import connection as motherduck
+from frc_data_281.db import connection
 from frc_data_281.db.schema import create_schema
 import logging
 
@@ -101,7 +101,7 @@ def sync():
     print("DLT Vars:", dlt.config)
     pipeline = dlt.pipeline(
         pipeline_name='2026sc',
-        destination=dlt.destinations.duckdb(motherduck.DB_PATH),
+        destination=dlt.destinations.duckdb(connection.DB_PATH),
         dataset_name='tba'
     )
 
