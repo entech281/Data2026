@@ -13,14 +13,11 @@ services:
       uv run python -m frc_data_281.the_blue_alliance.pipeline
     
     # Start command: run Streamlit app
-    startCommand: uv run streamlit run frc_data_281/app/Home.py --logger.level=info --client.toolbarMode=viewer
+    # Explicitly bind to all interfaces (0.0.0.0) and use PORT env var
+    startCommand: streamlit run frc_data_281/app/Home.py --server.port=$PORT --server.address=0.0.0.0 --logger.level=info
     
     # Environment variables
     envVars:
-      - key: STREAMLIT_SERVER_PORT
-        value: 10000
-      - key: STREAMLIT_SERVER_ADDRESS
-        value: 0.0.0.0
       - key: STREAMLIT_SERVER_HEADLESS
         value: true
       - key: STREAMLIT_CLIENT_TOOLBAR_MODE
