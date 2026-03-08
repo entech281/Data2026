@@ -5,6 +5,7 @@ import pandas as pd
 from io import StringIO
 from datetime import datetime, date
 import time
+import os
 import streamlit as st
 from flatten_json import flatten
 
@@ -21,8 +22,41 @@ def set_logger(new_logger):
     logger = new_logger
 
 
+def _get_tba_token():
+    """Get TBA API token from environment variable or Streamlit secrets.
+    
+    Tries in order:
+    1. TBA_KEY environment variable (for Render deployment)
+    2. st.secrets['tba']['auth_key'] (for local development)
+    
+    Returns:
+        str: TBA API access token
+        
+    Raises:
+        RuntimeError: If token is not found in either location
+    """
+    # Try environment variable first (Render, Docker, etc.)
+    token = os.getenv('TBA_KEY')
+    if token:
+        return token
+    
+    # Fall back to Streamlit secrets (local development)
+    try:
+        token = st.secrets['tba']['auth_key']
+        if token:
+            return token
+    except (KeyError, FileNotFoundError):
+        pass
+    
+    raise RuntimeError(
+        "TBA API key not found. Set either:\n"
+        "  - TBA_KEY environment variable (for Render/Docker), or\n"
+        "  - [tba] auth_key in .streamlit/secrets.toml (for local dev)"
+    )
+
+
 DATE_FORMAT = "%Y-%m-%d"
-TBA_ACCESS_TOKEN = st.secrets['tba']['auth_key']
+TBA_ACCESS_TOKEN = _get_tba_token()
 TBA_API_ROOT = 'https://www.thebluealliance.com/api/v3/'
 DISTRICT_KEY = '2026fsc'
 DISTRICT_EVENTS = ['2026sccha']
