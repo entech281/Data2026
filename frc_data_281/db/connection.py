@@ -1,7 +1,7 @@
 import duckdb
 import polars as pl
 
-DB_PATH = "data/frc2026.duckdb"
+DB_PATH = "db/frc2026.duckdb"
 
 con = duckdb.connect(DB_PATH)
 
