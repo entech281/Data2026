@@ -8,3 +8,7 @@ venv
 duckdb.exe
 .data
 _old
+data/
+db/*.duckdb
+db/*.wal
+
