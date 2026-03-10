@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: elk
+    name: gorilla
     env: python
 
     # Build command: install dependencies only
