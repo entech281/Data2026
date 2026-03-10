@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: entech281-scouting
+    name: FRC-281-scouting
     env: python
 
     # Build command: install dependencies only
