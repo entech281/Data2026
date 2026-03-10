@@ -8,5 +8,3 @@ venv
 duckdb.exe
 .data
 _old
-data/
-
