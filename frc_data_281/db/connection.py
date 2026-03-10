@@ -3,7 +3,9 @@ import polars as pl
 from contextlib import contextmanager
 import os
 
-DB_PATH = "db/frc2026.duckdb"
+# Allow DB_PATH to be set via environment variable (useful for Render deployment)
+# Falls back to local db/frc2026.duckdb if not set
+DB_PATH = os.getenv('DB_PATH', 'db/frc2026.duckdb')
 
 
 @contextmanager
@@ -17,7 +19,7 @@ def get_connection():
         with get_connection() as con:
             con.sql("SELECT ...").df()
     """
-    # Ensure db directory exists
+    # Ensure db directory exists for file-based databases
     db_dir = os.path.dirname(DB_PATH)
     if db_dir and not os.path.exists(db_dir):
         os.makedirs(db_dir, exist_ok=True)
