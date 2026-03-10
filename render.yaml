@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ant
+    name: elk
     env: python
 
     # Build command: install dependencies only
