@@ -2,7 +2,7 @@ services:
   - type: web
     name: frc-281-scouting-2026
     env: python
-    pythonVersion: 3.12.10
+
     
     # Build command: install uv, sync dependencies, and initialize database
     buildCommand: |
@@ -21,16 +21,6 @@ services:
         value: true
       - key: STREAMLIT_CLIENT_TOOLBAR_MODE
         value: viewer
-      - key: TBA_KEY
-        fromDatabase:
-          name: tba-api-key
-          property: value
-    
-    # Disk for persistent database
-    disks:
-      - name: scouting-db
-        mountPath: /opt/render/project/data
-        sizeGB: 5
     
     # Health check
     healthCheckPath: /
