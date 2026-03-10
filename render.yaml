@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: FRC-281-scouting
+    name: ant
     env: python
 
     # Build command: install dependencies only
