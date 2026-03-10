@@ -4,9 +4,8 @@ services:
     env: python
 
     
-    # Build command: install uv, sync dependencies, and initialize database
+    # Build command: sync dependencies and initialize database
     buildCommand: |
-      pip install uv &&
       uv sync --frozen &&
       uv cache prune --ci &&
       uv run python -m frc_data_281.db &&
