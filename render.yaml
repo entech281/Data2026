@@ -21,10 +21,6 @@ services:
         value: true
       - key: STREAMLIT_CLIENT_TOOLBAR_MODE
         value: viewer
-      - key: TBA_KEY
-        fromDatabase:
-          name: tba-api-key
-          property: value
     
     # Health check
     healthCheckPath: /
