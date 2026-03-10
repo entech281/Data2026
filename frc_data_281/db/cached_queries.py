@@ -1,7 +1,7 @@
 import cachetools.func
 import pandas as pd
 
-from frc_data_281.db.connection import con
+from frc_data_281.db.connection import get_connection
 import polars as pl
 
 CACHE_SECONDS = 600
@@ -29,7 +29,8 @@ def get_matches() -> pl.DataFrame:
     Returns:
         DataFrame containing all match data.
     """
-    return con.sql("select * from tba.matches").df()
+    with get_connection() as con:
+        return con.sql("select * from tba.matches").df()
 
 
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
@@ -39,7 +40,8 @@ def get_rankings() -> pl.DataFrame:
     Returns:
         DataFrame containing event rankings data.
     """
-    return con.sql("select * from tba.event_rankings").df()
+    with get_connection() as con:
+        return con.sql("select * from tba.event_rankings").df()
 
 
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
@@ -52,11 +54,12 @@ def get_team_list(event_key: str) -> list:
     Returns:
         Sorted list of team numbers.
     """
-    df = con.sql(f"""
-            select red1, red2, red3, blue1, blue2, blue3
-            from tba.matches
-            where event_key = '{event_key}'
-    """).df()
+    with get_connection() as con:
+        df = con.sql(f"""
+                select red1, red2, red3, blue1, blue2, blue3
+                from tba.matches
+                where event_key = '{event_key}'
+        """).df()
     unique_teams = pd.unique(df.values.ravel())
     return sorted(unique_teams.tolist())
 
@@ -91,11 +94,12 @@ def get_events() -> pd.DataFrame:
     Returns:
         DataFrame with event keys and their most recent match times.
     """
-    return con.sql("""
-            select event_key, max(actual_time) from tba.matches
-            group by event_key
-            order by max(actual_time) desc;
-    """).df()
+    with get_connection() as con:
+        return con.sql("""
+                select event_key, max(actual_time) from tba.matches
+                group by event_key
+                order by max(actual_time) desc;
+        """).df()
 
 
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
@@ -105,12 +109,13 @@ def _get_tba_oprs_and_ranks() -> pd.DataFrame:
     Returns:
         DataFrame with team rankings and calculated metrics.
     """
-    tba_ranks = con.sql("""
-            select er.team_number, er.event_key,er.wins, er.losses, er.ties,er.rank,er.dq, op.oprs as opr, op.ccwms as ccwm, op.dprs as dpr
-            from tba.event_rankings er
-            join tba.oprs op on er.team_number = op.team_number and er.event_key = op.event_key
-            order by er.rank asc;
-    """).df()
+    with get_connection() as con:
+        tba_ranks = con.sql("""
+                select er.team_number, er.event_key,er.wins, er.losses, er.ties,er.rank,er.dq, op.oprs as opr, op.ccwms as ccwm, op.dprs as dpr
+                from tba.event_rankings er
+                join tba.oprs op on er.team_number = op.team_number and er.event_key = op.event_key
+                order by er.rank asc;
+        """).df()
     return tba_ranks
 
 

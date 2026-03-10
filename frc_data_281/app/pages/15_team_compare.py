@@ -2,7 +2,7 @@ import streamlit as st
 from frc_data_281.app.components.event_selector import event_selector
 from frc_data_281.db.cached_queries import get_team_list, get_oprs_and_ranks_for_event
 from frc_data_281.analysis import opr as opr3
-from frc_data_281.db.connection import con
+from frc_data_281.db.connection import get_connection
 from frc_data_281.app.components import get_static_path
 
 st.title("Team Comparison")
@@ -111,11 +111,12 @@ with st.container(border=True):
 
 # Pit data comparison
 st.subheader("Robot Specifications")
-pit_df = con.execute("""
-    SELECT * FROM scouting.pit
-    WHERE team_number IN (?, ?)
-    ORDER BY created_at DESC
-""", [team1, team2]).df()
+with get_connection() as con:
+    pit_df = con.execute("""
+        SELECT * FROM scouting.pit
+        WHERE team_number IN (?, ?)
+        ORDER BY created_at DESC
+    """, [team1, team2]).df()
 
 if not pit_df.empty:
     specs = ['height', 'weight', 'length', 'width']

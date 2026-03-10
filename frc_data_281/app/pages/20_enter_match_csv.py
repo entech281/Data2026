@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import re
-from frc_data_281.db.connection import con
+from frc_data_281.db.connection import get_connection
 
 st.title("Upload Match CSV Data")
 
@@ -59,7 +59,8 @@ if uploaded_file is not None:
             rows = df.values.tolist()
 
             # Use executemany if supported
-            con.executemany(sql, rows)
+            with get_connection() as con:
+                con.executemany(sql, rows)
             st.success(f"Uploaded {len(rows)} rows successfully!")
     except Exception as e:
         st.error(f"Error uploading CSV: {e}")

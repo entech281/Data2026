@@ -1,6 +1,6 @@
 import streamlit as st
 from frc_data_281.db import cached_queries as cached_data
-from frc_data_281.db.connection import con
+from frc_data_281.db.connection import get_connection
 import base64
 from frc_data_281.app.components.event_selector import event_selector
 import pandas as pd
@@ -40,8 +40,9 @@ display_config = {
 matches = cached_data.get_matches_for_event(selected_event)  # this one is not executed each page refresh.
 rankings = cached_data.get_tba_oprs_and_ranks_for_event(selected_event)
 
-pit = con.sql("SELECT * FROM scouting.pit").df()
-match_scouted = con.sql("SELECT * FROM scouting.matches").df()
+with get_connection() as con:
+    pit = con.sql("SELECT * FROM scouting.pit").df()
+    match_scouted = con.sql("SELECT * FROM scouting.matches").df()
 
 # Format images in pit data
 if 'auto_route' in pit.columns:

@@ -7,7 +7,7 @@ from frc_data_281.analysis.opr import (
     select_non_zscore_columns,
     add_zscores
 )
-from frc_data_281.db.connection import con
+from frc_data_281.db.connection import get_connection
 import altair as alt
 from PIL import Image
 import io
@@ -26,12 +26,13 @@ team_list = get_team_list(selected_event)
 # Make all of these one one sql statement
 
 matches_df = get_matches()
-tags_df = con.sql(f"""SELECT te.team_number, count(ta.tag), ta.tag
+with get_connection() as con:
+    tags_df = con.sql(f"""SELECT te.team_number, count(ta.tag), ta.tag
                         FROM tba.teams te
                         LEFT JOIN scouting.tags ta ON
                         (ta.team_number = te.team_number)
                         GROUP BY te.team_number, ta.tag;""").df()
-pit_df = con.sql("SELECT * FROM scouting.pit").df()
+    pit_df = con.sql("SELECT * FROM scouting.pit").df()
 
 ranking_df = get_oprs_and_ranks_for_event(selected_event)
 ranking_df = duckdb.query("SELECT *, RANK() OVER (ORDER BY opr DESC) as expected_rank FROM ranking_df").df()
@@ -76,35 +77,36 @@ differently based on watching a day of matches.
 see new proprosed version
 """
 
-avg_hub_df = con.sql("""SELECT
-    team_number,
-    AVG(hub_score_auto_count) AS avg_hub_auto_count,
-    AVG(hub_score_teleop_count) AS avg_hub_teleop_count,
-    AVG(hub_score_total_count) AS avg_hub_total_count,
-    AVG(auto_tower_points) AS avg_auto_tower_points,
-    AVG(end_game_tower_points) AS avg_end_game_tower_points
-FROM (
-    SELECT
-        blue1 AS team_number,
-        blue_hub_score_auto_count AS hub_score_auto_count,
-        blue_hub_score_teleop_count AS hub_score_teleop_count,
-        blue_hub_score_total_count AS hub_score_total_count,
-        blue_auto_tower_points AS auto_tower_points,
-        blue_end_game_tower_points AS end_game_tower_points
-    FROM tba.matches WHERE event_key = '""" + selected_event + """'
-    UNION ALL
-    SELECT blue2, blue_hub_score_auto_count, blue_hub_score_teleop_count, blue_hub_score_total_count, blue_auto_tower_points, blue_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
-    UNION ALL
-    SELECT blue3, blue_hub_score_auto_count, blue_hub_score_teleop_count, blue_hub_score_total_count, blue_auto_tower_points, blue_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
-    UNION ALL
-    SELECT red1, red_hub_score_auto_count, red_hub_score_teleop_count, red_hub_score_total_count, red_auto_tower_points, red_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
-    UNION ALL
-    SELECT red2, red_hub_score_auto_count, red_hub_score_teleop_count, red_hub_score_total_count, red_auto_tower_points, red_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
-    UNION ALL
-    SELECT red3, red_hub_score_auto_count, red_hub_score_teleop_count, red_hub_score_total_count, red_auto_tower_points, red_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
-)
-GROUP BY team_number
-ORDER BY team_number;""").df()
+with get_connection() as con:
+    avg_hub_df = con.sql("""SELECT
+        team_number,
+        AVG(hub_score_auto_count) AS avg_hub_auto_count,
+        AVG(hub_score_teleop_count) AS avg_hub_teleop_count,
+        AVG(hub_score_total_count) AS avg_hub_total_count,
+        AVG(auto_tower_points) AS avg_auto_tower_points,
+        AVG(end_game_tower_points) AS avg_end_game_tower_points
+    FROM (
+        SELECT
+            blue1 AS team_number,
+            blue_hub_score_auto_count AS hub_score_auto_count,
+            blue_hub_score_teleop_count AS hub_score_teleop_count,
+            blue_hub_score_total_count AS hub_score_total_count,
+            blue_auto_tower_points AS auto_tower_points,
+            blue_end_game_tower_points AS end_game_tower_points
+        FROM tba.matches WHERE event_key = '""" + selected_event + """'
+        UNION ALL
+        SELECT blue2, blue_hub_score_auto_count, blue_hub_score_teleop_count, blue_hub_score_total_count, blue_auto_tower_points, blue_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+        UNION ALL
+        SELECT blue3, blue_hub_score_auto_count, blue_hub_score_teleop_count, blue_hub_score_total_count, blue_auto_tower_points, blue_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+        UNION ALL
+        SELECT red1, red_hub_score_auto_count, red_hub_score_teleop_count, red_hub_score_total_count, red_auto_tower_points, red_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+        UNION ALL
+        SELECT red2, red_hub_score_auto_count, red_hub_score_teleop_count, red_hub_score_total_count, red_auto_tower_points, red_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+        UNION ALL
+        SELECT red3, red_hub_score_auto_count, red_hub_score_teleop_count, red_hub_score_total_count, red_auto_tower_points, red_end_game_tower_points FROM tba.matches WHERE event_key = '""" + selected_event + """'
+    )
+    GROUP BY team_number
+    ORDER BY team_number;""").df()
 
 avg_hub_df = add_zscores(avg_hub_df, avg_hub_df.columns[1:])
 avg_hub_df = avg_hub_df[avg_hub_df['team_number'] == team]

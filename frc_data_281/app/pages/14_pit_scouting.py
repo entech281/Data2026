@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from frc_data_281.db.connection import con
+from frc_data_281.db.connection import get_connection
 from frc_data_281.analysis import opr as opr3
 from frc_data_281.db.cached_queries import get_team_list, get_event_list, get_most_recent_event
 from PIL import Image
@@ -10,7 +10,8 @@ from frc_data_281.app.components.event_selector import event_selector
 st.title("Pit Scouting Form")
 selected_event = event_selector()
 all_teams = get_team_list(selected_event)
-existing_teams = con.sql("SELECT DISTINCT team_number FROM scouting.pit").df()['team_number'].tolist()
+with get_connection() as con:
+    existing_teams = con.sql("SELECT DISTINCT team_number FROM scouting.pit").df()['team_number'].tolist()
 
 
 # Create lists of teams with and without forms
@@ -45,11 +46,12 @@ def get_default_data(team: int = None) -> pd.DataFrame:
     }])
 
     if team is not None:
-        df = con.sql(f"""
-                SELECT * FROM scouting.pit
-                WHERE team_number = {team}
-                ORDER BY created_at DESC LIMIT 1
-            """).df()
+        with get_connection() as con:
+            df = con.sql(f"""
+                    SELECT * FROM scouting.pit
+                    WHERE team_number = {team}
+                    ORDER BY created_at DESC LIMIT 1
+                """).df()
         if not df.empty:
             # Clean up the string fields
             df['preferred_scoring'] = df['preferred_scoring'].str.removeprefix("[").str.removesuffix("]")
@@ -162,43 +164,45 @@ with st.form("pit_scouting"):
         try:
             if override:
                 # Update existing row for the team
-                con.execute("""
-                    UPDATE scouting.pit
-                    SET height = ?,
-                        weight = ?,
-                        length = ?,
-                        width = ?,
-                        start_position = ?,
-                        auto_route = ?,
-                        robot_photo = ?,
-                        scoring_capabilities = ?,
-                        preferred_scoring = ?,
-                        notes = ?,
-                        author = ?,
-                        created_at = CURRENT_TIMESTAMP
-                    WHERE team_number = ?
-                """, [
-                    data['height'], data['weight'], data['length'], data['width'],
-                    data['start_position'], data['auto_route'], data['robot_photo'],
-                    data['scoring_capabilities'],
-                    data['preferred_scoring'], data['notes'], data['author'],
-                    data['team_number']
-                ])
+                with get_connection() as con:
+                    con.execute("""
+                        UPDATE scouting.pit
+                        SET height = ?,
+                            weight = ?,
+                            length = ?,
+                            width = ?,
+                            start_position = ?,
+                            auto_route = ?,
+                            robot_photo = ?,
+                            scoring_capabilities = ?,
+                            preferred_scoring = ?,
+                            notes = ?,
+                            author = ?,
+                            created_at = CURRENT_TIMESTAMP
+                        WHERE team_number = ?
+                    """, [
+                        data['height'], data['weight'], data['length'], data['width'],
+                        data['start_position'], data['auto_route'], data['robot_photo'],
+                        data['scoring_capabilities'],
+                        data['preferred_scoring'], data['notes'], data['author'],
+                        data['team_number']
+                    ])
                 st.success("Data updated successfully!")
             else:
                 # Insert new row for the team
-                con.execute("""
-                    INSERT INTO scouting.pit
-                    (team_number, height, weight, length, width,
-                    start_position, auto_route, robot_photo, scoring_capabilities,
-                    preferred_scoring, notes, author)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, [
-                    data['team_number'], data['height'], data['weight'],
-                    data['length'], data['width'], data['start_position'],
-                    data['auto_route'], data['robot_photo'], data['scoring_capabilities'],
-                    data['preferred_scoring'], data['notes'], data['author']
-                ])
+                with get_connection() as con:
+                    con.execute("""
+                        INSERT INTO scouting.pit
+                        (team_number, height, weight, length, width,
+                        start_position, auto_route, robot_photo, scoring_capabilities,
+                        preferred_scoring, notes, author)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, [
+                        data['team_number'], data['height'], data['weight'],
+                        data['length'], data['width'], data['start_position'],
+                        data['auto_route'], data['robot_photo'], data['scoring_capabilities'],
+                        data['preferred_scoring'], data['notes'], data['author']
+                    ])
                 st.success("Data saved successfully!")
         except Exception as e:
             st.error(f"Error saving data: {str(e)}")

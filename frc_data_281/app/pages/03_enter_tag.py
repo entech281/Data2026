@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from frc_data_281.db.connection import con
+from frc_data_281.db.connection import get_connection
 from frc_data_281.db.cached_queries import get_team_list
 from frc_data_281.app.components.event_selector import event_selector
 
@@ -24,9 +24,11 @@ if confirm:
         'team_number': [selected_team],
         'tag': [selected_tag]
     })
-    con.sql("INSERT INTO scouting.tags BY NAME SELECT * FROM new_row_df")
+    with get_connection() as con:
+        con.sql("INSERT INTO scouting.tags BY NAME SELECT * FROM new_row_df")
     st.success('Tag Saved!', icon="✅")
 
 st.subheader("Current Data:")
-all_data = con.sql("select * from scouting.tags").df()
+with get_connection() as con:
+    all_data = con.sql("select * from scouting.tags").df()
 st.dataframe(all_data)
