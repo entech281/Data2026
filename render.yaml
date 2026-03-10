@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: gorilla
+    name: entech281
     env: python
 
     # Build command: install dependencies only
