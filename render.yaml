@@ -3,16 +3,13 @@ services:
     name: FRC-281-scouting
     env: python
 
-    
-    # Build command: sync dependencies and initialize database
+    # Build command: install dependencies only
     buildCommand: |
       uv sync --frozen &&
-      uv cache prune --ci &&
-      uv run python -m frc_data_281.db &&
-      uv run python -m frc_data_281.the_blue_alliance.pipeline
+      uv cache prune --ci
     
-    # Start command: verify DB initialized, then run Streamlit app
-    startCommand: bash -c "python -m frc_data_281.db 2>/dev/null; streamlit run frc_data_281/app/Home.py --server.port=$PORT --server.address=0.0.0.0 --logger.level=info"
+    # Start command: initialize database and run Streamlit app
+    startCommand: uv run python -m frc_data_281.db && uv run python -m frc_data_281.the_blue_alliance.pipeline && uv run streamlit run frc_data_281/app/Home.py --server.port=$PORT --server.address=0.0.0.0 --logger.level=info
     
     # Environment variables
     envVars:
