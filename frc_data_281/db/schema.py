@@ -20,10 +20,16 @@ def create_schema():
         """)
 
         con.sql("""
-            create table if not exists scouting.tags (
-                team_number INTEGER PRIMARY KEY,
-                tag varchar,
-                 mod_dte timestamp default current_timestamp
+            CREATE TABLE IF NOT EXISTS scouting.tags (
+                id BIGINT,
+                event_key VARCHAR NOT NULL,
+                team_number INTEGER NOT NULL,
+                tag VARCHAR NOT NULL,
+                upvotes INTEGER DEFAULT 0,
+                downvotes INTEGER DEFAULT 0,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (event_key, team_number, tag),
+                UNIQUE(id)
             );
         """)
 
