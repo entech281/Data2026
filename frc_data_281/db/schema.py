@@ -35,6 +35,7 @@ def create_schema():
                 length INTEGER,
                 width INTEGER,
                 start_position VARCHAR,
+                drive_type VARCHAR,
                 auto_route BLOB,
                 robot_photo BLOB,
                 scoring_capabilities VARCHAR,
@@ -44,3 +45,7 @@ def create_schema():
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         """)
+        # Note: scoring_capabilities and preferred_scoring are comma-separated lists
+        # with values from: "Touching Hub", "Mid Range", "Long shot", "Trench shot",
+        # "L1 Climb", "L2 Climb", "L3 Climb", "Snowblow"
+        # drive_type options: "Mecanum", "Tank", "Swerve", "H Drive", "Other"

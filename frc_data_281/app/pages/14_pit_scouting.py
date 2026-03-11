@@ -7,12 +7,14 @@ from PIL import Image
 import io
 from frc_data_281.app.components.event_selector import event_selector
 
+st.set_page_config(layout="wide")
 st.title("Pit Scouting Form")
 selected_event = event_selector()
 all_teams = get_team_list(selected_event)
+
+# Refresh existing teams list on every page load (picks up newly submitted forms)
 with get_connection() as con:
     existing_teams = con.sql("SELECT DISTINCT team_number FROM scouting.pit").df()['team_number'].tolist()
-
 
 # Create lists of teams with and without forms
 teams_without_forms = [t for t in all_teams if t not in existing_teams]
@@ -38,6 +40,7 @@ def get_default_data(team: int = None) -> pd.DataFrame:
         'length': 36,
         'width': 36,
         'start_position': "No Preference",
+        'drive_type': "",
         'scoring_capabilities': "",
         'preferred_scoring': "",
         'notes': "",
@@ -60,7 +63,7 @@ def get_default_data(team: int = None) -> pd.DataFrame:
     return default
 
 
-with st.form("pit_scouting"):
+with st.form("pit_scouting", clear_on_submit=True):
     team = selected_team
     if override and team:
         default_data = get_default_data(team)
@@ -91,6 +94,14 @@ with st.form("pit_scouting"):
         if default_data['start_position'].iloc[0] in ["Left", "Center", "Right", "No Preference"] else 3
     )
 
+    drive_type_options = ["Mecanum", "Tank", "Swerve", "H Drive", "Other"]
+    drive_type = st.selectbox(
+        "Drive Type",
+        drive_type_options,
+        index=drive_type_options.index(default_data['drive_type'].iloc[0])
+        if default_data['drive_type'].iloc[0] in drive_type_options else 0
+    )
+
     binary_data = st.camera_input(label="Auto Route (draw a picture please)")
     auto_route = None
 
@@ -101,7 +112,7 @@ with st.form("pit_scouting"):
         image_pil.save(img_byte_arr, format='PNG')
         auto_route = img_byte_arr.getvalue()
 
-    if default_data['auto_route'].iloc[0] is not None:
+    if pd.notna(default_data['auto_route'].iloc[0]):
         st.image(Image.open(io.BytesIO(default_data['auto_route'].iloc[0])), caption="Previous Auto Route")
 
     robot_photo_data = st.camera_input(label="Robot Photo", key="robot_photo_input")
@@ -114,26 +125,34 @@ with st.form("pit_scouting"):
         image_pil.save(img_byte_arr, format='PNG')
         robot_photo = img_byte_arr.getvalue()
 
-    if default_data['robot_photo'].iloc[0] is not None:
+    if pd.notna(default_data['robot_photo'].iloc[0]):
         st.image(Image.open(io.BytesIO(default_data['robot_photo'].iloc[0])), caption="Previous Robot Photo")
 
-    scoring_possibilities = ["Hub Auto", "Hub Teleop", "Hub Endgame",
-                             "Tower Auto", "Tower Endgame (Traversal)",
-                             "Tower Endgame (Supercharged)", "Tower Endgame (Energized)"]
+    scoring_possibilities = ["Touching Hub", "Mid Range", "Long shot", "Trench shot",
+                             "L1 Climb", "L2 Climb", "L3 Climb", "Snowblow"]
+
+    # Parse defaults and filter to only valid options (handles spacing and mismatches)
+    scoring_caps_default = []
+    if default_data['scoring_capabilities'].iloc[0]:
+        stored_caps = str(default_data['scoring_capabilities'].iloc[0]).split(',')
+        scoring_caps_default = [c.strip() for c in stored_caps if c.strip() in scoring_possibilities]
+
+    preferred_scoring_default = []
+    if default_data['preferred_scoring'].iloc[0]:
+        stored_prefs = str(default_data['preferred_scoring'].iloc[0]).split(',')
+        preferred_scoring_default = [p.strip() for p in stored_prefs if p.strip() in scoring_possibilities]
 
     scoring_capabilities = st.pills(
         "Scoring Capabilities",
         scoring_possibilities,
-        default=default_data['scoring_capabilities'].iloc[0].split(',') if default_data['scoring_capabilities'].iloc[
-            0] else [],
+        default=scoring_caps_default,
         selection_mode="multi"
     )
 
     preferred_scoring = st.pills(
         "Preferred Scoring Method",
         scoring_possibilities,
-        default=default_data['preferred_scoring'].iloc[0].split(', ') if default_data['preferred_scoring'].iloc[
-            0] else [],
+        default=preferred_scoring_default,
         selection_mode="multi",
         key="preferred_scoring"
     )
@@ -153,6 +172,7 @@ with st.form("pit_scouting"):
             'length': length,
             'width': width,
             'start_position': start_pos,
+            'drive_type': drive_type,
             'auto_route': auto_route,
             'robot_photo': robot_photo,
             'scoring_capabilities': ','.join(scoring_capabilities),
@@ -172,6 +192,7 @@ with st.form("pit_scouting"):
                             length = ?,
                             width = ?,
                             start_position = ?,
+                            drive_type = ?,
                             auto_route = ?,
                             robot_photo = ?,
                             scoring_capabilities = ?,
@@ -182,27 +203,33 @@ with st.form("pit_scouting"):
                         WHERE team_number = ?
                     """, [
                         data['height'], data['weight'], data['length'], data['width'],
-                        data['start_position'], data['auto_route'], data['robot_photo'],
+                        data['start_position'], data['drive_type'], data['auto_route'], data['robot_photo'],
                         data['scoring_capabilities'],
                         data['preferred_scoring'], data['notes'], data['author'],
                         data['team_number']
                     ])
                 st.success("Data updated successfully!")
+                # Clear the selectbox selection to refresh the team list
+                if "pit_team" in st.session_state:
+                    del st.session_state["pit_team"]
             else:
                 # Insert new row for the team
                 with get_connection() as con:
                     con.execute("""
                         INSERT INTO scouting.pit
                         (team_number, height, weight, length, width,
-                        start_position, auto_route, robot_photo, scoring_capabilities,
+                        start_position, drive_type, auto_route, robot_photo, scoring_capabilities,
                         preferred_scoring, notes, author)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """, [
                         data['team_number'], data['height'], data['weight'],
-                        data['length'], data['width'], data['start_position'],
+                        data['length'], data['width'], data['start_position'], data['drive_type'],
                         data['auto_route'], data['robot_photo'], data['scoring_capabilities'],
                         data['preferred_scoring'], data['notes'], data['author']
                     ])
                 st.success("Data saved successfully!")
+                # Clear the selectbox selection to refresh the team list
+                if "pit_team" in st.session_state:
+                    del st.session_state["pit_team"]
         except Exception as e:
             st.error(f"Error saving data: {str(e)}")
