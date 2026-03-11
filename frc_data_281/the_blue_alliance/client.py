@@ -59,7 +59,7 @@ DATE_FORMAT = "%Y-%m-%d"
 TBA_ACCESS_TOKEN = _get_tba_token()
 TBA_API_ROOT = 'https://www.thebluealliance.com/api/v3/'
 DISTRICT_KEY = '2026fsc'
-DISTRICT_EVENTS = ['2026sccha']
+DISTRICT_EVENTS = ['2026schop', '2026sccha']
 
 
 def change_dict_yesnos_to_booleans(d: dict) -> dict:

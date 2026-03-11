@@ -2,6 +2,7 @@ import cachetools.func
 import pandas as pd
 
 from frc_data_281.db.connection import get_connection
+from frc_data_281.the_blue_alliance.client import DISTRICT_EVENTS, get_teams_for_event, team_number_from_key
 import polars as pl
 
 CACHE_SECONDS = 600
@@ -47,6 +48,9 @@ def get_rankings() -> pl.DataFrame:
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
 def get_team_list(event_key: str) -> list:
     """Get sorted list of all teams participating in an event.
+    
+    First tries to get teams from match data (fast). If no matches exist yet,
+    fetches from TBA API directly (for events that haven't started).
 
     Args:
         event_key: Event key identifier (e.g., '2025week0').
@@ -54,14 +58,28 @@ def get_team_list(event_key: str) -> list:
     Returns:
         Sorted list of team numbers.
     """
+    # Try to get teams from matches first
     with get_connection() as con:
         df = con.sql(f"""
                 select red1, red2, red3, blue1, blue2, blue3
                 from tba.matches
                 where event_key = '{event_key}'
         """).df()
-    unique_teams = pd.unique(df.values.ravel())
-    return sorted(unique_teams.tolist())
+    
+    if not df.empty:
+        unique_teams = pd.unique(df.values.ravel())
+        return sorted(unique_teams.tolist())
+    
+    # Fallback: fetch teams from TBA API (for events without match data yet)
+    try:
+        tba_teams = get_teams_for_event(event_key)
+        if tba_teams:
+            team_numbers = [team_number_from_key(t['key']) for t in tba_teams]
+            return sorted(team_numbers)
+    except Exception:
+        pass
+    
+    return []
 
 
 def get_most_recent_event() -> str:
@@ -90,16 +108,36 @@ def get_event_list() -> pd.DataFrame:
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
 def get_events() -> pd.DataFrame:
     """Get all events with their most recent match times.
+    
+    Includes all configured district events, even if they have no matches yet.
 
     Returns:
         DataFrame with event keys and their most recent match times.
     """
     with get_connection() as con:
-        return con.sql("""
-                select event_key, max(actual_time) from tba.matches
+        # Get events that have matches
+        df = con.sql("""
+                select event_key, max(actual_time) as actual_time from tba.matches
                 group by event_key
                 order by max(actual_time) desc;
         """).df()
+    
+    # Ensure all configured events are in the list, even without match data
+    events_in_db = set(df['event_key'].tolist())
+    configured_events = set(DISTRICT_EVENTS)
+    missing_events = configured_events - events_in_db
+    
+    if missing_events:
+        # Add missing configured events with null actual_time (they'll sort to the end)
+        missing_df = pd.DataFrame({
+            'event_key': list(missing_events),
+            'actual_time': [None] * len(missing_events)
+        })
+        df = pd.concat([df, missing_df], ignore_index=True)
+        # Re-sort: events with match data by actual_time desc, then missing events
+        df = df.sort_values('actual_time', ascending=False, na_position='last')
+    
+    return df
 
 
 @cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
