@@ -74,6 +74,7 @@ def add_scoring_computations(match_data_2026: pd.DataFrame) -> pd.DataFrame:
     Returns:
         DataFrame with added RP columns.
     """
+    match_data_2026 = match_data_2026.copy()
     match_data_2026 = _add_rp_columns(match_data_2026, 'win', "")
     match_data_2026 = _add_rp_columns(match_data_2026, 'energized', 'TEAM_energized_achieved')
     match_data_2026 = _add_rp_columns(match_data_2026, 'supercharged', 'TEAM_supercharged_achieved')
