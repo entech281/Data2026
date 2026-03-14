@@ -45,7 +45,9 @@ with get_connection() as con:
 # Convert image BLOB columns to data URIs for Streamlit ImageColumn
 for photo_col in ['auto_route', 'robot_photo']:
     if photo_col in pit.columns:
-        pit[photo_col] = pit[photo_col].apply(bytes_to_data_uri)
+        pit[photo_col] = pit[photo_col].apply(
+            lambda x: bytes_to_data_uri(x) if pd.notna(x) else None
+        )
 
 
 st.title("Raw Data")
