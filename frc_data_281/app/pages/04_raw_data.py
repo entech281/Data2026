@@ -72,7 +72,8 @@ st.header(f"Rankings ({len(rankings)})")
 st.dataframe(rankings, column_config=display_config)
 
 st.header(f"Pit ({len(pit)})")
-st.markdown(pit.to_html(escape=False), unsafe_allow_html=True)
+pit_html = pit.to_html(escape=False)
+st.html(pit_html)
 
 st.header(f"Match Scouted ({len(match_scouted)}) This is not event Specific")
 st.dataframe(match_scouted, column_config=display_config)
