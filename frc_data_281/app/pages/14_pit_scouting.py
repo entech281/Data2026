@@ -185,29 +185,43 @@ with st.form("pit_scouting", clear_on_submit=True):
             if override:
                 # Update existing row for the team
                 with get_connection() as con:
-                    con.execute("""
-                        UPDATE scouting.pit
-                        SET height = ?,
-                            weight = ?,
-                            length = ?,
-                            width = ?,
-                            start_position = ?,
-                            drive_type = ?,
-                            auto_route = ?,
-                            robot_photo = ?,
-                            scoring_capabilities = ?,
-                            preferred_scoring = ?,
-                            notes = ?,
-                            author = ?,
-                            created_at = CURRENT_TIMESTAMP
-                        WHERE team_number = ?
-                    """, [
-                        data['height'], data['weight'], data['length'], data['width'],
-                        data['start_position'], data['drive_type'], data['auto_route'], data['robot_photo'],
-                        data['scoring_capabilities'],
-                        data['preferred_scoring'], data['notes'], data['author'],
-                        data['team_number']
+                    # Build update fields and params, only including photos if provided
+                    update_clauses = [
+                        ("height = ?", data['height']),
+                        ("weight = ?", data['weight']),
+                        ("length = ?", data['length']),
+                        ("width = ?", data['width']),
+                        ("start_position = ?", data['start_position']),
+                        ("drive_type = ?", data['drive_type']),
+                    ]
+                    
+                    # Only add photo updates if new ones were provided
+                    if data['auto_route'] is not None:
+                        update_clauses.append(("auto_route = ?", data['auto_route']))
+                    
+                    if data['robot_photo'] is not None:
+                        update_clauses.append(("robot_photo = ?", data['robot_photo']))
+                    
+                    # Add remaining fields
+                    update_clauses.extend([
+                        ("scoring_capabilities = ?", data['scoring_capabilities']),
+                        ("preferred_scoring = ?", data['preferred_scoring']),
+                        ("notes = ?", data['notes']),
+                        ("author = ?", data['author']),
+                        ("created_at = CURRENT_TIMESTAMP", None),
                     ])
+                    
+                    # Extract fields and params
+                    update_fields = [clause[0] for clause in update_clauses]
+                    update_params = [clause[1] for clause in update_clauses if clause[1] is not None]
+                    update_params.append(data['team_number'])
+                    
+                    query = f"""
+                        UPDATE scouting.pit
+                        SET {', '.join(update_fields)}
+                        WHERE team_number = ?
+                    """
+                    con.execute(query, update_params)
                 st.success("Data updated successfully!")
                 # Clear the selectbox selection to refresh the team list
                 if "pit_team" in st.session_state:
