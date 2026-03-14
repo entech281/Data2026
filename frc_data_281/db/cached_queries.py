@@ -293,7 +293,10 @@ def get_ranking_point_summary_for_event(event_key: str) -> pd.DataFrame:
 
     matches = get_matches_for_event(event_key)
     matches = matches[matches['comp_level'] == 'qm']
-    matches = matches[matches['red_score'].notna() & matches['blue_score'].notna()]
+    matches = matches[
+        matches['red_score'].notna() & matches['blue_score'].notna() &
+        matches['red_rp'].notna() & matches['blue_rp'].notna()
+    ]
 
     def _add_team_rps_with_prefix(prefix: str, row):
         anti_prefix = 'blue' if prefix == 'red' else 'red'
