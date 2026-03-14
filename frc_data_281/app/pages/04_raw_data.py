@@ -20,8 +20,10 @@ def bytes_to_base64(byte_array):
 
 
 def image_formatter(byte_array):
+    if byte_array is None:
+        return ""
     base64_str = bytes_to_base64(byte_array)
-    return f'<img src="data:image/png;base64,{base64_str}" width="200">'
+    return f'<img src="data:image/png;base64,{base64_str}" width="100">'
 
 
 display_config = {
@@ -44,20 +46,21 @@ with get_connection() as con:
     pit = con.sql("SELECT * FROM scouting.pit").df()
     match_scouted = con.sql("SELECT * FROM scouting.matches").df()
 
-# Format images in pit data
-if 'auto_route' in pit.columns:
-    def convert_to_bytearray(item):
-        if item is None:
-            return None
-        elif isinstance(item, float):
-            return bytearray(struct.pack("f", item))
-        elif isinstance(item, (bytes, bytearray)):
-            return bytearray(item)
-        else:
-            return None
+# Format image columns in pit data
+def convert_to_bytearray(item):
+    if item is None:
+        return None
+    elif isinstance(item, float):
+        return bytearray(struct.pack("f", item))
+    elif isinstance(item, (bytes, bytearray, memoryview)):
+        return bytearray(item)
+    else:
+        return None
 
-    pit['auto_route'] = pit['auto_route'].apply(convert_to_bytearray)
-    pit['auto_route'] = pit['auto_route'].apply(image_formatter)
+for photo_col in ['auto_route', 'robot_photo']:
+    if photo_col in pit.columns:
+        pit[photo_col] = pit[photo_col].apply(convert_to_bytearray)
+        pit[photo_col] = pit[photo_col].apply(image_formatter)
 
 
 st.title("Raw Data")
