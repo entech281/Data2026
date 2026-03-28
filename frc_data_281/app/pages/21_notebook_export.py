@@ -68,7 +68,7 @@ def _build_rankings_section(event_key: str) -> str:
         "## Rankings & OPR Summary\n",
         "Each team's event ranking with Offensive Power Rating (OPR), "
         "Defensive Power Rating (DPR), and Calculated Contribution to Winning Margin (CCWM). "
-        "Higher OPR = stronger scoring. Higher DPR = better defense. "
+        "Higher OPR = stronger scoring. Lower DPR = better defense (fewer points allowed). "
         "CCWM measures overall contribution to alliance win margin.\n",
         _df_to_md_table(rankings),
         "",
