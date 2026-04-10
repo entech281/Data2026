@@ -41,5 +41,27 @@ fig.update_layout(
 st.plotly_chart(fig, width='stretch')
 
 
+st.subheader("Rank vs DPR")
+fig_dpr = px.scatter(rankings,
+                     x='dpr',
+                     y='rank',
+                     size_max=15,
+                     hover_data=['team_number'],
+                     title="Rank Vs DPR")
+
+fig_dpr.update_traces(
+    text=rankings['team_number'],
+    textposition='top right',
+    mode='markers+text',
+    marker=dict(size=15)
+)
+
+fig_dpr.update_layout(
+    yaxis=dict(autorange='reversed')
+)
+
+st.plotly_chart(fig_dpr, width='stretch')
+
+
 st.subheader("Rankings")
 st.dataframe(rankings, hide_index=True)
