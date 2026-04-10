@@ -45,6 +45,15 @@ def style_dataframe(df):
     )
 
 
+st.markdown(
+    "<p style='font-size: 1.1rem; color: gray;'>"
+    "⚠️ Z-scores for foul and opponent metrics (foul count, foul points, tech foul count, "
+    "opponent score, opponent RP) have been <b>negated</b> so that green always means 'good' "
+    "and red always means 'bad' across all columns."
+    "</p>",
+    unsafe_allow_html=True,
+)
+
 styled_df = style_dataframe(df)
 styled_df = df.style.background_gradient(cmap='RdYlGn', vmin=-3.0, vmax=3.0)
 styled_df.format("{:.2f}")

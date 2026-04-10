@@ -152,6 +152,10 @@ def _build_zscore_section(event_key: str) -> str:
         "Z-scores compare each team to the event average. "
         "0 = average, positive = above average, negative = below average. "
         "Values above 1.5 or below -1.5 are notably strong or weak; above 2.0 is exceptional.\n",
+        "**Note:** Z-scores for foul and opponent metrics (foul count, foul points, tech foul count, "
+        "opponent score, opponent RP) have been **negated** so that positive values always mean "
+        "\"good\" (fewer fouls, lower opponent score) and negative values always mean \"bad\" "
+        "(more fouls, higher opponent score).\n",
         _df_to_md_table(z_df),
         "",
     ])

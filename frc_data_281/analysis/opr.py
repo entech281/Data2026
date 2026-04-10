@@ -21,6 +21,15 @@ from tabulate import tabulate
 
 CCM_CACHE_SECONDS = 60
 
+# Columns where higher values have a negative connotation (higher = worse).
+# Z-scores for these columns are negated so that positive always means "good".
+NEGATIVE_Z_SCORE_PATTERNS = ['foul', 'their_score', 'their_rp']
+
+
+def _is_negative_column(col_name: str) -> bool:
+    """Check if a column matches any negative connotation pattern."""
+    return any(pattern in col_name for pattern in NEGATIVE_Z_SCORE_PATTERNS)
+
 
 def column_map_for_color(columns: list, color: str) -> tuple[dict[str, str], list[str]]:
     """Create a column mapping for a specific alliance color.
@@ -115,6 +124,9 @@ def _calculate_opr_ccwm_dpr(matches: pd.DataFrame) -> pd.DataFrame:
 def add_zscores(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
     """Add z-score columns for specified columns in the DataFrame.
 
+    Z-scores for columns matching NEGATIVE_Z_SCORE_PATTERNS are negated
+    so that positive always means "good" and negative always means "bad".
+
     Args:
         df: Input DataFrame.
         cols: List of column names to compute z-scores for.
@@ -130,7 +142,11 @@ def add_zscores(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
             # Convert to float64 numpy array
             values_array = values.astype(np.float64).to_numpy()
             # Use scipy's zscore with nan_policy to handle NaN values
-            new_df[c + "_z"] = zscore(values_array, nan_policy='omit')
+            z = zscore(values_array, nan_policy='omit')
+            # Negate z-scores for "negative connotation" columns
+            if _is_negative_column(c):
+                z = -z
+            new_df[c + "_z"] = z
         except Exception as e:
             # If zscore fails, skip this column
             print(f"Warning: Could not compute z-score for column '{c}': {e}")
