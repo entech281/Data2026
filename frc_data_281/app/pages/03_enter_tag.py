@@ -22,7 +22,7 @@ with col2:
     selected_tag = st.selectbox("Tag", available_tags)
 with col3:
     st.write("")
-    confirm = st.button('Add/Vote Up', use_container_width=True)
+    confirm = st.button('Add/Vote Up', width='stretch')
 
 if confirm:
     with get_connection() as con:
@@ -99,7 +99,7 @@ else:
         with cols[5]:
             col_up, col_down = st.columns(2)
             with col_up:
-                if st.button("👍", key=f"up_{selected_event}_{team}_{tag}", use_container_width=True):
+                if st.button("👍", key=f"up_{selected_event}_{team}_{tag}", width='stretch'):
                     with get_connection() as con:
                         con.execute(
                             "UPDATE scouting.tags SET upvotes = upvotes + 1 WHERE event_key = ? AND team_number = ? AND tag = ?",
@@ -107,7 +107,7 @@ else:
                         )
                     st.rerun()
             with col_down:
-                if st.button("👎", key=f"down_{selected_event}_{team}_{tag}", use_container_width=True):
+                if st.button("👎", key=f"down_{selected_event}_{team}_{tag}", width='stretch'):
                     with get_connection() as con:
                         con.execute(
                             "UPDATE scouting.tags SET downvotes = downvotes + 1 WHERE event_key = ? AND team_number = ? AND tag = ?",
