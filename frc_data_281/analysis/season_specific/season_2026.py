@@ -54,9 +54,11 @@ def _add_rp_columns(match_data: pd.DataFrame, rp_type: str, bonus_column: str) -
             else:
                 return pd.Series({blue_rp_col: 1, red_rp_col: 1})
         else:
+            blue_bonus_value = row[bonus_column.replace('TEAM', 'blue')]
+            red_bonus_value = row[bonus_column.replace('TEAM', 'red')]
             return pd.Series({
-                blue_rp_col: (1 if row[bonus_column.replace('TEAM', 'blue')] == 1 else 0),
-                red_rp_col: (1 if row[bonus_column.replace('TEAM', 'red')] == 1 else 0),
+                blue_rp_col: (1 if pd.notna(blue_bonus_value) and blue_bonus_value == 1 else 0),
+                red_rp_col: (1 if pd.notna(red_bonus_value) and red_bonus_value == 1 else 0),
             })
 
     match_data[[blue_rp_col, red_rp_col]] = match_data.apply(calculate_rp, axis=1)
