@@ -62,12 +62,11 @@ st.markdown(
 
 st.subheader("Compare Team Z-Scores")
 
-team_columns = [int(c) for c in df.columns]
-selected_teams = st.multiselect(
+team_columns = sorted(int(c) for c in df.columns)
+selected_teams = st.pills(
     "Select teams to compare",
-    options=sorted(team_columns),
-    default=[],
-    format_func=lambda t: f"Team {t}",
+    options=team_columns,
+    selection_mode="multi",
 )
 
 if selected_teams:
@@ -77,7 +76,7 @@ if selected_teams:
             x=df.index,
             y=df[team],
             mode='lines+markers',
-            name=f"Team {team}",
+            name=str(team),
         ))
     fig.update_layout(
         xaxis_title="Metric",
@@ -90,4 +89,4 @@ if selected_teams:
     fig.update_xaxes(tickangle=-45)
     st.plotly_chart(fig, use_container_width=True)
 else:
-    st.caption("Select teams above to see a z-score comparison chart.")
+    st.caption("Tap team numbers above to compare z-scores.")
