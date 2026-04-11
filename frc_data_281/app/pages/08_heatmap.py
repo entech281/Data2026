@@ -21,6 +21,8 @@ df.reset_index(drop=True, inplace=True)
 df = df.set_index('team_id')
 df = df.T
 df = df.sort_index()
+# Drop metrics that are entirely NaN (e.g., zero-variance z-scores)
+df = df.dropna(how='all')
 
 st.markdown(
     "<p style='font-size: 1.1rem; color: gray;'>"
