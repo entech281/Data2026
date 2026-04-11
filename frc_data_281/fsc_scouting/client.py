@@ -101,26 +101,34 @@ def scrape_scouting_html(event_id: int) -> pd.DataFrame:
         )
         response.raise_for_status()
 
-        # Parse HTML table using regex (avoids beautifulsoup dependency)
-        rows = _parse_html_table(response.text)
+        headers, rows = _parse_html_table(response.text)
         if not rows:
             logger.warning("No data rows found in FSC HTML table for event_id=%d", event_id)
             return pd.DataFrame()
 
-        # HTML table doesn't include record_id or alliance_human_fuel
-        html_columns = [
-            "match_number", "team_number",
-            "auto_fuel_score", "auto_climb_try", "auto_climbed", "auto_traveled",
-            "teleop_fuel_score", "teleop_traveled",
-            "endgame_climb_try", "endgame_climb_level",
-            "strategy_active_scored", "strategy_active_ferrying", "strategy_active_defense",
-            "strategy_inactive_scored", "strategy_inactive_ferrying", "strategy_inactive_defense",
-            "strategy_defense_actions",
-            "match_fouls", "match_carded", "match_tipped", "match_beached",
-            "match_broken", "match_disabled", "match_absent",
-        ]
+        # Use parsed headers if available, otherwise fall back to expected columns
+        if headers and len(headers) == len(rows[0]):
+            col_names = [
+                re.sub(r"[^a-z0-9]+", "_", h.strip().lower()).strip("_")
+                for h in headers
+            ]
+        else:
+            # Trim rows to match the 24 visible HTML columns
+            expected_cols = [
+                "match_number", "team_number",
+                "auto_fuel_score", "auto_climb_try", "auto_climbed", "auto_traveled",
+                "teleop_fuel_score", "teleop_traveled",
+                "endgame_climb_try", "endgame_climb_level",
+                "strategy_active_scored", "strategy_active_ferrying", "strategy_active_defense",
+                "strategy_inactive_scored", "strategy_inactive_ferrying", "strategy_inactive_defense",
+                "strategy_defense_actions",
+                "match_fouls", "match_carded", "match_tipped", "match_beached",
+                "match_broken", "match_disabled", "match_absent",
+            ]
+            col_names = expected_cols
+            rows = [r[:len(expected_cols)] for r in rows]
 
-        df = pd.DataFrame(rows, columns=html_columns)
+        df = pd.DataFrame(rows, columns=col_names)
         df = _normalize_dataframe(df)
         return df
 
@@ -132,24 +140,40 @@ def scrape_scouting_html(event_id: int) -> pd.DataFrame:
         return pd.DataFrame()
 
 
-def _parse_html_table(html: str) -> list[list[str]]:
-    """Extract data rows from an HTML table using regex."""
-    rows = []
-    # Match each <tr> in the tbody area (after </thead>)
-    tbody_match = re.split(r"</thead>", html, maxsplit=1)
-    if len(tbody_match) < 2:
-        return rows
+def _parse_html_table(html: str) -> tuple[list[str], list[list[str]]]:
+    """Extract headers and data rows from an HTML table using regex.
 
-    tbody_html = tbody_match[1]
+    Returns:
+        Tuple of (header_names, data_rows). Headers are extracted from visible
+        <th> tags (ignoring commented-out ones). Data rows are trimmed to match
+        the header count when possible.
+    """
+    headers = []
+    rows = []
+
+    # Extract visible headers (skip commented-out ones)
+    thead_match = re.search(r"<thead>(.*?)</thead>", html, re.DOTALL)
+    if not thead_match:
+        return headers, rows
+
+    th_pattern = re.compile(r"<th[^>]*>(.*?)</th>", re.DOTALL)
+    headers = [th.strip() for th in th_pattern.findall(thead_match.group(1))]
+
+    # Extract data rows from after </thead>
+    tbody_html = html[thead_match.end():]
     tr_pattern = re.compile(r"<tr>(.*?)</tr>", re.DOTALL)
     td_pattern = re.compile(r"<td[^>]*>(.*?)</td>", re.DOTALL)
 
+    n_headers = len(headers)
     for tr_match in tr_pattern.finditer(tbody_html):
         cells = [cell.strip() for cell in td_pattern.findall(tr_match.group(1))]
         if cells:
+            # Trim extra cells (from commented-out columns that still emit data)
+            if n_headers > 0 and len(cells) > n_headers:
+                cells = cells[:n_headers]
             rows.append(cells)
 
-    return rows
+    return headers, rows
 
 
 def _normalize_dataframe(df: pd.DataFrame) -> pd.DataFrame:

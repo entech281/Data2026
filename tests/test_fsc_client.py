@@ -81,19 +81,22 @@ class TestParseHtmlTable:
         <tr><td>2</td><td>342</td></tr>
         </table>
         """
-        rows = _parse_html_table(html)
+        headers, rows = _parse_html_table(html)
+        assert headers == ["Match", "Team"]
         assert len(rows) == 2
         assert rows[0] == ["1", "281"]
         assert rows[1] == ["2", "342"]
 
     def test_handles_no_thead(self):
         html = "<table><tr><td>1</td></tr></table>"
-        rows = _parse_html_table(html)
+        headers, rows = _parse_html_table(html)
+        assert headers == []
         assert rows == []
 
     def test_handles_empty_table(self):
         html = "<table><thead><tr><th>A</th></tr></thead></table>"
-        rows = _parse_html_table(html)
+        headers, rows = _parse_html_table(html)
+        assert headers == ["A"]
         assert rows == []
 
     def test_strips_whitespace_from_cells(self):
@@ -103,5 +106,16 @@ class TestParseHtmlTable:
         <tr><td>  hello  </td></tr>
         </table>
         """
-        rows = _parse_html_table(html)
+        headers, rows = _parse_html_table(html)
         assert rows[0] == ["hello"]
+
+    def test_trims_extra_cells_to_header_count(self):
+        html = """
+        <table>
+        <thead><tr><th>A</th><th>B</th></tr></thead>
+        <tr><td>1</td><td>2</td><td>extra</td></tr>
+        </table>
+        """
+        headers, rows = _parse_html_table(html)
+        assert len(headers) == 2
+        assert rows[0] == ["1", "2"]

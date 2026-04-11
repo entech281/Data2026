@@ -125,13 +125,15 @@ st.divider()
 # --- Scoring Line Plots ---
 st.header("Scoring Trends")
 
-# Color palettes for each alliance
+# Color palettes — red alliance uses warm reds, blue alliance uses cool greens/teals
+# to maximize visual distinction even for colorblind users
 RED_COLORS = ["#e74c3c", "#c0392b", "#ff6b6b"]
-BLUE_COLORS = ["#3498db", "#2980b9", "#74b9ff"]
+BLUE_COLORS = ["#27ae60", "#2ecc71", "#1abc9c"]
 
 
 def _build_team_traces(df: pd.DataFrame, teams: list[int], colors: list[str],
-                       y_col: str, dash: str = "solid") -> list:
+                       y_col: str, dash: str = "solid",
+                       marker_symbol: str = "circle") -> list:
     """Build Plotly scatter traces for a list of teams."""
     traces = []
     for i, team in enumerate(teams):
@@ -144,29 +146,10 @@ def _build_team_traces(df: pd.DataFrame, teams: list[int], colors: list[str],
             mode='lines+markers',
             name=f"{team}",
             line=dict(color=colors[i % len(colors)], dash=dash, width=2),
-            marker=dict(size=6),
+            marker=dict(size=7, symbol=marker_symbol),
             hovertemplate=f"Team {team}<br>Match %{{x}}<br>{y_col}: %{{y}}<extra></extra>",
         ))
     return traces
-
-
-def _build_alliance_total_trace(df: pd.DataFrame, teams: list[int], y_col: str,
-                                color: str, name: str) -> go.Scatter | None:
-    """Build a trace showing the alliance total (sum of all 3 teams) per match."""
-    team_df = df[df['team_number'].isin(teams)]
-    if team_df.empty:
-        return None
-    totals = team_df.groupby('match_number')[y_col].sum().reset_index()
-    totals = totals.sort_values('match_number')
-    return go.Scatter(
-        x=totals['match_number'],
-        y=totals[y_col],
-        mode='lines+markers',
-        name=name,
-        line=dict(color=color, width=3),
-        marker=dict(size=8),
-        hovertemplate=f"{name}<br>Match %{{x}}<br>Total: %{{y}}<extra></extra>",
-    )
 
 
 # Chart configurations
@@ -194,11 +177,13 @@ chart_selection = st.pills(
 if chart_selection:
     y_col = next(c[1] for c in SCORING_CHARTS if c[0] == chart_selection)
 
-    # Per-team traces
+    # Per-team traces — red=solid circles, blue=dashed diamonds
     fig = go.Figure()
-    for trace in _build_team_traces(alliance_data, red_teams, RED_COLORS, y_col):
+    for trace in _build_team_traces(alliance_data, red_teams, RED_COLORS, y_col,
+                                    dash="solid", marker_symbol="circle"):
         fig.add_trace(trace)
-    for trace in _build_team_traces(alliance_data, blue_teams, BLUE_COLORS, y_col, dash="dash"):
+    for trace in _build_team_traces(alliance_data, blue_teams, BLUE_COLORS, y_col,
+                                    dash="dash", marker_symbol="diamond"):
         fig.add_trace(trace)
 
     fig.update_layout(
@@ -210,25 +195,6 @@ if chart_selection:
         height=500,
     )
     st.plotly_chart(fig, use_container_width=True)
-
-    # Alliance totals chart
-    st.subheader("Alliance Totals")
-    fig_totals = go.Figure()
-    red_total = _build_alliance_total_trace(alliance_data, red_teams, y_col, "#e74c3c", "Red Alliance")
-    blue_total = _build_alliance_total_trace(alliance_data, blue_teams, y_col, "#3498db", "Blue Alliance")
-    if red_total:
-        fig_totals.add_trace(red_total)
-    if blue_total:
-        fig_totals.add_trace(blue_total)
-
-    fig_totals.update_layout(
-        title=f"Alliance Total {chart_selection}",
-        xaxis_title="Qualification Match Number",
-        yaxis_title=f"Total {chart_selection}",
-        hovermode="x unified",
-        height=400,
-    )
-    st.plotly_chart(fig_totals, use_container_width=True)
 
 st.divider()
 
