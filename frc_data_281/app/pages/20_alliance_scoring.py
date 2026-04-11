@@ -62,52 +62,30 @@ if load_match is not None:
         }
 
 
-def _team_index(team_val, options):
-    """Get index for a team in the options list, or 0 if not found."""
-    try:
-        return options.index(int(team_val))
-    except (ValueError, TypeError):
-        return 0
-
+# Sync team selectboxes when the selected match changes.
+# Streamlit ignores the `index` param once a widget key exists in
+# session state, so we must update session state directly.
+_TEAM_KEYS = ['red1', 'red2', 'red3', 'blue1', 'blue2', 'blue3']
+if load_match is not None and match_teams:
+    if st.session_state.get('_alliance_match') != load_match:
+        st.session_state['_alliance_match'] = load_match
+        for key, team in zip(_TEAM_KEYS, match_teams['red'] + match_teams['blue']):
+            st.session_state[key] = team
 
 # Red and Blue alliance selectors side-by-side
 col_red, col_blue = st.columns(2)
 
 with col_red:
     st.subheader("🔴 Red Alliance")
-    red1 = st.selectbox(
-        "Red 1", team_options, key="red1",
-        index=_team_index(match_teams['red'][0], team_options) if match_teams else 0,
-        format_func=lambda t: str(t),
-    )
-    red2 = st.selectbox(
-        "Red 2", team_options, key="red2",
-        index=_team_index(match_teams['red'][1], team_options) if match_teams else min(1, len(team_options) - 1),
-        format_func=lambda t: str(t),
-    )
-    red3 = st.selectbox(
-        "Red 3", team_options, key="red3",
-        index=_team_index(match_teams['red'][2], team_options) if match_teams else min(2, len(team_options) - 1),
-        format_func=lambda t: str(t),
-    )
+    red1 = st.selectbox("Red 1", team_options, key="red1", format_func=lambda t: str(t))
+    red2 = st.selectbox("Red 2", team_options, key="red2", format_func=lambda t: str(t))
+    red3 = st.selectbox("Red 3", team_options, key="red3", format_func=lambda t: str(t))
 
 with col_blue:
     st.subheader("🔵 Blue Alliance")
-    blue1 = st.selectbox(
-        "Blue 1", team_options, key="blue1",
-        index=_team_index(match_teams['blue'][0], team_options) if match_teams else min(3, len(team_options) - 1),
-        format_func=lambda t: str(t),
-    )
-    blue2 = st.selectbox(
-        "Blue 2", team_options, key="blue2",
-        index=_team_index(match_teams['blue'][1], team_options) if match_teams else min(4, len(team_options) - 1),
-        format_func=lambda t: str(t),
-    )
-    blue3 = st.selectbox(
-        "Blue 3", team_options, key="blue3",
-        index=_team_index(match_teams['blue'][2], team_options) if match_teams else min(5, len(team_options) - 1),
-        format_func=lambda t: str(t),
-    )
+    blue1 = st.selectbox("Blue 1", team_options, key="blue1", format_func=lambda t: str(t))
+    blue2 = st.selectbox("Blue 2", team_options, key="blue2", format_func=lambda t: str(t))
+    blue3 = st.selectbox("Blue 3", team_options, key="blue3", format_func=lambda t: str(t))
 
 red_teams = [red1, red2, red3]
 blue_teams = [blue1, blue2, blue3]
@@ -206,7 +184,7 @@ if chart_selection:
         legend_title="Team",
         height=500,
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 st.divider()
 
@@ -251,7 +229,7 @@ with col_red_stats:
             'climb_attempt_rate': '{:.0f}%', 'climb_success_rate': '{:.0f}%',
             'pct_active_scored': '{:.0f}%', 'pct_active_defense': '{:.0f}%',
         }, na_rep="—"),
-        hide_index=True, use_container_width=True,
+        hide_index=True, width="stretch",
     )
 
 with col_blue_stats:
@@ -263,7 +241,7 @@ with col_blue_stats:
             'climb_attempt_rate': '{:.0f}%', 'climb_success_rate': '{:.0f}%',
             'pct_active_scored': '{:.0f}%', 'pct_active_defense': '{:.0f}%',
         }, na_rep="—"),
-        hide_index=True, use_container_width=True,
+        hide_index=True, width="stretch",
     )
 
 # Alliance combined potential
