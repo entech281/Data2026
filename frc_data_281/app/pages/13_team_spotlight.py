@@ -215,3 +215,57 @@ if team is not None:
 
     else:
         st.info("No pit scouting data available for this team yet")
+
+    # --- Match Scouting Data (FSC) ---
+    from frc_data_281.db.cached_queries import get_scouting_data_for_teams
+    team_scouting = get_scouting_data_for_teams(selected_event, [team])
+    if not team_scouting.empty:
+        st.divider()
+        st.subheader("📊 Match Scouting (FSC)")
+
+        team_scouting = team_scouting.copy()
+        team_scouting['total_fuel'] = (
+            team_scouting['auto_fuel_score'].fillna(0) +
+            team_scouting['teleop_fuel_score'].fillna(0)
+        )
+        n = len(team_scouting)
+
+        col_s1, col_s2, col_s3, col_s4 = st.columns(4)
+        with col_s1:
+            st.metric("Matches Scouted", n)
+        with col_s2:
+            avg_auto = team_scouting['auto_fuel_score'].mean()
+            st.metric("Avg Auto Fuel", f"{avg_auto:.1f}" if pd.notna(avg_auto) else "—")
+        with col_s3:
+            avg_teleop = team_scouting['teleop_fuel_score'].mean()
+            st.metric("Avg Teleop Fuel", f"{avg_teleop:.1f}" if pd.notna(avg_teleop) else "—")
+        with col_s4:
+            avg_total = team_scouting['total_fuel'].mean()
+            st.metric("Avg Total Fuel", f"{avg_total:.1f}" if pd.notna(avg_total) else "—")
+
+        # Strategy breakdown
+        strat_cols = ['strategy_active_scored', 'strategy_active_ferrying', 'strategy_active_defense']
+        strat_available = [c for c in strat_cols if c in team_scouting.columns]
+        if strat_available and n > 0:
+            col_st1, col_st2, col_st3 = st.columns(3)
+            labels = {"strategy_active_scored": "Scoring", "strategy_active_ferrying": "Ferrying", "strategy_active_defense": "Defense"}
+            for col_w, col_name in zip([col_st1, col_st2, col_st3], strat_cols):
+                if col_name in team_scouting.columns:
+                    pct = team_scouting[col_name].sum() / n * 100
+                    col_w.metric(f"% {labels[col_name]}", f"{pct:.0f}%")
+
+        # Fuel trend sparkline
+        import plotly.graph_objects as go_spot
+        fig_spark = go_spot.Figure()
+        sorted_sc = team_scouting.sort_values('match_number')
+        fig_spark.add_trace(go_spot.Scatter(
+            x=sorted_sc['match_number'], y=sorted_sc['total_fuel'],
+            mode='lines+markers', line=dict(color='#e74c3c', width=2),
+            marker=dict(size=5), name='Total Fuel',
+        ))
+        fig_spark.update_layout(
+            title="Total Fuel Over Matches", height=250,
+            xaxis_title="Match", yaxis_title="Fuel",
+            margin=dict(l=40, r=20, t=40, b=40),
+        )
+        st.plotly_chart(fig_spark, use_container_width=True)
