@@ -125,28 +125,40 @@ st.divider()
 # --- Scoring Line Plots ---
 st.header("Scoring Trends")
 
-# Color palettes — red alliance uses warm reds, blue alliance uses cool greens/teals
-# to maximize visual distinction even for colorblind users
-RED_COLORS = ["#e74c3c", "#c0392b", "#ff6b6b"]
-BLUE_COLORS = ["#27ae60", "#2ecc71", "#1abc9c"]
+# Each team gets a unique color + line width + dash + marker so they're
+# easy to tell apart both within and across alliances.
+# Red alliance = warm hues (red, orange, maroon); Blue = cool hues (blue, purple, cyan)
+RED_STYLES = [
+    dict(color="#e63946", width=3, dash="solid", marker="circle"),       # bright red
+    dict(color="#f4a261", width=2, dash="dash", marker="square"),        # orange
+    dict(color="#9b2226", width=2.5, dash="dot", marker="triangle-up"),  # maroon
+]
+BLUE_STYLES = [
+    dict(color="#2176ff", width=3, dash="solid", marker="diamond"),       # vivid blue
+    dict(color="#7b2d8e", width=2, dash="dash", marker="cross"),          # purple
+    dict(color="#00b4d8", width=2.5, dash="dot", marker="star"),          # cyan
+]
 
 
-def _build_team_traces(df: pd.DataFrame, teams: list[int], colors: list[str],
-                       y_col: str, dash: str = "solid",
-                       marker_symbol: str = "circle") -> list:
+def _build_team_traces(df: pd.DataFrame, teams: list[int],
+                       styles: list[dict], y_col: str,
+                       legend_group: str = "") -> list:
     """Build Plotly scatter traces for a list of teams."""
     traces = []
     for i, team in enumerate(teams):
         team_df = df[df['team_number'] == team].sort_values('match_number')
         if team_df.empty:
             continue
+        s = styles[i % len(styles)]
         traces.append(go.Scatter(
             x=team_df['match_number'],
             y=team_df[y_col],
             mode='lines+markers',
             name=f"{team}",
-            line=dict(color=colors[i % len(colors)], dash=dash, width=2),
-            marker=dict(size=7, symbol=marker_symbol),
+            legendgroup=legend_group,
+            legendgrouptitle_text=legend_group if i == 0 else None,
+            line=dict(color=s["color"], dash=s["dash"], width=s["width"]),
+            marker=dict(size=8, symbol=s["marker"]),
             hovertemplate=f"Team {team}<br>Match %{{x}}<br>{y_col}: %{{y}}<extra></extra>",
         ))
     return traces
@@ -177,13 +189,13 @@ chart_selection = st.pills(
 if chart_selection:
     y_col = next(c[1] for c in SCORING_CHARTS if c[0] == chart_selection)
 
-    # Per-team traces — red=solid circles, blue=dashed diamonds
+    # Per-team traces with grouped legends
     fig = go.Figure()
-    for trace in _build_team_traces(alliance_data, red_teams, RED_COLORS, y_col,
-                                    dash="solid", marker_symbol="circle"):
+    for trace in _build_team_traces(alliance_data, red_teams, RED_STYLES, y_col,
+                                    legend_group="Red Alliance"):
         fig.add_trace(trace)
-    for trace in _build_team_traces(alliance_data, blue_teams, BLUE_COLORS, y_col,
-                                    dash="dash", marker_symbol="diamond"):
+    for trace in _build_team_traces(alliance_data, blue_teams, BLUE_STYLES, y_col,
+                                    legend_group="Blue Alliance"):
         fig.add_trace(trace)
 
     fig.update_layout(
