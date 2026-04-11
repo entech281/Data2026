@@ -123,6 +123,11 @@ def sync():
     load_info = pipeline.run(event_opr_source(event_list))
     logger.info(load_info)
 
+    # Sync FSC scouting data (match-level observations from human scouts)
+    logger.info("Sync FSC Scouting Data...")
+    from frc_data_281.fsc_scouting.client import sync_all_events
+    sync_all_events(event_list)
+
     logger.warning("Sync Complete!")
 
 

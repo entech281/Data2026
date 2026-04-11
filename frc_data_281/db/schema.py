@@ -55,3 +55,37 @@ def create_schema():
         # with values from: "Touching Hub", "Mid Range", "Long shot", "Trench shot",
         # "L1 Climb", "L2 Climb", "L3 Climb", "Snowblow"
         # drive_type options: "Mecanum", "Tank", "Swerve", "H Drive", "Other"
+
+        con.sql("""
+            CREATE TABLE IF NOT EXISTS scouting.match_data (
+                record_id INTEGER,
+                event_key VARCHAR NOT NULL,
+                match_number INTEGER NOT NULL,
+                team_number INTEGER NOT NULL,
+                auto_fuel_score INTEGER,
+                auto_climb_try BOOLEAN,
+                auto_climbed VARCHAR,
+                auto_traveled VARCHAR,
+                teleop_fuel_score INTEGER,
+                teleop_traveled VARCHAR,
+                endgame_climb_try BOOLEAN,
+                endgame_climb_level VARCHAR,
+                strategy_active_scored BOOLEAN,
+                strategy_active_ferrying BOOLEAN,
+                strategy_active_defense BOOLEAN,
+                strategy_inactive_scored BOOLEAN,
+                strategy_inactive_ferrying BOOLEAN,
+                strategy_inactive_defense BOOLEAN,
+                strategy_defense_actions INTEGER,
+                match_fouls INTEGER,
+                match_tipped BOOLEAN,
+                match_broken BOOLEAN,
+                match_beached BOOLEAN,
+                match_carded BOOLEAN,
+                match_disabled BOOLEAN,
+                match_absent BOOLEAN,
+                alliance_human_fuel INTEGER,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (event_key, match_number, team_number)
+            );
+        """)

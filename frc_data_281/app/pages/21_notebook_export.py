@@ -246,6 +246,31 @@ def _build_match_results_section(matches: pd.DataFrame) -> str:
     ])
 
 
+def _build_match_scouting_section(event_key: str) -> str:
+    """Build a markdown section with FSC per-robot scouting data."""
+    scouting_data = cached_data.get_scouting_match_data(event_key)
+    if scouting_data.empty:
+        return "## Match Scouting Data (FSC)\n\n_No FSC scouting data available for this event._\n\n"
+
+    # Drop columns that aren't useful for LLM analysis
+    drop_cols = ['record_id', 'created_at', 'event_key']
+    scouting_data = scouting_data.drop(columns=[c for c in drop_cols if c in scouting_data.columns], errors='ignore')
+    scouting_data = scouting_data.sort_values(['match_number', 'team_number'])
+
+    return "\n".join([
+        "## Match Scouting Data (FSC)\n",
+        "Per-robot observations recorded by human scouts watching each qualification match. "
+        "Each row represents one team's performance in one match. "
+        "Unlike alliance-level data from TBA, this data shows individual robot contributions.\n",
+        "**Key columns:** auto_fuel_score and teleop_fuel_score are the number of fuel points "
+        "scored by each robot. strategy_active_* columns indicate what the robot was primarily doing "
+        "(scoring, ferrying, or playing defense). endgame_climb_level shows climb achievement. "
+        "alliance_human_fuel is the alliance's human player fuel contribution.\n",
+        _df_to_md_table(scouting_data, float_fmt=".0f"),
+        "",
+    ])
+
+
 # --- Streamlit Page ---
 
 st.set_page_config(layout="wide")
@@ -264,6 +289,7 @@ with st.spinner("Gathering event data..."):
         _build_rp_section(selected_event),
         _build_ccm_section(selected_event),
         _build_zscore_section(selected_event),
+        _build_match_scouting_section(selected_event),
         _build_pit_scouting_section(team_list),
         _build_tags_section(team_list),
         _build_match_results_section(matches),

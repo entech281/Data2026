@@ -11,4 +11,5 @@ if __name__ == "__main__":
     print("✓ Database schema initialized successfully")
     print("  - scouting.pit")
     print("  - scouting.tags")
+    print("  - scouting.match_data")
     print("  - scouting.test")

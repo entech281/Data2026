@@ -339,3 +339,76 @@ def clear_caches():
     get_rankings.cache_clear()
     get_team_list.cache_clear()
     get_events.cache_clear()
+    get_scouting_match_data.cache_clear()
+
+
+@cachetools.func.ttl_cache(maxsize=128, ttl=CACHE_SECONDS)
+def get_scouting_match_data(event_key: str) -> pd.DataFrame:
+    """Get all FSC scouting match data for an event.
+
+    Args:
+        event_key: Event key identifier (e.g., '2026sccmp').
+
+    Returns:
+        DataFrame with per-robot scouting observations, sorted by match_number and team_number.
+    """
+    with get_connection() as con:
+        try:
+            df = con.sql(f"""
+                SELECT * FROM scouting.match_data
+                WHERE event_key = '{event_key}'
+                ORDER BY match_number, team_number
+            """).df()
+            return df
+        except Exception:
+            return pd.DataFrame()
+
+
+def get_scouting_data_for_teams(event_key: str, team_numbers: list[int]) -> pd.DataFrame:
+    """Get FSC scouting data filtered to specific teams.
+
+    Args:
+        event_key: Event key identifier.
+        team_numbers: List of team numbers to include.
+
+    Returns:
+        DataFrame with scouting data for the specified teams.
+    """
+    df = get_scouting_match_data(event_key)
+    if df.empty or not team_numbers:
+        return df
+    return df[df['team_number'].isin(team_numbers)]
+
+
+def get_next_unplayed_match(event_key: str) -> dict | None:
+    """Find the next qualification match that hasn't been played yet.
+
+    Looks for qual matches where scores are null, ordered by match_number.
+
+    Args:
+        event_key: Event key identifier.
+
+    Returns:
+        Dictionary with match info (match_number, red1-3, blue1-3), or None.
+    """
+    matches = get_matches_for_event(event_key)
+    if matches.empty:
+        return None
+
+    quals = matches[matches['comp_level'] == 'qm']
+    unplayed = quals[quals['red_score'].isna() | (quals['red_score'] == -1)]
+    unplayed = unplayed.sort_values('match_number')
+
+    if unplayed.empty:
+        return None
+
+    row = unplayed.iloc[0]
+    return {
+        'match_number': int(row['match_number']),
+        'red1': int(row['red1']),
+        'red2': int(row['red2']),
+        'red3': int(row['red3']),
+        'blue1': int(row['blue1']),
+        'blue2': int(row['blue2']),
+        'blue3': int(row['blue3']),
+    }
